@@ -142,10 +142,13 @@ body.detail-mode #detail{display:block}
 .sd-row .k{padding:14px 0 14px 24px;font-family:var(--font-mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#8B9AAC}
 .sd-row .v{padding:13px 22px 13px 0;color:#F3EFE6;font-weight:500}
 .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-top:18px}
-.g-item{border:1px solid var(--line);overflow:hidden;aspect-ratio:4/3;position:relative;background:
+.g-item{border:1px solid var(--line);background:var(--paper);margin:0}
+.g-img{overflow:hidden;aspect-ratio:4/3;position:relative;background:
   repeating-linear-gradient(45deg,#F1EEE7 0 10px,#F8F6F1 10px 20px)}
-.g-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
-.g-item:hover img{transform:scale(1.05)}
+.g-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+.g-item:hover .g-img img{transform:scale(1.05)}
+.g-item figcaption{border-top:1px solid var(--line);padding:10px 14px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.06em;color:var(--soft);display:flex;align-items:baseline;gap:9px}
+.g-item figcaption::before{content:"";width:5px;height:5px;background:var(--brass-grad);transform:rotate(45deg);flex:0 0 auto;position:relative;top:-1px}
 .d-nav{display:flex;justify-content:space-between;gap:14px;margin-top:48px;padding-top:28px;border-top:1px solid var(--line)}
 .d-nav a{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);text-decoration:none;border:1px solid var(--line);background:var(--paper);padding:12px 22px;transition:all .16s}
 .d-nav a:hover{color:var(--brass);border-color:var(--brass)}
@@ -232,7 +235,7 @@ footer{padding:30px 0 36px;display:flex;justify-content:space-between;gap:12px;f
       <div class="stats">
         <div class="stat reveal"><div class="n">5</div><div class="l">SolidWorks Certifications</div></div>
         <div class="stat reveal"><div class="n">145/145</div><div class="l">CSWPA Sheet Metal — Perfect Score</div></div>
-        <div class="stat reveal"><div class="n">IX</div><div class="l">Featured Engineering Projects</div></div>
+        <div class="stat reveal"><div class="n">2021</div><div class="l">Designing &amp; Simulating Since</div></div>
         <div class="stat reveal"><div class="n">1st</div><div class="l">Cohort Rank — Graduation Thesis</div></div>
       </div>
     </div>
@@ -297,99 +300,8 @@ footer{padding:30px 0 36px;display:flex;justify-content:space-between;gap:12px;f
 
 <script>
 /* ============================== DATA ============================== */
-const ROMAN=["I","II","III","IV","V","VI","VII","VIII","IX"];
+const ROMAN=["I","II","III","IV","V","VI","VII","VIII","IX","X"];
 const PROJECTS = [
-{
-  id:"ms-001", cat:"cfd", tag:"CFD · Wind Energy",
-  title:"Savonius VAWT for Wind-Integrated EV Charging",
-  summary:"Graduation thesis — full CFD parametric optimization of a Savonius vertical-axis wind turbine sized against a Tesla Model 3 charging reference.",
-  metric:"Cp = 0.3755",
-  meta:{Role:"Lead researcher", Tools:"SolidWorks Flow Simulation", Type:"Graduation thesis", Status:"Journal publication in prep."},
-  overview:"This thesis investigated how a Savonius vertical-axis wind turbine can be optimized to serve as a wind-integrated charging source for electric vehicles, using a Tesla Model 3 as the energy reference case. The work combined aerodynamic theory with a systematic CFD campaign to converge on the best-performing rotor geometry.",
-  approach:"A parametric CFD study was built in SolidWorks Flow Simulation, sweeping the key geometric parameters of the Savonius rotor and evaluating torque and power coefficients across operating conditions. Each configuration was assessed for convergence quality before results were accepted, and the final geometry was selected from the full parametric map rather than a single-point design.",
-  results:[
-    "Power coefficient <b>Cp = 0.3755</b> — strong performance for a Savonius-class rotor",
-    "Torque coefficient <b>Ct = 0.2506</b>",
-    "Graded <b>92/100 — ranked 1st</b> in cohort",
-    "<b>Nominated for patent</b> · journal paper in preparation"
-  ],
-  gallery:6
-},
-{
-  id:"ms-002", cat:"cfd", tag:"CFD · Aerodynamics",
-  title:"Dimpled NACA 4412 Airfoil — UAV Parametric Study",
-  summary:"Independent research: parametric CFD investigation of dimple geometry effects on the aerodynamic performance of a NACA 4412 airfoil for UAV applications.",
-  metric:"Active research",
-  meta:{Role:"Independent researcher", Tools:"SolidWorks Flow Simulation", Type:"Research study", Status:"Active"},
-  overview:"Inspired by the drag-reduction physics of dimpled surfaces, this study asks a precise engineering question: can passive surface dimples improve the lift-to-drag behavior of a NACA 4412 airfoil in the Reynolds-number range relevant to small UAVs?",
-  approach:"External flow simulations are run over the baseline and dimpled airfoil variants across a sweep of angles of attack, with dimple geometry treated as a parametric variable. Lift, drag, and flow-separation behavior are compared case by case to isolate the effect of the surface treatment from the baseline aerodynamics.",
-  results:[
-    "Full parametric matrix defined: dimple geometry × angle of attack",
-    "Baseline NACA 4412 validation stage completed as the reference case",
-    "Targeted outcome: quantified L/D comparison for UAV design guidance"
-  ],
-  gallery:6
-},
-{
-  id:"ms-003", cat:"cfd", tag:"CFD · Rotating Machinery",
-  title:"Archimedes Spiral Wind Turbine — Parametric CFD Study",
-  summary:"Rotating-region (MRF) parametric study of an Archimedes spiral wind turbine, evaluated against real wind data from Um Aljemal, Jordan.",
-  metric:"CF = 41.8%",
-  meta:{Role:"Simulation engineer", Tools:"SW Flow Simulation · MRF", Type:"Technical study", Deliverable:"Report + results workbook"},
-  overview:"A complete performance study of an Archimedes spiral wind turbine (ASWT) — a compact rotor type suited to low-wind urban sites. The study connected simulation directly to a real deployment question by using measured wind data from Um Aljemal, Jordan.",
-  approach:"The rotor was analyzed using the Moving Reference Frame (MRF) method in SolidWorks Flow Simulation across a matrix of wind speeds and rotational speeds. Power output curves were then convolved with the site wind distribution to estimate real-world energy production, delivered as a structured technical report with a full results workbook.",
-  results:[
-    "Site capacity factor estimated at <b>41.8%</b> using Um Aljemal wind data",
-    "Full power curve mapped across the operating envelope",
-    "Delivered as a complete technical report + Excel results workbook"
-  ],
-  gallery:6
-},
-{
-  id:"ms-004", cat:"fea", tag:"FEA · Topology Optimization",
-  title:"RC Vehicle Shock Tower — Multi-Study FEA",
-  summary:"Static, modal, fatigue and topology optimization studies converging on a redesigned shock tower that preserves stiffness while cutting mass.",
-  metric:"~30% mass reduction",
-  meta:{Role:"Simulation engineer", Tools:"SolidWorks Simulation", Type:"Design optimization", Studies:"Static · Modal · Fatigue · Topology"},
-  overview:"A structural deep-dive on an RC vehicle shock tower: a component that must survive repeated impact loading while every gram matters. The goal was a lighter geometry with no compromise on structural performance.",
-  approach:"The baseline part was first characterized through static, modal, and fatigue studies to establish its true performance envelope. A topology optimization study then identified the load paths that actually carry the work, and the part was redesigned around them. The final geometry was re-verified through the same study set to confirm it met all original targets.",
-  results:[
-    "Approximately <b>30% mass reduction</b> versus the baseline part",
-    "Stiffness and fatigue targets preserved in the redesigned geometry",
-    "Full verification loop: baseline → topology → redesign → re-validation"
-  ],
-  gallery:5
-},
-{
-  id:"ms-005", cat:"fea fab", tag:"FEA · Public Structures",
-  title:"Festival Ring & Sun Arch Structures",
-  summary:"Design and FEA structural verification of large decorative steel structures for a public park festival — from concept CAD to installed reality.",
-  metric:"Designed · verified · installed",
-  meta:{Role:"Design & simulation engineer", Client:"Art Media Group", Tools:"SolidWorks · FEA", Type:"Public installation"},
-  overview:"Large decorative steel structures — a ring and a sun arch — designed for a public park festival, where structural safety is non-negotiable: these are structures the public walks under and around.",
-  approach:"The structures were modeled as weldment frames in SolidWorks, then verified through FEA under the governing load cases before fabrication drawings were released. The engineering package took the project from artistic concept to buildable, load-checked steel structures, and through to fabrication and on-site installation.",
-  results:[
-    "FEA-verified structural design for public-space installation",
-    "Complete fabrication drawing packages released to the workshop",
-    "Structures <b>fabricated and installed</b> for the live festival"
-  ],
-  gallery:6
-},
-{
-  id:"ms-006", cat:"fab", tag:"Production Engineering",
-  title:"Al-Hussein Sport Club — Brand Store",
-  summary:"Full production engineering of a retail brand store: KeyShot concept renders, shop drawings, fiber laser tube cutting, fabrication and installation.",
-  metric:"Concept → installed store",
-  meta:{Role:"Production engineer", Client:"Al-Hussein Sport Club", Tools:"SolidWorks · KeyShot", Process:"Fiber laser tube cutting"},
-  overview:"A complete retail brand store executed end-to-end: from photorealistic concept visualization that won client approval, through manufacturing engineering, to the finished installed store.",
-  approach:"The store concept was modeled in SolidWorks and rendered in KeyShot for client sign-off. The approved design was then broken down into a full production package — shop drawings and fiber laser tube cutting programs — and carried through fabrication and installation coordination.",
-  results:[
-    "Client-approved photorealistic KeyShot concept renders",
-    "Complete shop drawing and laser cutting program package",
-    "Store <b>fabricated and installed</b> as designed"
-  ],
-  gallery:6
-},
 {
   id:"ms-007", cat:"fab", tag:"Sheet Metal",
   title:"Commercial Baking Oven — TAYYEM",
@@ -403,37 +315,56 @@ const PROJECTS = [
     "DXF packages released directly to fiber laser cutting",
     "Oven <b>manufactured</b> on the TAYYEM production floor"
   ],
-  gallery:5
+  gcaps:["Oven production series — TAYYEM floor", "SolidWorks front elevation of the oven"],
+  gallery:2
 },
 {
-  id:"ms-008", cat:"fab", tag:"Machine Design",
-  title:"Hummus Grinder Assembly — TAYYEM",
-  summary:"Complete machine assembly design with structured BOM and full ISO engineering drawing package, released to production.",
-  metric:"Full drawing package",
-  meta:{Role:"Design engineer", Employer:"TAYYEM Engineering Industries", Tools:"SolidWorks", Deliverables:"Assembly · BOM · ISO drawings"},
-  overview:"A complete food-processing machine assembly taken from design intent to a production-ready documentation package — the kind of engineering release a workshop can build from without a single question back.",
-  approach:"The full assembly was modeled in SolidWorks with a structured, production-oriented BOM. Every manufactured component received an ISO-standard engineering drawing with the tolerances and annotations the floor needs, and the complete package was released for fabrication.",
+  id:"ms-010", cat:"fab", tag:"Sheet Metal · Refrigeration",
+  title:"Refrigerated Display Counter — Al-Dhiaa",
+  summary:"Sheet metal design and fabrication of a commercial refrigerated display counter for the Al-Dhiaa brand — stainless deck, tempered glass display, and powder-coated steel body, built in series at TAYYEM.",
+  metric:"Built in series",
+  meta:{Role:"Sheet metal design & fabrication", Employer:"TAYYEM Engineering Industries", Client:"Al-Dhiaa", Material:"Stainless + coated steel"},
+  overview:"A commercial refrigerated display counter for the Al-Dhiaa brand — the kind of product where food-grade surfaces, display clarity, refrigeration airflow, and brand identity all have to coexist in one sheet metal package.",
+  approach:"The counter body was engineered as sheet metal assemblies: a stainless steel display deck and trims, a powder-coated steel base with perforated ventilation panels for the refrigeration unit, framed tempered glass display with internal lighting, rear sliding glass doors for service access, and a laser-cut branded logo panel on the front. The design was carried through fabrication in series on the TAYYEM production floor.",
   results:[
-    "Complete machine assembly model with structured BOM",
-    "Full <b>ISO engineering drawing package</b> for all manufactured parts",
-    "Released to and built by the production floor"
+    "Complete counter fabricated and <b>delivered in series</b>",
+    "Food-grade stainless display deck with lit tempered glass showcase",
+    "Laser-cut perforated ventilation panels and branded front identity"
   ],
-  gallery:4
+  gcaps:["Three-quarter view — glass display & stainless deck", "Rear sliding service doors", "Production series in the workshop"],
+  gallery:3
 },
 {
-  id:"ms-009", cat:"fab", tag:"Steel Structures",
-  title:"Concrete Formwork Boxes — SteelX Jordan",
-  summary:"Design and production engineering of fabricated steel formwork boxes: weldments, manufacturing drawings, and CNC nesting for series production.",
+  id:"ms-011", cat:"fab", tag:"Steel Structures · CNC",
+  title:"Steel Structure Boxes — SteelX Jordan",
+  summary:"Plate-based steel structure boxes engineered with self-locating tab-and-slot joints, optimized CNC nesting, and series fabrication on the SteelX production floor.",
   metric:"Series production",
-  meta:{Role:"Design & production engineer", Employer:"SteelX Jordan", Tools:"SolidWorks Weldments", Process:"CNC nesting · fabrication"},
-  overview:"Steel formwork boxes for concrete construction — structural products where dimensional accuracy and repeatability across a production series decide whether the product works on site.",
-  approach:"The boxes were designed as weldment structures in SolidWorks, with manufacturing drawings prepared for series fabrication. CNC nesting was engineered to maximize plate utilization across the production run, directly reducing material cost per unit.",
+  meta:{Role:"Design & production engineer", Employer:"SteelX Jordan", Tools:"SolidWorks · CNC nesting", Process:"Laser cutting · welding"},
+  overview:"A structural steel box product built for repeatable series production — where the real engineering challenge isn't the shape, it's designing every plate so the whole batch cuts efficiently, self-locates during fit-up, and welds fast without jigs.",
+  approach:"The box was modeled in SolidWorks as a plate assembly with interlocking tab-and-slot joints, so parts self-locate during fit-up and welding stays fast and accurate across the series. All plates were nested in an optimized CNC cutting layout to maximize sheet utilization, then cut, welded, and finished on the SteelX production floor.",
   results:[
-    "Weldment-based structural design for repeatable series production",
-    "Optimized <b>CNC nesting</b> for efficient plate utilization",
-    "In production at SteelX Jordan"
+    "<b>Self-locating tab-and-slot</b> joint design — fast, jig-free fit-up and welding",
+    "Optimized <b>CNC nesting layout</b> for maximum plate utilization",
+    "Fabricated, welded and finished <b>in series</b> at SteelX Jordan"
   ],
+  gcaps:["Series production on the SteelX floor", "Welded & primed box interior", "CNC nesting layout — plate utilization", "SolidWorks assembly — trimetric view", "Tab-and-slot corner joint detail"],
   gallery:5
+},
+{
+  id:"ms-012", cat:"fab", tag:"Stainless · Food Equipment",
+  title:"Full Restaurant Serving Line — TAYYEM",
+  summary:"A complete multi-station commercial restaurant line — refrigerated prep counters, hot stations, GN pan wells and glass guard gantries — designed as modular SolidWorks assemblies and fabricated in stainless at TAYYEM.",
+  metric:"Multi-station line",
+  meta:{Role:"Design & fabrication", Employer:"TAYYEM Engineering Industries", Tools:"SolidWorks · Sheet metal", Scope:"Complete serving line"},
+  overview:"An entire restaurant serving line delivered as one continuous product: refrigerated preparation counters, hot and cooking stations, GN pan wells, drawers and doors, glass sneeze-guard gantries, and a branded LED-lit front — every module engineered to work together dimensionally and visually.",
+  approach:"The line was modeled in SolidWorks as modular assemblies — each station (refrigerated counter, hot station, cooker openings, drawer units) designed as its own sheet metal module sharing common heights, trims and joints so the line assembles into one seamless run. Stainless flat patterns were prepared for laser cutting and press-brake forming, the glass guard gantry was framed in profiles, and the front was clad with laser-cut honeycomb panels with integrated LED lighting and client branding. The full line was fabricated and assembled at TAYYEM.",
+  results:[
+    "Complete <b>multi-station line</b> engineered as modular, interlocking assemblies",
+    "Refrigerated, hot-holding and cooking stations integrated in one continuous run",
+    "Stainless fabrication with <b>LED-lit, laser-cut branded cladding</b> and glass guard gantry"
+  ],
+  gcaps:["SolidWorks full-line assembly", "Hot stations & louvered doors — CAD detail", "Refrigerated module with GN pans — CAD detail", "Finished line — branding lit", "Sneeze-guard stainless rails detail", "Refrigerated compartment interior"],
+  gallery:6
 }
 ];
 
@@ -479,13 +410,19 @@ function renderDetail(id){
   const prev=PROJECTS[(i-1+PROJECTS.length)%PROJECTS.length];
   const next=PROJECTS[(i+1)%PROJECTS.length];
   const metaRows=Object.entries(p.meta).map(([k,v])=>`<div class="sd-row"><span class="k">${k}</span><span class="v">${v}</span></div>`).join('');
-  const gal=Array.from({length:p.gallery},(_,n)=>{
+  const caps=p.gcaps||[];
+  const count=caps.length||p.gallery||0;
+  const gal=Array.from({length:count},(_,n)=>{
     const fn=`images/${p.id}-${String(n+1).padStart(2,'0')}.jpg`;
-    return `<div class="g-item">
-      <img src="${fn}" alt="${p.title} — image ${n+1}" loading="lazy"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="ph" style="display:none"><span>ADD IMAGE →</span><span class="fn">${fn}</span></div>
-    </div>`;}).join('');
+    const cap=caps[n]||`${p.title} — detail ${n+1}`;
+    return `<figure class="g-item">
+      <div class="g-img">
+        <img src="${fn}" alt="${cap}" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="ph" style="display:none"><span>ADD IMAGE →</span><span class="fn">${fn}</span></div>
+      </div>
+      <figcaption>${cap}</figcaption>
+    </figure>`;}).join('');
   detailContent.innerHTML=`
     <a class="back" href="#/" onclick="goHome(event)">← Back to all projects</a>
     <div class="d-head">
