@@ -153,6 +153,21 @@ body.detail-mode #detail{display:block}
 .d-nav a{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);text-decoration:none;border:1px solid var(--line);background:var(--paper);padding:12px 22px;transition:all .16s}
 .d-nav a:hover{color:var(--brass);border-color:var(--brass)}
 
+/* ============ documents ============ */
+.d-docs{display:flex;flex-wrap:wrap;gap:12px;margin:8px 0 4px}
+.d-docs a{display:inline-flex;align-items:center;gap:11px;text-decoration:none;font-family:var(--font-mono);font-size:12px;color:var(--ink);background:var(--paper);border:1px solid var(--line);padding:13px 20px;transition:all .16s}
+.d-docs a:hover{border-color:var(--brass);color:var(--brass)}
+.d-docs a::before{content:"PDF";font-size:9px;font-weight:600;letter-spacing:.08em;color:#fff;background:var(--navy);padding:3px 7px}
+.lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.lib-card{background:var(--paper);border:1px solid var(--line);padding:24px 22px 20px;position:relative;display:flex;flex-direction:column;gap:9px;transition:transform .2s,box-shadow .2s}
+.lib-card::before{content:"";position:absolute;top:0;left:22px;width:44px;height:3px;background:var(--brass-grad)}
+.lib-card:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(18,42,67,.10)}
+.lib-card .lt{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass)}
+.lib-card h3{font-family:var(--font-display);font-weight:400;font-size:17px;line-height:1.35}
+.lib-card p{font-size:13px;color:var(--soft);flex:1}
+.lib-card a{align-self:flex-start;font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--navy);border:1px solid var(--line);padding:10px 18px;transition:all .16s}
+.lib-card a:hover{color:var(--brass);border-color:var(--brass)}
+
 /* ============ certifications ============ */
 .certs{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
 .cert{background:var(--paper);border:1px solid var(--line);padding:26px 24px 22px;position:relative;text-align:center}
@@ -218,6 +233,7 @@ footer{padding:30px 0 36px;display:flex;justify-content:space-between;gap:12px;f
       <a href="#capabilities" onclick="goSection(event,'capabilities')">Capabilities</a>
       <a href="#projects" onclick="goSection(event,'projects')">Projects</a>
       <a href="#certifications" onclick="goSection(event,'certifications')">Certifications</a>
+      <a href="#library" onclick="goSection(event,'library')">Library</a>
       <a href="#contact" onclick="goSection(event,'contact')">Contact</a>
     </nav>
   </div>
@@ -274,6 +290,12 @@ footer{padding:30px 0 36px;display:flex;justify-content:space-between;gap:12px;f
     </div>
   </div>
 
+
+  <div class="wrap section" id="library" style="display:none">
+    <div class="sec-head reveal"><div class="kicker">Drawings &amp; Reports</div><h2>Technical Library</h2></div>
+    <div class="lib" id="lib-grid"></div>
+  </div>
+
   <div class="contact-band" id="contact">
     <div class="wrap contact">
       <div class="kicker">Get in Touch</div>
@@ -315,6 +337,7 @@ const PROJECTS = [
     "DXF packages released directly to fiber laser cutting",
     "Oven <b>manufactured</b> on the TAYYEM production floor"
   ],
+  docs:[{label:"Manufacturing Drawing — Baking Oven 120×140 (PDF)",file:"files/ms-007-drawing.pdf"}],
   gcaps:["Oven production series — TAYYEM floor", "SolidWorks front elevation of the oven"],
   gallery:2
 },
@@ -365,6 +388,54 @@ const PROJECTS = [
   ],
   gcaps:["SolidWorks full-line assembly", "Hot stations & louvered doors — CAD detail", "Refrigerated module with GN pans — CAD detail", "Finished line — branding lit", "Sneeze-guard stainless rails detail", "Refrigerated compartment interior"],
   gallery:6
+},
+{
+  id:"ms-013", cat:"fea fab", tag:"FEA · Public Structures",
+  title:"Festival Sun Arch & Ring Structures — Art Media Group",
+  summary:"Large illuminated steel structures for a public festival in Amman — a sun arch and a ring-arch tunnel — designed in SolidWorks, verified by FEA, developed into laser-cut flat patterns, and installed live.",
+  metric:"FEA-verified · installed",
+  gcaps:["SolidWorks assembly — sun & ring arch structures","FEA displacement study — structural verification under load","AutoCAD flat patterns — arch segments prepared for laser cutting","Ring arch tunnel installed at the festival","Illuminated arches live at the festival"],
+  gallery:5,
+  meta:{Role:"Design & simulation engineer", Client:"Art Media Group", Tools:"SolidWorks · FEA · AutoCAD", Type:"Public installation"},
+  overview:"Large decorative steel structures — a radiant sun arch and a tunnel of LED-lit ring arches — built for a public festival in Amman. These are structures the public walks under, so structural verification wasn't optional: every arch had to be proven safe before a single plate was cut.",
+  approach:"The arches were modeled in SolidWorks as segmented plate structures, then verified through static FEA under self-weight and applied service loads — checking displacement and stress against safe limits with fixed base conditions. The verified geometry was broken into segments and developed into AutoCAD flat patterns for laser cutting, then fabricated, fitted with LED lighting, and installed at the festival site.",
+  results:[
+    "<b>Static FEA verification</b> — displacement and stress checked before fabrication release",
+    "Segmented arches developed into <b>laser-cut flat patterns</b> in AutoCAD",
+    "Fabricated, LED-fitted and <b>installed live</b> at a public festival in Amman"
+  ]
+},
+{
+  id:"ms-014", cat:"fab", tag:"Machine Design · Sheet Metal",
+  title:"Volumetric Screw Conveyor — Freelance Design",
+  summary:"Complete machine design of a volumetric screw conveyor in SolidWorks sheet metal — auger, tube, agitated feed hopper, bearing units and gearmotor drive — delivered as a freelance commission.",
+  metric:"Complete machine design",
+  gcaps:["Transparent view — internal auger and agitated feed hopper","Side elevation — drive train and agitator section","End elevation — hopper, bearing unit and gearmotor"],
+  gallery:3,
+  meta:{Role:"Freelance design engineer", Type:"Freelance commission", Tools:"SolidWorks Sheet Metal", Deliverable:"Full 3D assembly"},
+  overview:"A volumetric screw conveyor — the workhorse of powder and granular material handling — designed as a complete machine: helical auger inside a tube, an agitated feed hopper to keep material flowing, and a fully specified drive line.",
+  approach:"The machine was modeled end-to-end in SolidWorks with the sheet metal environment used for every fabricated body, so each part carries a valid flat pattern — including the conical hopper transition. The assembly integrates standard purchased components (UCF204 bearing units, gearmotor drive) with the fabricated auger, tube, hopper and agitator, producing a design that is ready for both fabrication and procurement.",
+  results:[
+    "Full machine assembly: auger, tube, <b>agitated feed hopper</b> and drive line",
+    "Every fabricated part modeled in <b>sheet metal with valid flat patterns</b>",
+    "Standard components integrated: UCF bearing units, gearmotor drive"
+  ]
+},
+{
+  id:"ms-015", cat:"fab", tag:"Surface Modeling · Furniture",
+  title:"Designer Desk — Advanced Surface Modeling",
+  summary:"Freelance reverse-engineering commission: reconstructing a designer desk's complex organic geometry in SolidWorks surfaces from reference imagery, delivered as a watertight, manufacturable solid model.",
+  metric:"Advanced surfacing",
+  gcaps:["Front elevation — sculpted support curve","Back elevation — integrated shelf compartment","Sculpted desktop surface — trimetric view","Underside — complex boundary surface transitions"],
+  gallery:4,
+  meta:{Role:"Freelance design engineer", Type:"Reverse engineering", Tools:"SolidWorks Surfacing", Deliverable:"Watertight solid model"},
+  overview:"A designer desk whose entire identity lives in one continuous, flowing organic form — no flat panels, no simple extrudes. The commission: rebuild that geometry in CAD from reference imagery alone, accurately enough to manufacture from.",
+  approach:"The form was reconstructed using SolidWorks advanced surfacing — a network of boundary surfaces and surface fills built over reference geometry, then knitted and thickened into watertight solid bodies. Getting the sweeping leg-to-top transition to flow with tangency continuity while ending in crisp, manufacturable edges was the core of the work.",
+  results:[
+    "Complex organic form rebuilt with <b>boundary and fill surfaces</b> from reference imagery",
+    "Surfaces knitted into <b>watertight solid bodies</b> ready for manufacturing",
+    "Smooth tangent transitions preserved across the full leg-to-top sweep"
+  ]
 }
 ];
 
@@ -388,6 +459,26 @@ grid.innerHTML=PROJECTS.map((p,i)=>`
       <span class="open">View project →</span>
     </div>
   </a>`).join('');
+
+
+/* ============================== TECHNICAL LIBRARY ============================== */
+// Standalone documents: {type:"Drawing Package"|"Technical Report"|..., title, desc, file:"files/xxx.pdf"}
+const DOCS = [
+  {type:"Drawing Package", title:"Hummus Grinder Machine (50–70 kg) — Assembly Drawing & BOM",
+   desc:"ISO A2 assembly drawing of a vertical hummus grinder designed at TAYYEM: chassis and pot exploded views with fully itemized bills of materials.",
+   file:"files/hummus-grinder-drawing.pdf"}
+];
+const libGrid=document.getElementById('lib-grid');
+if(DOCS.length){
+  document.getElementById('library').style.display='';
+  libGrid.innerHTML=DOCS.map(d=>`
+    <div class="lib-card reveal">
+      <span class="lt">${d.type}</span>
+      <h3>${d.title}</h3>
+      <p>${d.desc}</p>
+      <a href="${d.file}" target="_blank" rel="noopener">View PDF →</a>
+    </div>`).join('');
+}
 
 /* ============================== FILTERS ============================== */
 const btns=document.querySelectorAll('.filters button');
@@ -441,6 +532,7 @@ function renderDetail(id){
         <h2>Approach</h2><p>${p.approach}</p>
         <h2>Key Results</h2>
         <ul class="d-results">${p.results.map(r=>`<li>${r}</li>`).join('')}</ul>
+        ${p.docs&&p.docs.length?`<h2>Documents</h2><div class="d-docs">${p.docs.map(d=>`<a href="${d.file}" target="_blank" rel="noopener">${d.label}</a>`).join('')}</div>`:''}
         <h2>Gallery</h2>
         <div class="gallery">${gal}</div>
       </div>
