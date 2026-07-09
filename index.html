@@ -269,11 +269,18 @@ footer{padding:30px 0 36px;display:flex;justify-content:space-between;gap:12px;f
 
   <div class="wrap section" id="projects">
     <div class="sec-head reveal"><div class="kicker">Selected Work</div><h2>Projects</h2></div>
-    <div class="filters reveal" aria-label="Filter projects">
+    <div class="filters reveal" aria-label="Filter by discipline">
       <button class="active" data-f="all">All</button>
       <button data-f="cfd">CFD</button>
       <button data-f="fea">FEA</button>
       <button data-f="fab">Design &amp; Fabrication</button>
+    </div>
+    <div class="filters reveal" aria-label="Filter by organization" style="margin-top:-26px">
+      <button class="active" data-o="all">All Organizations</button>
+      <button data-o="tayyem">TAYYEM</button>
+      <button data-o="steelx">SteelX</button>
+      <button data-o="artmedia">Art Media Group</button>
+      <button data-o="freelance">Freelance</button>
     </div>
     <div class="grid" id="grid"></div>
   </div>
@@ -325,7 +332,7 @@ footer{padding:30px 0 36px;display:flex;justify-content:space-between;gap:12px;f
 const ROMAN=["I","II","III","IV","V","VI","VII","VIII","IX","X"];
 const PROJECTS = [
 {
-  id:"ms-007", cat:"fab", tag:"Sheet Metal",
+  id:"ms-007", org:"tayyem", cat:"fab", tag:"Sheet Metal",
   title:"Commercial Baking Oven — TAYYEM",
   summary:"Sheet metal design of a commercial baking oven: stainless enclosure, flat-pattern development, DXF preparation, and press-brake forming.",
   metric:"Stainless · manufactured",
@@ -342,7 +349,7 @@ const PROJECTS = [
   gallery:2
 },
 {
-  id:"ms-010", cat:"fab", tag:"Sheet Metal · Refrigeration",
+  id:"ms-010", org:"tayyem", cat:"fab", tag:"Sheet Metal · Refrigeration",
   title:"Refrigerated Display Counter — Al-Dhiaa",
   summary:"Sheet metal design and fabrication of a commercial refrigerated display counter for the Al-Dhiaa brand — stainless deck, tempered glass display, and powder-coated steel body, built in series at TAYYEM.",
   metric:"Built in series",
@@ -358,7 +365,7 @@ const PROJECTS = [
   gallery:3
 },
 {
-  id:"ms-011", cat:"fab", tag:"Steel Structures · CNC",
+  id:"ms-011", org:"steelx", cat:"fab", tag:"Steel Structures · CNC",
   title:"Steel Structure Boxes — SteelX Jordan",
   summary:"Plate-based steel structure boxes engineered with self-locating tab-and-slot joints, optimized CNC nesting, and series fabrication on the SteelX production floor.",
   metric:"Series production",
@@ -374,7 +381,7 @@ const PROJECTS = [
   gallery:5
 },
 {
-  id:"ms-012", cat:"fab", tag:"Stainless · Food Equipment",
+  id:"ms-012", org:"tayyem", cat:"fab", tag:"Stainless · Food Equipment",
   title:"Full Restaurant Serving Line — TAYYEM",
   summary:"A complete multi-station commercial restaurant line — refrigerated prep counters, hot stations, GN pan wells and glass guard gantries — designed as modular SolidWorks assemblies and fabricated in stainless at TAYYEM.",
   metric:"Multi-station line",
@@ -390,7 +397,7 @@ const PROJECTS = [
   gallery:6
 },
 {
-  id:"ms-013", cat:"fea fab", tag:"FEA · Public Structures",
+  id:"ms-013", org:"artmedia", cat:"fea fab", tag:"FEA · Public Structures",
   title:"Festival Sun Arch & Ring Structures — Art Media Group",
   summary:"Large illuminated steel structures for a public festival in Amman — a sun arch and a ring-arch tunnel — designed in SolidWorks, verified by FEA, developed into laser-cut flat patterns, and installed live.",
   metric:"FEA-verified · installed",
@@ -406,7 +413,7 @@ const PROJECTS = [
   ]
 },
 {
-  id:"ms-014", cat:"fab", tag:"Machine Design · Sheet Metal",
+  id:"ms-014", org:"freelance", cat:"fab", tag:"Machine Design · Sheet Metal",
   title:"Volumetric Screw Conveyor — Freelance Design",
   summary:"Complete machine design of a volumetric screw conveyor in SolidWorks sheet metal — auger, tube, agitated feed hopper, bearing units and gearmotor drive — delivered as a freelance commission.",
   metric:"Complete machine design",
@@ -422,7 +429,7 @@ const PROJECTS = [
   ]
 },
 {
-  id:"ms-015", cat:"fab", tag:"Surface Modeling · Furniture",
+  id:"ms-015", org:"freelance", cat:"fab", tag:"Surface Modeling · Furniture",
   title:"Designer Desk — Advanced Surface Modeling",
   summary:"Freelance reverse-engineering commission: reconstructing a designer desk's complex organic geometry in SolidWorks surfaces from reference imagery, delivered as a watertight, manufacturable solid model.",
   metric:"Advanced surfacing",
@@ -442,7 +449,7 @@ const PROJECTS = [
 /* ============================== RENDER GRID ============================== */
 const grid=document.getElementById('grid');
 grid.innerHTML=PROJECTS.map((p,i)=>`
-  <a class="card reveal" data-c="${p.cat}" href="#/project/${p.id}">
+  <a class="card reveal" data-c="${p.cat}" data-o="${p.org||''}" href="#/project/${p.id}">
     <span class="plate">Plate ${ROMAN[i]}</span>
     <div class="card-img">
       <img src="images/${p.id}-cover.jpg" alt="${p.title}" loading="lazy"
@@ -481,15 +488,29 @@ if(DOCS.length){
 }
 
 /* ============================== FILTERS ============================== */
-const btns=document.querySelectorAll('.filters button');
-btns.forEach(b=>b.addEventListener('click',()=>{
-  btns.forEach(x=>x.classList.remove('active'));
-  b.classList.add('active');
-  const f=b.dataset.f;
+let activeF='all', activeO='all';
+const fBtns=document.querySelectorAll('.filters button[data-f]');
+const oBtns=document.querySelectorAll('.filters button[data-o]');
+function applyFilters(){
   document.querySelectorAll('#grid .card').forEach(c=>{
-    c.style.display=(f==='all'||c.dataset.c.split(' ').includes(f))?'flex':'none';
+    const okF=(activeF==='all'||c.dataset.c.split(' ').includes(activeF));
+    const okO=(activeO==='all'||c.dataset.o===activeO);
+    c.style.display=(okF&&okO)?'flex':'none';
   });
+}
+fBtns.forEach(b=>b.addEventListener('click',()=>{
+  fBtns.forEach(x=>x.classList.remove('active')); b.classList.add('active');
+  activeF=b.dataset.f; applyFilters();
 }));
+oBtns.forEach(b=>b.addEventListener('click',()=>{
+  oBtns.forEach(x=>x.classList.remove('active')); b.classList.add('active');
+  activeO=b.dataset.o; applyFilters();
+}));
+function setOrg(org){
+  activeO=org;
+  oBtns.forEach(x=>x.classList.toggle('active',x.dataset.o===org));
+  applyFilters();
+}
 
 /* ============================== DETAIL VIEW ============================== */
 const detailContent=document.getElementById('detail-content');
@@ -563,7 +584,11 @@ function goSection(e,id){
 function route(){
   const h=location.hash;
   const m=h.match(/^#\/project\/(.+)$/);
-  if(m){renderDetail(m[1]);}else{goHomeNow();}
+  const o=h.match(/^#\/org\/(tayyem|steelx|artmedia|freelance)$/);
+  if(m){renderDetail(m[1]);}
+  else if(o){goHomeNow();setOrg(o[1]);
+    requestAnimationFrame(()=>document.getElementById('projects').scrollIntoView());}
+  else{goHomeNow();}
 }
 window.addEventListener('hashchange',route);
 route();
