@@ -455,9 +455,10 @@ const PROJECTS = [
     "Interior hardware — formed device brackets and drawer-slide tray",
     "Rear service access — cam lock and concealed hinges",
     "Early design iteration — one of several concepts developed toward the final product",
-    "Client branding integrated into the fascia"
+    "Client branding integrated into the fascia",
+    "CNC nesting — flat patterns for both kiosk sizes on 2 mm galvanized sheet"
   ],
-  gallery:6,
+  gallery:7,
   meta:{Role:"Mechanical designer", Employer:"SteelX Jordan", Client:"Public-sector self-service program", Scope:"Concept → drawings → 70-unit production"},
   overview:"A fleet of self-service and point-of-sale kiosks commissioned by a public-sector client — a product that had to survive daily public use, protect the payment and printing hardware inside, and be buildable in series on the SteelX floor. The design was iterated through multiple concepts and nine drawing revisions before production release.",
   approach:"The enclosure was engineered as a 2 mm powder-coated steel body over a welded 25×50 rectangular-tube internal frame, ballasted on a 20 mm plate foundation for tip-over stability. Every device got a purpose-designed mount: a formed holder for the POS terminal, a camera bracket, a scanner window, receipt slots, and a thermal printer carried on a lockable slide-out tray for fast servicing. Two ergonomic variants were developed — the standard unit and a lower, reach-compliant version for wheelchair users — and full fabrication drawing packages were released for laser cutting, bending, powder coating and assembly.",
@@ -501,7 +502,16 @@ grid.innerHTML=PROJECTS.map((p,i)=>`
 const DOCS = [
   {type:"Drawing Package", title:"Hummus Grinder Machine (50–70 kg) — Assembly Drawing & BOM",
    desc:"ISO A2 assembly drawing of a vertical hummus grinder designed at TAYYEM: chassis and pot exploded views with fully itemized bills of materials.",
-   file:"files/hummus-grinder-drawing.pdf"}
+   file:"files/hummus-grinder-drawing.pdf"},
+  {type:"Drawing Package", title:"Self-Service Kiosk — Concept Release, REV 1",
+   desc:"First-revision fabrication drawing of the SteelX self-service kiosk: general arrangement, 40° screen angle, 2 mm body and 20 mm foundation plates.",
+   file:"files/ms-016-drawing-rev1.pdf"},
+  {type:"Drawing Package", title:"Self-Service Kiosk (Large) — Production Release, REV 9",
+   desc:"Final production drawing of the large kiosk variant: all elevations, device callouts (POS, scanner, camera), service door hardware and ergonomic details.",
+   file:"files/ms-016-drawing-rev9.pdf"},
+  {type:"Drawing Package", title:"Kiosk Internal Frame — Tube Cut List & Section",
+   desc:"Welded 25×50×1.8 rectangular-tube skeleton of the kiosk: itemized cut list with lengths and section view of the frame assembly.",
+   file:"files/ms-016-frame.pdf"}
 ];
 const libGrid=document.getElementById('lib-grid');
 if(DOCS.length){
