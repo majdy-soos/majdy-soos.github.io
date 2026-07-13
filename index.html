@@ -485,6 +485,33 @@ const PROJECTS = [
     {label:"Manufacturing Drawing — Kiosk Large, REV 9 (PDF)",file:"files/ms-016-drawing-rev9.pdf"},
     {label:"Internal Tube Frame — Cut List & Section (PDF)",file:"files/ms-016-frame.pdf"}
   ]
+},
+{
+  id:"ms-017", org:"freelance", cat:"sim", tag:"FEA · Structural Simulation",
+  title:"RC Shock Tower — Multi-Study FEA & Topology Optimization",
+  summary:"Freelance simulation study of an RC vehicle shock tower reverse-engineered from the physical part: static, modal, fatigue and topology optimization in SolidWorks Simulation, with a three-configuration design trend study and a resonance risk caught before it reached the track.",
+  metric:"4 studies · ≈30% mass cut",
+  gcaps:[
+    "CAD model reverse-engineered in SolidWorks from the physical part and manufacturer references",
+    "Static setup — 300 N per shock mount, applied along the 60° suspension axis",
+    "Design trend tracker — three configurations compared on mass, stress and displacement",
+    "Mode 2 at 569 Hz — within ~1.8% of the motor's 2nd harmonic (600 Hz): resonance risk flagged",
+    "Fatigue iso-clipping isolating the critical low-life locations after 500,000 fully reversed cycles",
+    "Topology-optimized layout — factor-of-safety distribution, min FOS ≈ 1.9",
+    "Topology material-mass map — regions safe to remove while preserving all mounting pins"
+  ],
+  gallery:7,
+  meta:{Role:"Simulation engineer", Type:"Freelance project", Tools:"SolidWorks Simulation", Scope:"Static · Modal · Fatigue · Topology"},
+  overview:"A freelance client needed to know whether an RC car shock tower could be made lighter without giving up strength or durability. Starting from the physical part, the geometry was reverse-engineered into SolidWorks and pushed through a complete four-study simulation workflow — static, modal, fatigue and topology optimization — turning a hobby-grade component into a full structural engineering case.",
+  approach:"Static analysis loaded each shock mount with 300 N along the 60° suspension axis. A design trend tracker then compared three configurations: the solid baseline, a lightweight version (−22% mass but nearly 4× the stress), and a reinforced-bridge design that ended up stiffer than the baseline at lower mass — a clean demonstration of load-path redistribution. Modal analysis checked five natural frequencies against the motor's excitation harmonics (18,000 RPM → 300 Hz fundamental) and flagged modes 2–3 sitting within ~1.8% of the 2nd harmonic. Fatigue ran 500,000 fully reversed cycles on Aluminum 1060 with iso-clipping to isolate the critical locations, and topology optimization searched for the best stiffness-to-weight layout under a minimum factor of safety of 2 with preserved pin regions.",
+  results:[
+    "Reinforced configuration beat the baseline: <b>stiffer at lower mass</b> (0.055 mm vs 0.069 mm max displacement)",
+    "<b>Resonance risk caught in simulation</b> — modes 2–3 within ~1.8% of the motor's 2nd harmonic",
+    "Topology optimization showed <b>≈30% mass reduction potential</b> at min FOS ≈ 2"
+  ],
+  docs:[
+    {label:"Full Structural Analysis Report (PDF)",file:"files/ms-017-report.pdf"}
+  ]
 }
 ];
 
@@ -524,7 +551,10 @@ const DOCS = [
    file:"files/ms-016-drawing-rev9.pdf"},
   {type:"Drawing Package", title:"Kiosk Internal Frame — Tube Cut List & Section",
    desc:"Welded 25×50×1.8 rectangular-tube skeleton of the kiosk: itemized cut list with lengths and section view of the frame assembly.",
-   file:"files/ms-016-frame.pdf"}
+   file:"files/ms-016-frame.pdf"},
+  {type:"Technical Report", title:"RC Shock Tower — Structural Analysis & Optimization Report",
+   desc:"Complete FEA report: static analysis, three-configuration design trend study, modal analysis versus motor harmonics, 500k-cycle fatigue assessment, and topology optimization reaching ≈30% mass reduction at FOS ≥ 2.",
+   file:"files/ms-017-report.pdf"}
 ];
 const libGrid=document.getElementById('lib-grid');
 if(DOCS.length){
