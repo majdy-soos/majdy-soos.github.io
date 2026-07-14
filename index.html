@@ -342,7 +342,7 @@ footer{padding:30px 0 36px;display:flex;justify-content:space-between;gap:12px;f
 
 <script>
 /* ============================== DATA ============================== */
-const ROMAN=["I","II","III","IV","V","VI","VII","VIII","IX","X"];
+const ROMAN=["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII","XIV","XV"];
 const PROJECTS = [
 {
   id:"ms-007", org:"tayyem", cat:"fab", tag:"Sheet Metal",
@@ -487,7 +487,7 @@ const PROJECTS = [
   ]
 },
 {
-  id:"ms-017", org:"freelance", cat:"sim", tag:"FEA · Structural Simulation",
+  id:"ms-017", org:"freelance", cat:"fea", tag:"FEA · Structural Simulation",
   title:"RC Shock Tower — Multi-Study FEA & Topology Optimization",
   summary:"Freelance simulation study of an RC vehicle shock tower reverse-engineered from the physical part: static, modal, fatigue and topology optimization in SolidWorks Simulation, with a three-configuration design trend study and a resonance risk caught before it reached the track.",
   metric:"4 studies · ≈30% mass cut",
@@ -511,6 +511,34 @@ const PROJECTS = [
   ],
   docs:[
     {label:"Full Structural Analysis Report (PDF)",file:"files/ms-017-report.pdf"}
+  ]
+},
+{
+  id:"ms-018", org:"freelance", cat:"cfd", tag:"CFD · Conjugate Heat Transfer",
+  title:"Shell-and-Tube Heat Exchanger — Design & Thermal CFD Study",
+  summary:"Freelance design-to-simulation project: a U-tube shell-and-tube heat exchanger modeled from scratch in SolidWorks, then analyzed with conjugate heat-transfer CFD in Flow Simulation to extract the performance parameters the client needed — outlet temperatures, LMTD and heat-transfer behaviour — with convergence-verified equation goals.",
+  metric:"LMTD ≈ 44 °C · <1% flux balance",
+  gcaps:[
+    "U-tube bundle modeled with 42 swept-thin features on 3D sketch paths",
+    "Assembly render — shell, front head and exposed U-tube bundle with baffles",
+    "Tube-side fluid subdomain definition — hot water circuit",
+    "Shell-side fluid subdomain definition — cold water circuit",
+    "Transparent-shell render revealing the tube bundle and baffle set",
+    "Internal view — segmental baffle arrangement and U-bend region",
+    "Turbulence intensity contours across shell and tube passes",
+    "Temperature field — hot side 100→55 °C, cold side 20→43 °C, bulk-average surface parameters",
+    "Wall heat-flux audit — inlet/outlet energy balance closed within 1%",
+    "Goal convergence histories — dt₁, dt₂ and LMTD equation goals",
+    "Solver dashboard — goals table with achieved criteria and live field previews"
+  ],
+  gallery:11,
+  meta:{Role:"Design & simulation engineer", Type:"Freelance project", Tools:"SolidWorks · Flow Simulation", Scope:"CAD design → conjugate heat-transfer CFD"},
+  overview:"A freelance client needed real performance numbers for a shell-and-tube heat exchanger — outlet temperatures, LMTD and heat-transfer behaviour — before committing to the design. The project covered the full cycle: modeling the exchanger from scratch (copper U-tube bundle, segmental baffles, stainless shell, flanged nozzles and saddle supports), then running a conjugate heat-transfer CFD study in SolidWorks Flow Simulation to extract the requested parameters.",
+  approach:"The U-tube bundle was built with swept-thin features on 3D sketch paths, giving a true 1-shell-pass / 2-tube-pass arrangement. In Flow Simulation, the hot (tube-side) and cold (shell-side) circuits were defined as separate fluid subdomains with conjugate heat transfer through the copper tube walls. Equation goals computed the terminal temperature differences and LMTD live during the solve, alongside bulk-average surface parameters at all four nozzles. Convergence was verified on goal histories, and a wall heat-flux audit confirmed the energy balance closed within 1% between the two circuits.",
+  results:[
+    "<b>LMTD ≈ 44.3 °C</b> from equation goals — independently verified by hand calculation from the terminal temperatures",
+    "Hot side cooled <b>100 → ≈55 °C</b>; cold side heated <b>20 → ≈44 °C</b> at the specified flow rates",
+    "Energy balance across the tube walls closed <b>within 1%</b> — a converged, trustworthy solution"
   ]
 }
 ];
