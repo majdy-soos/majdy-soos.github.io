@@ -770,5 +770,15 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowRight')lbShow(lbIdx+1);
 });
 </script>
+<script data-goatcounter="https://majdysoos.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<script>
+/* Count hash-route navigation (project plates) as page views */
+window.addEventListener('hashchange', function(){
+  if(window.goatcounter && window.goatcounter.count){
+    window.goatcounter.count({path: location.pathname + location.hash});
+  }
+});
+</script>
 </body>
 </html>
