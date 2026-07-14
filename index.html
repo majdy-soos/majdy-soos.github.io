@@ -540,6 +540,32 @@ const PROJECTS = [
     "Hot side cooled <b>100 → ≈55 °C</b>; cold side heated <b>20 → ≈44 °C</b> at the specified flow rates",
     "Energy balance across the tube walls closed <b>within 1%</b> — a converged, trustworthy solution"
   ]
+},
+{
+  id:"ms-019", org:"freelance", cat:"cfd", tag:"CFD · Wind Energy · Parametric Study",
+  title:"Archimedes Spiral Wind Turbine — Two-Stage CFD Performance Study",
+  summary:"Freelance research-grade CFD study of an Archimedes spiral wind turbine in SolidWorks Flow Simulation: a two-stage parametric methodology (TSR sweep, then velocity sweep at the optimum) using the MRF rotating-region approach, delivering CP/CT/CD curves, the power map and a site-specific capacity factor.",
+  metric:"CP 0.240 @ TSR 2.0 · CF 41.8%",
+  gcaps:[
+    "External computational domain with the local rotating region (MRF) around the rotor",
+    "Velocity cut plot at TSR = 0.5 — early stall-side operation of the sweep",
+    "Surface velocity plot with support frame at TSR = 0.5",
+    "Flow trajectories at TSR = 1.0 — wake development behind the spiral rotor",
+    "Blade surface velocity at the optimal point TSR = 2.0 — peak power coefficient"
+  ],
+  gallery:5,
+  meta:{Role:"Simulation engineer", Type:"Freelance project", Tools:"SolidWorks Flow Simulation · MRF", Scope:"9 design points · 2-stage parametric"},
+  overview:"A freelance client needed the full performance picture of an Archimedes spiral wind turbine (ASWT) — a modern lift-drag rotor geometry — before committing to a site deployment. The study answered three questions: where is the optimal tip-speed ratio, how does the machine perform across the site's wind-speed range, and what capacity factor can realistically be expected from local wind data.",
+  approach:"A two-stage parametric methodology kept the simulation count efficient without losing coverage. Stage 1 swept the tip-speed ratio (0.5 → 2.5, five design points) at a fixed 6 m/s reference wind using the MRF local rotating region, k-ε turbulence and refined local mesh on the blade surfaces, extracting torque and drag surface goals to build the CP, CT and CD curves. Stage 2 locked the optimal TSR = 2.0 and swept wind speed 2 → 8 m/s with ω scaled to hold λ constant, mapping power, torque and drag across the operating envelope. The dimensionless identity CP = CT × λ was verified at every design point as an internal consistency check, and monthly site wind data converted the power map into an annual energy estimate and capacity factor.",
+  results:[
+    "Bell-shaped CP curve peaking at <b>CP = 0.240 at TSR = 2.0</b> — inside the published ASWT literature range (0.20–0.31)",
+    "Power map across the site envelope: <b>0.076 W at 2 m/s → 4.87 W at 8 m/s</b>, following the expected V³ law",
+    "Site-specific <b>capacity factor of 41.8%</b> computed from 12 months of wind data",
+    "CP = CT × λ identity satisfied at <b>all 9 design points</b> — internally consistent dataset"
+  ],
+  docs:[
+    {label:"Full CFD Technical Report — Two-Stage Study (PDF)",file:"files/ms-019-report.pdf"}
+  ]
 }
 ];
 
@@ -568,6 +594,9 @@ grid.innerHTML=PROJECTS.map((p,i)=>`
 /* ============================== TECHNICAL LIBRARY ============================== */
 // Standalone documents: {type:"Drawing Package"|"Technical Report"|..., title, desc, file:"files/xxx.pdf"}
 const DOCS = [
+  {type:"CFD Study", title:"Archimedes Spiral Wind Turbine — Two-Stage CFD Performance Study",
+   desc:"Full research-grade report: TSR optimization and velocity sweep in SolidWorks Flow Simulation (MRF), CP/CT/CD curves, power map and a 41.8% site capacity factor from monthly wind data.",
+   file:"files/ms-019-report.pdf"},
   {type:"Drawing Package", title:"Hummus Grinder Machine (50–70 kg) — Assembly Drawing & BOM",
    desc:"ISO A2 assembly drawing of a vertical hummus grinder designed at TAYYEM: chassis and pot exploded views with fully itemized bills of materials.",
    file:"files/hummus-grinder-drawing.pdf"},
