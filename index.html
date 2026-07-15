@@ -158,6 +158,12 @@ body.detail-mode #detail{display:block}
 .d-docs a{display:inline-flex;align-items:center;gap:11px;text-decoration:none;font-family:var(--font-mono);font-size:12px;color:var(--ink);background:var(--paper);border:1px solid var(--line);padding:13px 20px;transition:all .16s}
 .d-docs a:hover{border-color:var(--brass);color:var(--brass)}
 .d-docs a::before{content:"PDF";font-size:9px;font-weight:600;letter-spacing:.08em;color:#fff;background:var(--navy);padding:3px 7px}
+.v-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin:10px 0 6px}
+.v-item{margin:0;background:var(--paper);border:1px solid var(--line)}
+.v-item video{display:block;width:100%;height:auto;background:#0b1526}
+.v-item.v-portrait video{max-height:560px;object-fit:contain;margin:0 auto}
+.v-item figcaption{font-family:var(--font-mono);font-size:12px;color:var(--muted);padding:12px 16px;border-top:1px solid var(--line)}
+.v-item figcaption::before{content:"◆ ";color:var(--brass)}
 .lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
 .lib-card{background:var(--paper);border:1px solid var(--line);padding:24px 22px 20px;position:relative;display:flex;flex-direction:column;gap:9px;transition:transform .2s,box-shadow .2s}
 .lib-card::before{content:"";position:absolute;top:0;left:22px;width:44px;height:3px;background:var(--brass-grad)}
@@ -358,6 +364,12 @@ const PROJECTS = [
     "Oven <b>manufactured</b> on the TAYYEM production floor"
   ],
   docs:[{label:"Manufacturing Drawing — Baking Oven 120×140 (PDF)",file:"files/ms-007-drawing.pdf"}],
+  videos:[
+    {file:"videos/ms-007-v2.mp4", poster:"images/ms-007-v2-poster.jpg",
+     caption:"The manufactured oven in operation on the TAYYEM production floor"},
+    {file:"videos/ms-007-v1.mp4", poster:"images/ms-007-v1-poster.jpg", portrait:true,
+     caption:"SolidWorks model walkthrough — the same oven in CAD"}
+  ],
   gcaps:["Oven production series — TAYYEM floor", "SolidWorks front elevation of the oven"],
   gallery:2
 },
@@ -692,6 +704,13 @@ function renderDetail(id){
         <h2>Key Results</h2>
         <ul class="d-results">${p.results.map(r=>`<li>${r}</li>`).join('')}</ul>
         ${p.docs&&p.docs.length?`<h2>Documents</h2><div class="d-docs">${p.docs.map(d=>`<a href="${d.file}" target="_blank" rel="noopener">${d.label}</a>`).join('')}</div>`:''}
+        ${p.videos&&p.videos.length?`<h2>Motion</h2><div class="v-grid">${p.videos.map(v=>`
+          <figure class="v-item${v.portrait?' v-portrait':''}">
+            <video controls preload="none" playsinline poster="${v.poster}">
+              <source src="${v.file}" type="video/mp4">
+            </video>
+            <figcaption>${v.caption}</figcaption>
+          </figure>`).join('')}</div>`:''}
         <h2>Gallery</h2>
         <div class="gallery">${gal}</div>
       </div>
