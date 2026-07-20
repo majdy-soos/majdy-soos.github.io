@@ -163,6 +163,34 @@ body.detail-mode #detail{display:block}
 .vx-row .v{font-family:var(--font-mono);font-size:12px;color:rgba(243,239,230,.85);text-align:right}
 .vx-row.win .v{color:var(--brass)}
 @media(max-width:560px){.vx-row{grid-template-columns:110px 1fr 60px}.vx{padding:26px 18px}}
+/* wind streaks background */
+.vx-wind{position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:0;transition:opacity 1s .3s}
+.vx.live .vx-wind{opacity:1}
+.vx-wind i{position:absolute;height:1px;background:linear-gradient(90deg,transparent,rgba(243,239,230,.35),transparent);width:140px;animation:vxstreak linear infinite}
+@keyframes vxstreak{from{transform:translateX(-160px)}to{transform:translateX(calc(100vw + 160px))}}
+/* energy path schematic */
+.vx-path{display:flex;align-items:center;gap:0;margin:26px 0 4px;position:relative;flex-wrap:wrap}
+.vx-node{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:86px}
+.vx-node .cap{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.16em;color:rgba(243,239,230,.55);text-transform:uppercase}
+.vx-flowline{flex:1;min-width:40px;height:2px;position:relative;background:rgba(243,239,230,.12);overflow:hidden}
+.vx-flowline::after{content:"";position:absolute;top:0;left:0;height:100%;width:34px;background:linear-gradient(90deg,transparent,var(--brass),transparent);animation:vxdash 1.4s linear infinite;opacity:0}
+.vx.live .vx-flowline::after{opacity:1}
+@keyframes vxdash{from{transform:translateX(-40px)}to{transform:translateX(220px)}}
+.vx-rotor{width:58px;height:58px}
+.vx-rotor svg{width:100%;height:100%;animation:vxspin 6s linear infinite paused}
+.vx.live .vx-rotor svg{animation-play-state:running;animation-duration:1.1s;transition:animation-duration 2s}
+@keyframes vxspin{to{transform:rotate(360deg)}}
+.vx-batt{width:96px;height:40px;border:2px solid rgba(243,239,230,.6);border-radius:4px;position:relative;padding:4px}
+.vx-batt::after{content:"";position:absolute;right:-8px;top:12px;width:6px;height:16px;background:rgba(243,239,230,.6);border-radius:0 2px 2px 0}
+.vx-batt i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brass),#E6C87A);border-radius:2px;transition:width 2.4s cubic-bezier(.2,.7,.2,1) .8s;position:relative;overflow:hidden}
+.vx-batt i::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);animation:vxshimmer 2.2s infinite 3.4s}
+.vx-bolt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:18px;color:#0F1F38;opacity:0;transition:opacity .4s 2.8s}
+.vx.live .vx-bolt{opacity:1;animation:vxpulse 1.6s infinite 3s}
+@keyframes vxshimmer{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
+.vx-row .t i{position:relative;overflow:hidden}
+.vx-row.win .t i::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:translateX(-100%);animation:vxshimmer 2.4s infinite 2.2s}
+.vx.live .vx-num{animation:vxglow 1.2s ease 1.7s}
+@keyframes vxglow{0%{text-shadow:none}40%{text-shadow:0 0 26px rgba(200,164,90,.85)}100%{text-shadow:0 0 10px rgba(200,164,90,.25)}}
 .d-side{background:var(--navy);color:#DDE4EC;position:sticky;top:86px}
 .d-side .sd-head{border-bottom:1px solid var(--line-navy);padding:16px 24px;font-family:var(--font-display);font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--brass-2)}
 .sd-row{display:grid;grid-template-columns:104px 1fr;border-bottom:1px solid var(--line-navy);font-size:13px}
@@ -668,12 +696,15 @@ const PROJECTS = [
   metric:"Battery coverage 33.7% → 98.5% @ 180 km/h · 1st in cohort",
   gcaps:[
     "Staged-fidelity baseline — the reference vehicle with a simplified system volume before detailed integration",
-    "Placement screening — velocity field with the candidate system volume in the roof position",
-    "Placement screening — velocity field with the candidate volume in the frontal position selected for integration",
+    "The four rotor concepts screened by comparative CFD — two-blade Savonius, three-blade Savonius, helical, and Darrieus–Savonius hybrid; selected concept highlighted",
+    "Structural verification of the selected rotor blade — von Mises stress under aerodynamic loading, far below yield",
+    "Placement screening — velocity field with the candidate system volume in the rejected roof position",
+    "Placement screening — velocity field for a second rejected candidate position in the sweep",
     "Full-vehicle wake development — flow trajectories over the integrated configuration",
-    "Verification cut plot — external velocity field of the final configuration at highway speed"
+    "The selected frontal integration — system volume packaged at the vehicle front",
+    "Final frontal configuration — external velocity field at highway speed (internal details redacted — patent pending)"
   ],
-  gallery:5,
+  gallery:8,
   meta:{Role:"Researcher & simulation engineer", Type:"B.Sc. graduation project — patent pending", Tools:"SolidWorks Flow Simulation · CFD · Motion", Scope:"4 rotor concepts · placement study · full-vehicle CFD"},
   overview:"Electric vehicles still lose buyers to range anxiety. This project asked a direct question: how much of an EV's consumption can be recovered from the airflow the car is already pushing through? The answer became a complete system study — rotor selection by comparative CFD, aerodynamic placement screening on a reference sedan, and integration of the selected turbine with proprietary inlet flow-conditioning and low-friction magnetic support elements. The work was awarded 92/100, ranked first in the cohort, and a patent application has been filed on the system configuration — which is why exact geometry, flow-conditioning details and internal arrangements are deliberately withheld from this plate.",
   approach:"The study ran in disciplined stages. First, four vertical-axis rotor concepts — two-blade Savonius, three-blade Savonius, helical, and a Darrieus–Savonius hybrid — were simulated under identical conditions across the full vehicle-speed envelope, extracting torque and power goals to build comparable Cp/Ct datasets. The two-blade Savonius won decisively. Second, a staged-fidelity vehicle model was built: placement candidates (roof, hood, frontal) were screened with a simplified system volume to compare drag and turbulence impact before any detailed geometry entered the domain — the frontal position preserved the vehicle's external aerodynamics best. Third, the selected rotor was integrated with a convergent inlet and flow-conditioning elements (details patent-pending), and the complete configuration was verified with full-vehicle external CFD and power analysis against the reference EV's real consumption data.",
@@ -842,13 +873,22 @@ function vawtSpecialHTML(){
     {n:"Three-Blade Savonius",v:0.3533},
     {n:"Darrieus–Savonius Hybrid",v:0.1917},
     {n:"Helical",v:0.0992}
-  ].map(r=>`<div class="vx-row${r.win?' win':''}">
+  ].map((r,ri)=>`<div class="vx-row${r.win?' win':''}">
       <span class="n">${r.n}${r.win?' ✦':''}</span>
-      <span class="t"><i data-w="${(r.v/0.42*100).toFixed(1)}"></i></span>
+      <span class="t"><i data-w="${(r.v/0.42*100).toFixed(1)}" style="transition-delay:${(ri*0.18).toFixed(2)}s"></i></span>
       <span class="v" data-cnt="${r.v}" data-dec="4">0.0000</span>
     </div>`).join('');
+  const streaks=Array.from({length:9},(_,n)=>`<i style="top:${8+n*11}%;animation-duration:${(2.2+(n%4)*0.9).toFixed(1)}s;animation-delay:${(n*0.45).toFixed(2)}s"></i>`).join('');
   return `<section class="vx" id="vx">
+    <div class="vx-wind">${streaks}</div>
     <div class="vx-lbl">System Impact <span class="vx-badge"><i></i>Patent Pending</span></div>
+    <div class="vx-path">
+      <div class="vx-node"><div style="font-size:26px;letter-spacing:-2px;color:rgba(243,239,230,.7)">≋</div><span class="cap">Airflow @ 180 km/h</span></div>
+      <div class="vx-flowline"></div>
+      <div class="vx-node"><div class="vx-rotor"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="46" fill="none" stroke="rgba(243,239,230,.3)" stroke-width="2"/><path d="M50 50 A20 20 0 0 1 50 10 A40 40 0 0 1 90 50 A20 20 0 0 0 50 50 Z" fill="rgba(200,164,90,.9)"/><path d="M50 50 A20 20 0 0 1 50 90 A40 40 0 0 1 10 50 A20 20 0 0 0 50 50 Z" fill="rgba(230,200,122,.75)"/><circle cx="50" cy="50" r="4" fill="#0F1F38"/></svg></div><span class="cap">VAWT · Schematic</span></div>
+      <div class="vx-flowline"></div>
+      <div class="vx-node"><div class="vx-batt"><i data-w="98.5"></i><span class="vx-bolt">⚡</span></div><span class="cap">EV Battery</span></div>
+    </div>
     <div class="vx-big">
       <span class="vx-num"><span data-cnt="98.5" data-dec="1">0.0</span><small>%</small></span>
       <span class="vx-from">battery-range coverage @ 180 km/h — up from <s data-cnt="33.7" data-dec="1">0.0</s>% without inlet conditioning</span>
@@ -867,6 +907,7 @@ function initVawtAnim(){
     es.forEach(e=>{
       if(!e.isIntersecting)return;
       obs.disconnect();
+      vx.classList.add('live');
       vx.querySelectorAll('[data-w]').forEach(el=>{el.style.width=el.dataset.w+'%';});
       vx.querySelectorAll('[data-cnt]').forEach(el=>{
         const target=parseFloat(el.dataset.cnt),dec=parseInt(el.dataset.dec||'0',10),t0=performance.now(),dur=1600;
