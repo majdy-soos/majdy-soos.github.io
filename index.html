@@ -135,6 +135,34 @@ body.detail-mode #detail{display:block}
 .d-results{list-style:none;display:grid;gap:10px;margin:8px 0 12px}
 .d-results li{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--brass-2);padding:14px 20px;font-size:14.5px;color:var(--soft)}
 .d-results li b{color:var(--brass);font-family:var(--font-mono);font-weight:600}
+/* ============ vawt special (ms-022) ============ */
+.vx{margin:34px 0 10px;border:1px solid var(--line);background:linear-gradient(160deg,var(--navy) 0%,var(--navy-2,#12233d) 100%);color:#F3EFE6;padding:34px 30px;position:relative;overflow:hidden}
+.vx::before{content:"";position:absolute;inset:0;background:radial-gradient(600px 200px at 85% -10%,rgba(200,164,90,.14),transparent 70%)}
+.vx-lbl{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass);margin-bottom:18px;display:flex;align-items:center;gap:12px}
+.vx-lbl::after{content:"";flex:1;height:1px;background:rgba(200,164,90,.25)}
+.vx-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;border:1px solid rgba(200,164,90,.5);color:var(--brass);padding:6px 12px;text-transform:uppercase}
+.vx-badge i{width:7px;height:7px;border-radius:50%;background:var(--brass);animation:vxpulse 2s infinite}
+@keyframes vxpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.75)}}
+.vx-big{display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;margin:6px 0 4px}
+.vx-num{font-family:var(--font-serif,'Marcellus',serif);font-size:clamp(48px,8vw,84px);line-height:1;color:#F3EFE6}
+.vx-num small{font-size:.45em;color:var(--brass)}
+.vx-from{font-family:var(--font-mono);font-size:13px;color:rgba(243,239,230,.55)}
+.vx-from s{color:rgba(243,239,230,.75)}
+.vx-cap{font-size:13.5px;color:rgba(243,239,230,.72);max-width:520px;margin-top:6px;position:relative}
+.vx-bar{height:14px;background:rgba(255,255,255,.08);margin:20px 0 6px;position:relative;overflow:hidden}
+.vx-bar-base{position:absolute;inset:0 auto 0 0;width:0;background:rgba(243,239,230,.28);transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+.vx-bar-full{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,var(--brass) 0%,#E6C87A 100%);transition:width 1.6s cubic-bezier(.2,.7,.2,1) .5s}
+.vx-bar-ticks{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10px;color:rgba(243,239,230,.4)}
+.vx-grid{display:grid;gap:10px;margin-top:22px;position:relative}
+.vx-row{display:grid;grid-template-columns:170px 1fr 74px;gap:12px;align-items:center;font-size:13px}
+.vx-row .n{color:rgba(243,239,230,.85)}
+.vx-row .t{height:10px;background:rgba(255,255,255,.07);overflow:hidden}
+.vx-row .t i{display:block;height:100%;width:0;background:rgba(243,239,230,.35);transition:width 1.3s cubic-bezier(.2,.7,.2,1)}
+.vx-row.win .n{color:var(--brass);font-weight:600}
+.vx-row.win .t i{background:linear-gradient(90deg,var(--brass),#E6C87A)}
+.vx-row .v{font-family:var(--font-mono);font-size:12px;color:rgba(243,239,230,.85);text-align:right}
+.vx-row.win .v{color:var(--brass)}
+@media(max-width:560px){.vx-row{grid-template-columns:110px 1fr 60px}.vx{padding:26px 18px}}
 .d-side{background:var(--navy);color:#DDE4EC;position:sticky;top:86px}
 .d-side .sd-head{border-bottom:1px solid var(--line-navy);padding:16px 24px;font-family:var(--font-display);font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--brass-2)}
 .sd-row{display:grid;grid-template-columns:104px 1fr;border-bottom:1px solid var(--line-navy);font-size:13px}
@@ -300,6 +328,7 @@ footer{padding:30px 0 36px;display:flex;justify-content:space-between;gap:12px;f
       <button data-o="steelx">SteelX</button>
       <button data-o="artmedia">Art Media Group</button>
       <button data-o="freelance">Freelance</button>
+      <button data-o="research">Research</button>
     </div>
     <div class="grid" id="grid"></div>
   </div>
@@ -631,6 +660,29 @@ const PROJECTS = [
     "<b>Laser heat distortion on thin 5 mm ribs diagnosed and eliminated</b> — machine parameter recalibration plus a 5 → 7 mm section revision",
     "Double-skin cavity delivers <b>integrated lighting</b> with no visible fixings on either face"
   ]
+},
+{
+  id:"ms-022", org:"research", cat:"cfd", tag:"CFD · Wind Energy · Patent Pending", special:"vawt",
+  title:"Wind-Integrated EV Charging System — Comparative VAWT CFD Study",
+  summary:"Graduation research project, awarded 92/100 and ranked 1st in cohort, with a patent application filed: a vertical-axis wind turbine system integrated into an electric vehicle to recharge the battery from airflow while driving. Four rotor concepts were screened by comparative CFD, the winning rotor was integrated with proprietary inlet flow-conditioning and low-friction magnetic support (patent pending), and full-vehicle aerodynamic simulation verified the installation.",
+  metric:"Battery coverage 33.7% → 98.5% @ 180 km/h · 1st in cohort",
+  gcaps:[
+    "Staged-fidelity baseline — the reference vehicle with a simplified system volume before detailed integration",
+    "Placement screening — velocity field with the candidate system volume in the roof position",
+    "Placement screening — velocity field with the candidate volume in the frontal position selected for integration",
+    "Full-vehicle wake development — flow trajectories over the integrated configuration",
+    "Verification cut plot — external velocity field of the final configuration at highway speed"
+  ],
+  gallery:5,
+  meta:{Role:"Researcher & simulation engineer", Type:"B.Sc. graduation project — patent pending", Tools:"SolidWorks Flow Simulation · CFD · Motion", Scope:"4 rotor concepts · placement study · full-vehicle CFD"},
+  overview:"Electric vehicles still lose buyers to range anxiety. This project asked a direct question: how much of an EV's consumption can be recovered from the airflow the car is already pushing through? The answer became a complete system study — rotor selection by comparative CFD, aerodynamic placement screening on a reference sedan, and integration of the selected turbine with proprietary inlet flow-conditioning and low-friction magnetic support elements. The work was awarded 92/100, ranked first in the cohort, and a patent application has been filed on the system configuration — which is why exact geometry, flow-conditioning details and internal arrangements are deliberately withheld from this plate.",
+  approach:"The study ran in disciplined stages. First, four vertical-axis rotor concepts — two-blade Savonius, three-blade Savonius, helical, and a Darrieus–Savonius hybrid — were simulated under identical conditions across the full vehicle-speed envelope, extracting torque and power goals to build comparable Cp/Ct datasets. The two-blade Savonius won decisively. Second, a staged-fidelity vehicle model was built: placement candidates (roof, hood, frontal) were screened with a simplified system volume to compare drag and turbulence impact before any detailed geometry entered the domain — the frontal position preserved the vehicle's external aerodynamics best. Third, the selected rotor was integrated with a convergent inlet and flow-conditioning elements (details patent-pending), and the complete configuration was verified with full-vehicle external CFD and power analysis against the reference EV's real consumption data.",
+  results:[
+    "Two-blade Savonius selected from four concepts — <b>Cp = 0.376 average</b> across the operating envelope, the strongest of the field",
+    "Frontal integration preserved external aerodynamics — <b>placement chosen by CFD screening</b>, not assumption",
+    "Proprietary inlet flow-conditioning raised recoverable power — <b>battery-range coverage 33.7% → 98.5% at 180 km/h</b>",
+    "<b>Awarded 92/100, 1st in cohort · patent application filed</b> — journal publication in preparation"
+  ]
 }
 ];
 
@@ -750,6 +802,7 @@ function renderDetail(id){
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="ph" style="display:none"><span>ADD COVER IMAGE →</span><span class="fn">images/${p.id}-cover.jpg</span></div>
     </div>
+    ${p.special==='vawt'?vawtSpecialHTML():''}
     <div class="d-cols">
       <div class="d-main">
         <h2>Overview</h2><p>${p.overview}</p>
@@ -779,6 +832,54 @@ function renderDetail(id){
   document.body.classList.add('detail-mode');
   window.scrollTo(0,0);
   document.title=`${p.title} — Majdy Al-Sous`;
+  if(p.special==='vawt')initVawtAnim();
+}
+
+/* ============ vawt special section (ms-022) ============ */
+function vawtSpecialHTML(){
+  const rows=[
+    {n:"Two-Blade Savonius",v:0.3755,win:true},
+    {n:"Three-Blade Savonius",v:0.3533},
+    {n:"Darrieus–Savonius Hybrid",v:0.1917},
+    {n:"Helical",v:0.0992}
+  ].map(r=>`<div class="vx-row${r.win?' win':''}">
+      <span class="n">${r.n}${r.win?' ✦':''}</span>
+      <span class="t"><i data-w="${(r.v/0.42*100).toFixed(1)}"></i></span>
+      <span class="v" data-cnt="${r.v}" data-dec="4">0.0000</span>
+    </div>`).join('');
+  return `<section class="vx" id="vx">
+    <div class="vx-lbl">System Impact <span class="vx-badge"><i></i>Patent Pending</span></div>
+    <div class="vx-big">
+      <span class="vx-num"><span data-cnt="98.5" data-dec="1">0.0</span><small>%</small></span>
+      <span class="vx-from">battery-range coverage @ 180 km/h — up from <s data-cnt="33.7" data-dec="1">0.0</s>% without inlet conditioning</span>
+    </div>
+    <div class="vx-bar"><span class="vx-bar-base" data-w="33.7"></span><span class="vx-bar-full" data-w="98.5"></span></div>
+    <div class="vx-bar-ticks"><span>0%</span><span>baseline 33.7%</span><span>optimized 98.5%</span></div>
+    <div class="vx-lbl" style="margin-top:30px">Concept Screening — Avg. Power Coefficient (C<sub>P</sub>)</div>
+    <div class="vx-grid">${rows}</div>
+    <p class="vx-cap">Four rotor concepts, identical CFD conditions, one winner. Exact blade geometry, inlet flow-conditioning and internal support arrangements are withheld — patent application filed.</p>
+  </section>`;
+}
+function initVawtAnim(){
+  const vx=document.getElementById('vx');
+  if(!vx)return;
+  const io=new IntersectionObserver((es,obs)=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting)return;
+      obs.disconnect();
+      vx.querySelectorAll('[data-w]').forEach(el=>{el.style.width=el.dataset.w+'%';});
+      vx.querySelectorAll('[data-cnt]').forEach(el=>{
+        const target=parseFloat(el.dataset.cnt),dec=parseInt(el.dataset.dec||'0',10),t0=performance.now(),dur=1600;
+        const step=now=>{
+          const k=Math.min((now-t0)/dur,1),ease=1-Math.pow(1-k,3);
+          el.textContent=(target*ease).toFixed(dec);
+          if(k<1)requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      });
+    });
+  },{threshold:0.35});
+  io.observe(vx);
 }
 
 function goHomeNow(){
