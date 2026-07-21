@@ -697,14 +697,16 @@ const PROJECTS = [
   gcaps:[
     "Staged-fidelity baseline — the reference vehicle with a simplified system volume before detailed integration",
     "The four rotor concepts screened by comparative CFD — two-blade Savonius, three-blade Savonius, helical, and Darrieus–Savonius hybrid; selected concept highlighted",
+    "Concept screening in progress — velocity field and goal convergence during the comparative CFD campaign",
     "Structural verification of the selected rotor blade — von Mises stress under aerodynamic loading, far below yield",
     "Placement screening — velocity field with the candidate system volume in the rejected roof position",
     "Placement screening — velocity field for a second rejected candidate position in the sweep",
     "Full-vehicle wake development — flow trajectories over the integrated configuration",
     "The selected frontal integration — system volume packaged at the vehicle front",
-    "Final frontal configuration — external velocity field at highway speed (internal details redacted — patent pending)"
+    "The integrated system seen through the front intake opening — internal arrangement patent pending",
+    "Cutaway of the frontal integration — intake, flow-conditioning cascade and rotor housing in place (patent pending)"
   ],
-  gallery:8,
+  gallery:10, v:3,
   meta:{Role:"Researcher & simulation engineer", Type:"B.Sc. graduation project — patent pending", Tools:"SolidWorks Flow Simulation · CFD · Motion", Scope:"4 rotor concepts · placement study · full-vehicle CFD"},
   overview:"Electric vehicles still lose buyers to range anxiety. This project asked a direct question: how much of an EV's consumption can be recovered from the airflow the car is already pushing through? The answer became a complete system study — rotor selection by comparative CFD, aerodynamic placement screening on a reference sedan, and integration of the selected turbine with proprietary inlet flow-conditioning and low-friction magnetic support elements. The work was awarded 92/100, ranked first in the cohort, and a patent application has been filed on the system configuration — which is why exact geometry, flow-conditioning details and internal arrangements are deliberately withheld from this plate.",
   approach:"The study ran in disciplined stages. First, four vertical-axis rotor concepts — two-blade Savonius, three-blade Savonius, helical, and a Darrieus–Savonius hybrid — were simulated under identical conditions across the full vehicle-speed envelope, extracting torque and power goals to build comparable Cp/Ct datasets. The two-blade Savonius won decisively. Second, a staged-fidelity vehicle model was built: placement candidates (roof, hood, frontal) were screened with a simplified system volume to compare drag and turbulence impact before any detailed geometry entered the domain — the frontal position preserved the vehicle's external aerodynamics best. Third, the selected rotor was integrated with a convergent inlet and flow-conditioning elements (details patent-pending), and the complete configuration was verified with full-vehicle external CFD and power analysis against the reference EV's real consumption data.",
@@ -723,7 +725,7 @@ grid.innerHTML=PROJECTS.map((p,i)=>`
   <a class="card reveal" data-c="${p.cat}" data-o="${p.org||''}" href="#/project/${p.id}">
     <span class="plate">Plate ${ROMAN[i]}</span>
     <div class="card-img">
-      <img src="images/${p.id}-cover.jpg" alt="${p.title}" loading="lazy"
+      <img src="images/${p.id}-cover.jpg${p.v?`?v=${p.v}`:``}" alt="${p.title}" loading="lazy"
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="ph" style="display:none"><span>ADD COVER IMAGE →</span><span class="fn">images/${p.id}-cover.jpg</span></div>
     </div>
@@ -811,7 +813,7 @@ function renderDetail(id){
   const caps=p.gcaps||[];
   const count=caps.length||p.gallery||0;
   const gal=Array.from({length:count},(_,n)=>{
-    const fn=`images/${p.id}-${String(n+1).padStart(2,'0')}.jpg`;
+    const fn=`images/${p.id}-${String(n+1).padStart(2,'0')}.jpg${p.v?`?v=${p.v}`:''}`;
     const cap=caps[n]||`${p.title} — detail ${n+1}`;
     return `<figure class="g-item">
       <div class="g-img">
@@ -829,7 +831,7 @@ function renderDetail(id){
       <p class="d-sub">${p.summary}</p>
     </div>
     <div class="d-hero">
-      <img src="images/${p.id}-cover.jpg" alt="${p.title} cover"
+      <img src="images/${p.id}-cover.jpg${p.v?`?v=${p.v}`:''}" alt="${p.title} cover"
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="ph" style="display:none"><span>ADD COVER IMAGE →</span><span class="fn">images/${p.id}-cover.jpg</span></div>
     </div>
