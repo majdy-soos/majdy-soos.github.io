@@ -349,6 +349,7 @@ footer{padding:30px 0 36px;display:flex;justify-content:space-between;gap:12px;f
       <button data-f="cfd">CFD</button>
       <button data-f="fea">FEA</button>
       <button data-f="fab">Design &amp; Fabrication</button>
+      <button data-f="mech">Mechanism Study</button>
     </div>
     <div class="filters reveal" aria-label="Filter by organization" style="margin-top:-26px">
       <button class="active" data-o="all">All Organizations</button>
@@ -715,6 +716,31 @@ const PROJECTS = [
     "Frontal integration preserved external aerodynamics — <b>placement chosen by CFD screening</b>, not assumption",
     "Proprietary inlet flow-conditioning raised recoverable power — <b>battery-range coverage 33.7% → 98.5% at 180 km/h</b>",
     "<b>Awarded 92/100, 1st in cohort · patent application filed</b> — journal publication in preparation"
+  ]
+},
+{
+  id:"ms-023", org:"research", cat:"mech", tag:"Mechanism Study · Kinematics · SolidWorks",
+  title:"Rotating Pick-and-Place / Flip-Over Unit — Mechanism Study",
+  summary:"A reverse-engineering study. The mechanism was observed running on a packaging line, then rebuilt from scratch in SolidWorks without drawings or reference material, purely from the observed motion. The result is a transfer unit whose gripper lifts and flips 90° from a single pneumatic cylinder, with no servo, no encoder and no controller: the sequencing is carried entirely by the geometry.",
+  metric:"One pneumatic input · 90° gripper flip · zero control electronics",
+  gcaps:[
+    "The drive detail — the large lower pulley fixed to the blue shaft in its pillow blocks. Because this pulley cannot rotate with the arm, the belt is forced to turn the upper pulley as the arm swings",
+    "Full assembly at the top of the stroke — suction head flipped, both timing belts and the bevel pair engaged, with the single pneumatic cylinder and rack at the base",
+    "The mechanism with the arms lowered — the cylinder, rack and pinion at the base and the belt run along the side arm clearly visible"
+  ],
+  gallery:3, v:2,
+  videos:[
+    {file:"videos/ms-023-v1.mp4", poster:"images/ms-023-v1-poster.jpg",
+     cap:"Motion study through a full cycle — one cylinder stroke producing lift and a 90° gripper flip"}
+  ],
+  meta:{Role:"Reverse engineering & CAD reconstruction", Type:"Independent mechanism study", Tools:"SolidWorks 2022 · Motion Study · KeyShot 2025", Scope:"Kinematic reconstruction from observed motion"},
+  overview:"This plate is not an original design. The mechanism was seen running on a food-grade packaging line, and the question it raised was worth chasing: the gripper flipped through 90° in perfect time with the lift, and there was clearly only one actuator on the machine. Nothing was driving the flip. The unit was rebuilt in SolidWorks from observation alone — no drawings, no manufacturer data, no reference model — to find out how the timing was being produced. The reconstruction is included here as a study in reading and rebuilding someone else's kinematics, not as a claim of authorship.",
+  approach:"The whole system has one input: a pneumatic cylinder pushing a rack. Everything downstream is geometry. The rack turns a pinion and the side arms swing up. On the left arm the large lower pulley is fixed to the bottom shaft, so it cannot rotate with the arm — as the arm swings, the timing belt has no choice but to drive the upper pulley, converting the arm's own swing into rotation at the top plate for free. That rotation reaches a bevel pair at the top, where one gear is grounded to the opposite side arm. Because that gear is held, the meshing gear is forced to turn, redirecting the axis through 90°. A second timing belt then carries that rotation inboard to the suction head seated in its bearing. The flip is never actuated — it is a consequence of the lift.",
+  results:[
+    "Reconstructed the complete kinematic chain from observed motion alone — <b>no drawings or reference model</b>",
+    "Identified the core principle: a <b>grounded pulley converts arm swing into free rotation</b>, removing the need for a second actuator",
+    "Bevel pair redirects the axis 90° and a second belt centres the motion on the suction head — <b>lift and flip inherently synchronised</b>",
+    "Motion study verified the linkage through full travel; <b>end-of-stroke deceleration remains unresolved</b> and is documented as an open question rather than hidden"
   ]
 }
 ];
