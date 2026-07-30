@@ -703,35 +703,56 @@ const PROJECTS = [
   summary:"Graduation research project, awarded 92/100 and ranked 1st in cohort, with a patent application filed: a vertical-axis wind turbine system integrated into an electric vehicle to recharge the battery from airflow while driving. Four rotor concepts were screened by comparative CFD, the winning rotor was integrated with proprietary inlet flow-conditioning and low-friction magnetic support (patent pending), and full-vehicle aerodynamic simulation verified the installation.",
   metric:"Battery coverage 33.7% → 98.5% @ 180 km/h · 1st in cohort",
   groups:[
-    {t:"Rotor Concepts — Comparative Screening",imgs:[
-      {f:"c1",c:"Twisted Two-Blade Savonius — the selected rotor (transient CFD, surface velocity distribution)",hl:true},
-      {f:"c2",c:"Three-Blade Savonius"},
-      {f:"c3",c:"Helical Turbine"},
-      {f:"c4",c:"Darrieus–Savonius Hybrid (transient CFD, velocity field)"}
+    {t:"Rotor Screening — Comparative Performance",imgs:[
+      {f:"k1",c:"Power output versus wind speed for the four twisted rotor concepts, simulated under identical conditions"}
     ]},
-    {t:"CFD Results — Velocity Contours & Flow Fields",imgs:[
-      {f:"03",c:"Velocity contours & goal convergence — concept screening run"},
-      {f:"05",c:"Velocity contours — roof placement candidate (rejected)"},
-      {f:"06",c:"Velocity contours — placement screening candidate (rejected)"},
-      {f:"07",c:"Flow trajectories — full-vehicle wake development"}
+    {t:"Rotor Concept — Twisted Two-Blade Savonius ✦ Selected",imgs:[
+      {f:"w1",c:"Twisted Two-Blade Savonius — rotor general arrangement, plan and elevation (the selected rotor)",hl:true}
     ]},
-    {t:"Structural Simulation — Selected Rotor Blade",imgs:[
-      {f:"04",c:"Static structural analysis — von Mises stress distribution under aerodynamic loading"},
+    {t:"Rotor Concept — Twisted Three-Blade Savonius",imgs:[
+      {f:"t2",c:"Twisted Three-Blade Savonius — isometric view with surface and cut-plot velocity contours"},
+      {f:"t1",c:"Twisted Three-Blade Savonius — top-plane velocity contour with torque and power goal convergence"},
+      {f:"t3",c:"Twisted Three-Blade Savonius — rotor general arrangement, plan and elevation"}
+    ]},
+    {t:"Rotor Concept — Twisted Helical Turbine",imgs:[
+      {f:"c3",c:"Twisted Helical Turbine — rotor general arrangement"}
+    ]},
+    {t:"Rotor Concept — Twisted Darrieus–Savonius Hybrid",imgs:[
+      {f:"h2",c:"Twisted Darrieus–Savonius Hybrid — isometric view with surface and cut-plot velocity contours"},
+      {f:"h1",c:"Twisted Darrieus–Savonius Hybrid — top-plane velocity contour with torque and power goal convergence"},
+      {f:"h3",c:"Twisted Darrieus–Savonius Hybrid — rotor general arrangement, plan and elevation"}
+    ]},
+    {t:"Placement Study — Candidate Turbine Positions",imgs:[
+      {f:"p1",c:"Hood position — candidate turbine volume modelled on the vehicle hood"},
+      {f:"p2",c:"Roof position — candidate turbine volume modelled on the vehicle roof"},
+      {f:"p3",c:"Frontal position — the selected location, turbine volume modelled at the vehicle front",hl:true},
+      {f:"k2",c:"Placement comparison — drag force and turbulence intensity for front, hood and roof mounting against the baseline vehicle without a turbine"}
+    ]},
+    {t:"CFD Results — Placement Velocity Contours & Wake",imgs:[
+      {f:"v1",c:"Velocity contours — turbine mounted on the hood"},
+      {f:"v2",c:"Velocity contours — turbine mounted on the roof"},
+      {f:"v3",c:"Velocity contours — turbine mounted at the front bumper (the selected configuration)",hl:true},
+      {f:"v4",c:"Flow trajectories — full-vehicle wake development at highway speed"}
+    ]},
+    {t:"Structural Simulation — Selected Twisted Two-Blade Rotor",imgs:[
+      {f:"s1",c:"Static structural analysis — von Mises stress distribution under aerodynamic loading"},
       {f:"s2",c:"Static structural analysis — factor of safety distribution"}
     ]},
     {t:"Vehicle Integration — Frontal Configuration",imgs:[
-      {f:"01",c:"Staged-fidelity baseline — reference vehicle with simplified system volume"},
-      {f:"08",c:"Selected frontal integration — system volume packaged at the vehicle front"},
-      {f:"09",c:"Integrated system seen through the front intake opening (patent pending)"},
+      {f:"09",c:"The integrated system seen through the front intake opening — internal arrangement patent pending"},
       {f:"10",c:"Cutaway — intake, flow-conditioning cascade and rotor housing in place (patent pending)"}
+    ]},
+    {t:"Energy Balance — Effect of Inlet Flow Conditioning",imgs:[
+      {f:"k3",c:"Before flow conditioning — energy produced against vehicle energy consumption across the speed range"},
+      {f:"k4",c:"After flow conditioning — the convergent–divergent nozzle roughly doubles inlet air speed, lifting produced energy above consumption",hl:true}
     ]}
   ],
-  v:4,
-  meta:{Role:"Researcher & simulation engineer", Type:"B.Sc. graduation project — patent pending", Tools:"SolidWorks Flow Simulation · CFD · Motion", Scope:"4 rotor concepts · placement study · full-vehicle CFD", Reference:"Vehicle model based on publicly listed Tesla Model 3 dimensions"},
+  v:12,
+  meta:{Role:"Researcher & simulation engineer", Type:"B.Sc. graduation project — patent pending", Tools:"SolidWorks Flow Simulation · CFD · Motion", Scope:"4 rotor concepts · placement study · full-vehicle CFD", Reference:"Tesla Model 3 (RWD / Long Range) — manufacturer-published exterior & body dimensions"},
   overview:"Electric vehicles still lose buyers to range anxiety. This project asked a direct question: how much of an EV's consumption can be recovered from the airflow the car is already pushing through? The answer became a complete system study — rotor selection by comparative CFD, aerodynamic placement screening on a reference sedan, and integration of the selected turbine with proprietary inlet flow-conditioning and low-friction magnetic support elements. The work was awarded 92/100, ranked first in the cohort, and a patent application has been filed on the system configuration — which is why exact geometry, flow-conditioning details and internal arrangements are deliberately withheld from this plate.",
-  approach:"The study ran in disciplined stages. First, four vertical-axis rotor concepts — two-blade Savonius, three-blade Savonius, helical, and a Darrieus–Savonius hybrid — were simulated under identical conditions across the full vehicle-speed envelope, extracting torque and power goals to build comparable Cp/Ct datasets. The two-blade Savonius won decisively. Second, a staged-fidelity vehicle model was built: placement candidates (roof, hood, frontal) were screened with a simplified system volume to compare drag and turbulence impact before any detailed geometry entered the domain — the frontal position preserved the vehicle's external aerodynamics best. Third, the selected rotor was integrated with a convergent inlet and flow-conditioning elements (details patent-pending), and the complete configuration was verified with full-vehicle external CFD and power analysis against the reference EV's real consumption data.",
+  approach:"The study ran in disciplined stages. The reference vehicle was not a generic body: it was modelled to the manufacturer's published exterior dimensions for a Tesla Model 3 (RWD / Long Range) — 4,720 mm overall length and 2,089 mm overall width including mirrors — together with the published under-hood and underbody datum measurements, so that packaging volumes and frontal area were representative rather than assumed. First, four vertical-axis rotor concepts — all built with twisted blades — a twisted two-blade Savonius, a twisted three-blade Savonius, a twisted helical rotor, and a twisted Darrieus–Savonius hybrid, were simulated under identical conditions across the full vehicle-speed envelope, extracting torque and power goals to build comparable Cp/Ct datasets. The twisted two-blade Savonius won decisively. Second, placement candidates — hood, roof and front bumper — were screened with a simplified system volume to compare drag and turbulence impact before any detailed geometry entered the domain — the frontal position preserved the vehicle's external aerodynamics best. Third, the selected rotor was integrated with a convergent inlet and flow-conditioning elements (details patent-pending), and the complete configuration was verified with full-vehicle external CFD and power analysis against the reference EV's real consumption data.",
   results:[
-    "Two-blade Savonius selected from four concepts — <b>Cp = 0.376 average</b> across the operating envelope, the strongest of the field",
+    "Twisted two-blade Savonius selected from four twisted concepts — <b>Cp = 0.376 average</b> across the operating envelope, the strongest of the field",
     "Frontal integration preserved external aerodynamics — <b>placement chosen by CFD screening</b>, not assumption",
     "Proprietary inlet flow-conditioning raised recoverable power — <b>battery-range coverage 33.7% → 98.5% at 180 km/h</b>",
     "<b>Awarded 92/100, 1st in cohort · patent application filed</b> — journal publication in preparation"
