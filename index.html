@@ -198,6 +198,14 @@ body.detail-mode #detail{display:block}
 .sd-row .k{padding:14px 0 14px 24px;font-family:var(--font-mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#8B9AAC}
 .sd-row .v{padding:13px 22px 13px 0;color:#F3EFE6;font-weight:500}
 .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-top:18px}
+.g-sec{grid-column:1/-1;margin-top:10px}
+.g-sec-t{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass);display:flex;align-items:center;gap:14px;margin:14px 0 4px}
+.g-sec-t::after{content:"";flex:1;height:1px;background:var(--line)}
+.g-sec .d-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-top:14px}
+.g-hl{border:2px solid var(--brass);box-shadow:0 0 0 4px rgba(200,164,90,.14)}
+.g-hl figcaption{color:var(--brass);font-weight:600}
+.g-img{position:relative}
+.g-badge{position:absolute;top:10px;left:10px;z-index:2;background:var(--brass);color:#fff;font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;padding:5px 10px;text-transform:uppercase}
 .g-item{border:1px solid var(--line);background:var(--paper);margin:0}
 .g-img{overflow:hidden;aspect-ratio:4/3;position:relative;background:
   repeating-linear-gradient(45deg,#F1EEE7 0 10px,#F8F6F1 10px 20px)}
@@ -349,7 +357,6 @@ footer{padding:30px 0 36px;display:flex;justify-content:space-between;gap:12px;f
       <button data-f="cfd">CFD</button>
       <button data-f="fea">FEA</button>
       <button data-f="fab">Design &amp; Fabrication</button>
-      <button data-f="mech">Mechanism Study</button>
     </div>
     <div class="filters reveal" aria-label="Filter by organization" style="margin-top:-26px">
       <button class="active" data-o="all">All Organizations</button>
@@ -695,20 +702,32 @@ const PROJECTS = [
   title:"Wind-Integrated EV Charging System — Comparative VAWT CFD Study",
   summary:"Graduation research project, awarded 92/100 and ranked 1st in cohort, with a patent application filed: a vertical-axis wind turbine system integrated into an electric vehicle to recharge the battery from airflow while driving. Four rotor concepts were screened by comparative CFD, the winning rotor was integrated with proprietary inlet flow-conditioning and low-friction magnetic support (patent pending), and full-vehicle aerodynamic simulation verified the installation.",
   metric:"Battery coverage 33.7% → 98.5% @ 180 km/h · 1st in cohort",
-  gcaps:[
-    "Staged-fidelity baseline — the reference vehicle with a simplified system volume before detailed integration",
-    "The four rotor concepts screened by comparative CFD — two-blade Savonius, three-blade Savonius, helical, and Darrieus–Savonius hybrid; selected concept highlighted",
-    "Concept screening in progress — velocity field and goal convergence during the comparative CFD campaign",
-    "Structural verification of the selected rotor blade — von Mises stress under aerodynamic loading, far below yield",
-    "Placement screening — velocity field with the candidate system volume in the rejected roof position",
-    "Placement screening — velocity field for a second rejected candidate position in the sweep",
-    "Full-vehicle wake development — flow trajectories over the integrated configuration",
-    "The selected frontal integration — system volume packaged at the vehicle front",
-    "The integrated system seen through the front intake opening — internal arrangement patent pending",
-    "Cutaway of the frontal integration — intake, flow-conditioning cascade and rotor housing in place (patent pending)"
+  groups:[
+    {t:"Rotor Concepts — Comparative Screening",imgs:[
+      {f:"c1",c:"Twisted Two-Blade Savonius — the selected rotor (transient CFD, surface velocity distribution)",hl:true},
+      {f:"c2",c:"Three-Blade Savonius"},
+      {f:"c3",c:"Helical Turbine"},
+      {f:"c4",c:"Darrieus–Savonius Hybrid (transient CFD, velocity field)"}
+    ]},
+    {t:"CFD Results — Velocity Contours & Flow Fields",imgs:[
+      {f:"03",c:"Velocity contours & goal convergence — concept screening run"},
+      {f:"05",c:"Velocity contours — roof placement candidate (rejected)"},
+      {f:"06",c:"Velocity contours — placement screening candidate (rejected)"},
+      {f:"07",c:"Flow trajectories — full-vehicle wake development"}
+    ]},
+    {t:"Structural Simulation — Selected Rotor Blade",imgs:[
+      {f:"04",c:"Static structural analysis — von Mises stress distribution under aerodynamic loading"},
+      {f:"s2",c:"Static structural analysis — factor of safety distribution"}
+    ]},
+    {t:"Vehicle Integration — Frontal Configuration",imgs:[
+      {f:"01",c:"Staged-fidelity baseline — reference vehicle with simplified system volume"},
+      {f:"08",c:"Selected frontal integration — system volume packaged at the vehicle front"},
+      {f:"09",c:"Integrated system seen through the front intake opening (patent pending)"},
+      {f:"10",c:"Cutaway — intake, flow-conditioning cascade and rotor housing in place (patent pending)"}
+    ]}
   ],
-  gallery:10, v:3,
-  meta:{Role:"Researcher & simulation engineer", Type:"B.Sc. graduation project — patent pending", Tools:"SolidWorks Flow Simulation · CFD · Motion", Scope:"4 rotor concepts · placement study · full-vehicle CFD"},
+  v:4,
+  meta:{Role:"Researcher & simulation engineer", Type:"B.Sc. graduation project — patent pending", Tools:"SolidWorks Flow Simulation · CFD · Motion", Scope:"4 rotor concepts · placement study · full-vehicle CFD", Reference:"Vehicle model based on publicly listed Tesla Model 3 dimensions"},
   overview:"Electric vehicles still lose buyers to range anxiety. This project asked a direct question: how much of an EV's consumption can be recovered from the airflow the car is already pushing through? The answer became a complete system study — rotor selection by comparative CFD, aerodynamic placement screening on a reference sedan, and integration of the selected turbine with proprietary inlet flow-conditioning and low-friction magnetic support elements. The work was awarded 92/100, ranked first in the cohort, and a patent application has been filed on the system configuration — which is why exact geometry, flow-conditioning details and internal arrangements are deliberately withheld from this plate.",
   approach:"The study ran in disciplined stages. First, four vertical-axis rotor concepts — two-blade Savonius, three-blade Savonius, helical, and a Darrieus–Savonius hybrid — were simulated under identical conditions across the full vehicle-speed envelope, extracting torque and power goals to build comparable Cp/Ct datasets. The two-blade Savonius won decisively. Second, a staged-fidelity vehicle model was built: placement candidates (roof, hood, frontal) were screened with a simplified system volume to compare drag and turbulence impact before any detailed geometry entered the domain — the frontal position preserved the vehicle's external aerodynamics best. Third, the selected rotor was integrated with a convergent inlet and flow-conditioning elements (details patent-pending), and the complete configuration was verified with full-vehicle external CFD and power analysis against the reference EV's real consumption data.",
   results:[
@@ -716,31 +735,6 @@ const PROJECTS = [
     "Frontal integration preserved external aerodynamics — <b>placement chosen by CFD screening</b>, not assumption",
     "Proprietary inlet flow-conditioning raised recoverable power — <b>battery-range coverage 33.7% → 98.5% at 180 km/h</b>",
     "<b>Awarded 92/100, 1st in cohort · patent application filed</b> — journal publication in preparation"
-  ]
-},
-{
-  id:"ms-023", org:"research", cat:"mech", tag:"Mechanism Study · Kinematics · SolidWorks",
-  title:"Rotating Pick-and-Place / Flip-Over Unit — Mechanism Study",
-  summary:"A reverse-engineering study. The mechanism was observed running on a packaging line, then rebuilt from scratch in SolidWorks without drawings or reference material, purely from the observed motion. The result is a transfer unit whose gripper lifts and flips 90° from a single pneumatic cylinder, with no servo, no encoder and no controller: the sequencing is carried entirely by the geometry.",
-  metric:"One pneumatic input · 90° gripper flip · zero control electronics",
-  gcaps:[
-    "The drive detail — the large lower pulley fixed to the blue shaft in its pillow blocks. Because this pulley cannot rotate with the arm, the belt is forced to turn the upper pulley as the arm swings",
-    "Full assembly at the top of the stroke — suction head flipped, both timing belts and the bevel pair engaged, with the single pneumatic cylinder and rack at the base",
-    "The mechanism with the arms lowered — the cylinder, rack and pinion at the base and the belt run along the side arm clearly visible"
-  ],
-  gallery:3, v:2,
-  videos:[
-    {file:"videos/ms-023-v1.mp4", poster:"images/ms-023-v1-poster.jpg",
-     cap:"Motion study through a full cycle — one cylinder stroke producing lift and a 90° gripper flip"}
-  ],
-  meta:{Role:"Reverse engineering & CAD reconstruction", Type:"Independent mechanism study", Tools:"SolidWorks 2022 · Motion Study · KeyShot 2025", Scope:"Kinematic reconstruction from observed motion"},
-  overview:"This plate is not an original design. The mechanism was seen running on a food-grade packaging line, and the question it raised was worth chasing: the gripper flipped through 90° in perfect time with the lift, and there was clearly only one actuator on the machine. Nothing was driving the flip. The unit was rebuilt in SolidWorks from observation alone — no drawings, no manufacturer data, no reference model — to find out how the timing was being produced. The reconstruction is included here as a study in reading and rebuilding someone else's kinematics, not as a claim of authorship.",
-  approach:"The whole system has one input: a pneumatic cylinder pushing a rack. Everything downstream is geometry. The rack turns a pinion and the side arms swing up. On the left arm the large lower pulley is fixed to the bottom shaft, so it cannot rotate with the arm — as the arm swings, the timing belt has no choice but to drive the upper pulley, converting the arm's own swing into rotation at the top plate for free. That rotation reaches a bevel pair at the top, where one gear is grounded to the opposite side arm. Because that gear is held, the meshing gear is forced to turn, redirecting the axis through 90°. A second timing belt then carries that rotation inboard to the suction head seated in its bearing. The flip is never actuated — it is a consequence of the lift.",
-  results:[
-    "Reconstructed the complete kinematic chain from observed motion alone — <b>no drawings or reference model</b>",
-    "Identified the core principle: a <b>grounded pulley converts arm swing into free rotation</b>, removing the need for a second actuator",
-    "Bevel pair redirects the axis 90° and a second belt centres the motion on the suction head — <b>lift and flip inherently synchronised</b>",
-    "Motion study verified the linkage through full travel; <b>end-of-stroke deceleration remains unresolved</b> and is documented as an open question rather than hidden"
   ]
 }
 ];
@@ -838,17 +832,22 @@ function renderDetail(id){
   const metaRows=Object.entries(p.meta).map(([k,v])=>`<div class="sd-row"><span class="k">${k}</span><span class="v">${v}</span></div>`).join('');
   const caps=p.gcaps||[];
   const count=caps.length||p.gallery||0;
-  const gal=Array.from({length:count},(_,n)=>{
-    const fn=`images/${p.id}-${String(n+1).padStart(2,'0')}.jpg${p.v?`?v=${p.v}`:''}`;
-    const cap=caps[n]||`${p.title} — detail ${n+1}`;
-    return `<figure class="g-item">
-      <div class="g-img">
+  const gitem=(fn,cap,hl)=>`<figure class="g-item${hl?' g-hl':''}">
+      <div class="g-img">${hl?'<span class="g-badge">✦ SELECTED</span>':''}
         <img src="${fn}" alt="${cap}" loading="lazy"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="ph" style="display:none"><span>ADD IMAGE →</span><span class="fn">${fn}</span></div>
       </div>
       <figcaption>${cap}</figcaption>
-    </figure>`;}).join('');
+    </figure>`;
+  const gal=p.groups
+    ? p.groups.map(g=>`<div class="g-sec"><h3 class="g-sec-t">${g.t}</h3><div class="d-gallery">${
+        g.imgs.map(im=>gitem(`images/${p.id}-${im.f}.jpg${p.v?`?v=${p.v}`:''}`,im.c,im.hl)).join('')
+      }</div></div>`).join('')
+    : Array.from({length:count},(_,n)=>{
+    const fn=`images/${p.id}-${String(n+1).padStart(2,'0')}.jpg${p.v?`?v=${p.v}`:''}`;
+    const cap=caps[n]||`${p.title} — detail ${n+1}`;
+    return gitem(fn,cap,false);}).join('');
   detailContent.innerHTML=`
     <a class="back" href="#/" onclick="goHome(event)">← Back to all projects</a>
     <div class="d-head">
