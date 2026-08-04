@@ -202,6 +202,27 @@ body.detail-mode #detail{display:block}
 .g-sec-t{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass);display:flex;align-items:center;gap:14px;margin:14px 0 4px}
 .g-sec-t::after{content:"";flex:1;height:1px;background:var(--line)}
 .g-sec .d-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-top:14px}
+.reg{position:sticky;top:0;z-index:30;background:var(--navy);border-top:1px solid var(--line-navy);border-bottom:1px solid var(--line-navy);margin:26px 0 8px;padding:12px 0}
+.reg-h{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;color:var(--dim);margin:0 0 8px}
+.reg-list{display:flex;flex-direction:column;gap:1px}
+.reg-i{display:flex;align-items:center;gap:12px;padding:8px 10px;border-left:2px solid transparent;background:none;border-top:0;border-right:0;border-bottom:0;width:100%;text-align:left;cursor:pointer;font-family:inherit;transition:background .18s}
+.reg-i:hover{background:rgba(201,162,75,.07)}
+.reg-i.on{background:rgba(201,162,75,.10);border-left-color:var(--brass-2)}
+.reg-n{font-family:var(--font-mono);font-size:11px;color:var(--dim);min-width:20px}
+.reg-i.on .reg-n{color:var(--brass-2)}
+.reg-t{font-size:13px;color:#C3CBD4;flex:1}
+.reg-i.on .reg-t{color:var(--ivory)}
+.reg-m{font-family:var(--font-mono);font-size:10px;color:var(--soft)}
+.reg-i.pend{cursor:default;opacity:.55}
+.reg-i.pend:hover{background:none}
+.g-spec{font-family:var(--font-mono);font-size:10.5px;color:var(--dim);line-height:1.9;margin:2px 0 6px}
+@media(max-width:720px){
+  .reg-list{flex-direction:row;overflow-x:auto;gap:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .reg-list::-webkit-scrollbar{display:none}
+  .reg-i{width:auto;flex:0 0 auto;border-left:0;border-bottom:2px solid transparent;padding:6px 12px}
+  .reg-i.on{border-left:0;border-bottom-color:var(--brass-2)}
+  .reg-m{display:none}
+}
 .g-hl{border:2px solid var(--brass);box-shadow:0 0 0 4px rgba(200,164,90,.14)}
 .g-hl figcaption{color:var(--brass);font-weight:600}
 .g-img{position:relative}
@@ -756,6 +777,50 @@ const PROJECTS = [
     "Proprietary inlet flow-conditioning raised recoverable power — <b>battery-range coverage 33.7% → 98.5% at 180 km/h</b>",
     "<b>Awarded 92/100, 1st in cohort · patent application filed</b> — journal publication in preparation"
   ]
+},
+{
+  id:"ms-023", org:"steelx", cat:"fab", tag:"Design for Manufacture · Architectural Steel",
+  title:"Al-Hussein Sport Club Brand Store",
+  summary:"Concept to manufacture — turning an architect's freeform interior into machine-ready steel.",
+  groups:[
+    {t:"Sheet 01 — Lighting Trusses", reg:"Lighting trusses", count:"3 off · 101 kg ea",
+     spec:"3 off &nbsp;·&nbsp; 4,950 mm &nbsp;·&nbsp; Ø60.5 chord / Ø32.4 lacing &nbsp;·&nbsp; 323.3 × 280 section &nbsp;·&nbsp; 101 kg each &nbsp;·&nbsp; mild steel &nbsp;·&nbsp; IGES → tube laser &nbsp;·&nbsp; gloss yellow &nbsp;·&nbsp; 150 mm installed adjustment",
+     imgs:[
+      {f:"t1",c:"Rendered general arrangement — the three triangular trusses that carry the suspended ceiling and form the exposed lighting rig",hl:true},
+      {f:"t2",c:"Welded lattice detail — Ø32.4 bracing landing on the Ø60.5 chord, each joint coped to a true saddle profile rather than gap-filled at the bench"},
+      {f:"t3",c:"Fabrication in progress — bracing tacked to the chord on the jig, following the machine-cut cope positions"},
+      {f:"t4",c:"Installed at high level, painted gloss yellow, with the corrugated cladding and services coordinated below"},
+      {f:"t5",c:"Trusses in position during fit-out, with the first mesh curves being hung from them"}
+    ]},
+    {t:"Sheet 02 — Suspended Mesh Curves", reg:"Suspended mesh curves", count:"6 curves · 30 panels",
+     spec:"6 curves — 3 perforated / 3 diamond mesh &nbsp;·&nbsp; 1.1 mm mild steel &nbsp;·&nbsp; Ø15 mm holes @ 25 mm pitch, straight rows, ~28% open &nbsp;·&nbsp; 5 panels × 2 m per curve &nbsp;·&nbsp; ~10 m flat length &nbsp;·&nbsp; 0.5–1.0 m wide &nbsp;·&nbsp; punched, not lasered",
+     imgs:[
+      {f:"c1",c:"Rendered assembly of all six curves — three perforated and three diamond mesh, alternating across the ceiling void",hl:true},
+      {f:"c2",c:"Rebuilding the architect's freeform profile as a tangent-continuous chain of arcs on located centres — the step that makes the shape unrollable"},
+      {f:"c3",c:"The resolved curve profile, dimensionally verified against the client's concept geometry before any surface was built"},
+      {f:"c4",c:"Full ceiling assembly — the six curves hung from the three trusses, showing panel divisions and hanger positions"},
+      {f:"c5",c:"Close assembly view — panel joints and the alternating perforated / diamond mesh sequence"},
+      {f:"c6",c:"Installed on site — curves hung, folded around their tube frames and tensioned to the modelled profile"}
+    ]}
+  ],
+  pending:["Cashier counter","Display and shelving units"],
+  videos:[
+    {file:"videos/ms-023-v1.mp4", poster:"videos/ms-023-v1-poster.jpg", portrait:true,
+     caption:"Tube-laser CAM simulation — the coped features generated by Cut With Surface arriving as machine-recognised cutting operations along the Ø60.5 chord"}
+  ],
+  docs:[
+    {file:"docs/ms-023-trusses.pdf", label:"Truss general arrangement — SteelX drawing (PDF)"}
+  ],
+  v:1,
+  meta:{Role:"Mechanical design & manufacturing engineer", Client:"Al-Hussein Sport Club — brand store fit-out", Employer:"SteelX Jordan", Tools:"SolidWorks (Weldments, Surfacing, Sheet Metal) · KeyShot", Output:"IGES to tube laser · flat patterns · assembly drawings", Year:"2026"},
+  overview:"The architect delivered a concept package, not a buildable one: six freeform screens threading through an inverted ceiling, drawn as construction geometry at 1:50 with anchor points and radius circles. Beautiful, and completely undefined as steel. This project was the translation — taking that visual intent and producing the geometry, the manufacturing files and the assembly logic that let a fabrication shop actually build it, without losing the shapes the client had signed off on.",
+  approach:"Work ran element by element. The lighting trusses were modelled as SolidWorks weldments so the cut list drove tube output directly; the difficulty was the joints, where a Ø32.4 brace meets a Ø60.5 chord at a compound angle. That intersection is a saddle whose profile changes continuously along the joint, so a standard trim will not describe it — the copes were generated with Cut With Surface, using a surface as the cutting tool, which produced true fish-mouth profiles that survived export to the tube laser as recognised cutting operations. Stub posts with bolted hole rows were added so installers could take out 150 mm of ceiling level error on site. The curves were rebuilt from the ground up: each architect profile was re-drawn as a tangent-continuous chain of arcs on located centres, which turned a freeform shape into something that could drive a surface, unroll to a flat pattern and be dimensionally checked against the client's file. The manufacturing decision that mattered most was choosing to punch the perforated sheet rather than laser it — at 1.1 mm and Ø15 mm holes on a 25 mm pitch, a laser puts a thermal cycle into the panel at every hole and the sheet distorts long before the pattern is finished. Punching is a cold process: the panels came off flat, stayed flat through rolling, and the 1.1 mm gauge was itself chosen so the mesh could fold directly around its tube frame with no separate perimeter section.",
+  results:[
+    "Six freeform ceiling screens rebuilt as <b>tangent-continuous arc geometry</b> — unrollable, dimensioned, and verified against the client's concept file",
+    "Compound tube copes solved with <b>Cut With Surface</b>, exported as IGES and read directly as machine operations by the tube laser",
+    "<b>Punching selected over laser cutting</b> to eliminate heat distortion in 1.1 mm perforated sheet at ~28% open area",
+    "<b>3 trusses and 30 mesh panels</b> — roughly 60 linear metres of screen — released to production and installed"
+  ]
 }
 ];
 
@@ -843,6 +908,42 @@ function setOrg(org){
 /* ============================== DETAIL VIEW ============================== */
 const detailContent=document.getElementById('detail-content');
 
+function regHTML(p){
+  const gs=p.groups||[], pend=p.pending||[];
+  if(gs.length+pend.length<3) return '';
+  const rows=gs.map((g,gi)=>`<button class="reg-i" data-sec="sec-${p.id}-${gi}" onclick="regGo('sec-${p.id}-${gi}')">
+      <span class="reg-n">${String(gi+1).padStart(2,'0')}</span>
+      <span class="reg-t">${g.reg||g.t}</span>
+      <span class="reg-m">${g.count||''}</span>
+    </button>`).join('');
+  const prows=pend.map((t,pi)=>`<div class="reg-i pend">
+      <span class="reg-n">${String(gs.length+pi+1).padStart(2,'0')}</span>
+      <span class="reg-t">${t}</span>
+      <span class="reg-m">pending</span>
+    </div>`).join('');
+  return `<nav class="reg" aria-label="Sheet register">
+    <div class="reg-h">SHEET REGISTER</div>
+    <div class="reg-list">${rows}${prows}</div>
+  </nav>`;
+}
+function regGo(id){
+  const el=document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function regSpy(){
+  const items=[...document.querySelectorAll('.reg-i[data-sec]')];
+  if(!items.length) return;
+  const onScroll=()=>{
+    let cur=items[0];
+    for(const it of items){
+      const el=document.getElementById(it.dataset.sec);
+      if(el && el.getBoundingClientRect().top<=160) cur=it;
+    }
+    items.forEach(it=>it.classList.toggle('on',it===cur));
+  };
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+}
 function renderDetail(id){
   const i=PROJECTS.findIndex(p=>p.id===id);
   if(i<0){goHomeNow();return;}
@@ -861,7 +962,9 @@ function renderDetail(id){
       <figcaption>${cap}</figcaption>
     </figure>`;
   const gal=p.groups
-    ? p.groups.map(g=>`<div class="g-sec"><h3 class="g-sec-t">${g.t}</h3><div class="d-gallery">${
+    ? p.groups.map((g,gi)=>`<div class="g-sec" id="sec-${p.id}-${gi}"><h3 class="g-sec-t">${g.t}</h3>${
+        g.spec?`<div class="g-spec">${g.spec}</div>`:''
+      }<div class="d-gallery">${
         g.imgs.map(im=>gitem(`images/${p.id}-${im.f}.jpg${p.v?`?v=${p.v}`:''}`,im.c,im.hl)).join('')
       }</div></div>`).join('')
     : Array.from({length:count},(_,n)=>{
@@ -895,6 +998,7 @@ function renderDetail(id){
             </video>
             <figcaption>${v.caption}</figcaption>
           </figure>`).join('')}</div>`:''}
+        ${regHTML(p)}
         <h2>Gallery</h2>
         <div class="gallery">${gal}</div>
       </div>
@@ -911,6 +1015,7 @@ function renderDetail(id){
   window.scrollTo(0,0);
   document.title=`${p.title} — Majdy Al-Sous`;
   if(p.special==='vawt')initVawtAnim();
+  regSpy();
 }
 
 /* ============ vawt special section (ms-022) ============ */
