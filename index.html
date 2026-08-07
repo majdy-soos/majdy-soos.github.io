@@ -784,44 +784,78 @@ const PROJECTS = [
   summary:"Concept to manufacture — turning an architect's freeform interior into machine-ready steel.",
   groups:[
     {t:"Sheet 01 — Lighting Trusses", reg:"Lighting trusses", count:"3 off · 101 kg ea",
-     spec:"3 off &nbsp;·&nbsp; 4,950 mm &nbsp;·&nbsp; Ø60.5 chord / Ø32.4 lacing &nbsp;·&nbsp; 323.3 × 280 section &nbsp;·&nbsp; 101 kg each &nbsp;·&nbsp; mild steel &nbsp;·&nbsp; IGES → tube laser &nbsp;·&nbsp; gloss yellow &nbsp;·&nbsp; 150 mm installed adjustment",
+     spec:"3 off &nbsp;·&nbsp; 4,950 mm &nbsp;·&nbsp; \u00d860.5 chord / \u00d832.4 lacing &nbsp;·&nbsp; 323.3 \u00d7 280 section &nbsp;·&nbsp; mild steel &nbsp;·&nbsp; IGES \u2192 tube laser &nbsp;·&nbsp; gloss yellow &nbsp;·&nbsp; 150 mm site adjustment",
      imgs:[
-      {f:"t1",c:"Rendered general arrangement — the three triangular trusses that carry the suspended ceiling and form the exposed lighting rig"},
-      {f:"t2",c:"Welded lattice detail — Ø32.4 bracing landing on the Ø60.5 chord, each joint coped to a true saddle profile rather than gap-filled at the bench"},
-      {f:"t3",c:"Fabrication in progress — bracing tacked to the chord on the jig, following the machine-cut cope positions"},
-      {f:"t4",c:"Installed at high level, painted gloss yellow — trusses set above the black soffit with services coordinated below"},
-      {f:"t5",c:"Trusses in position during fit-out, with the first mesh curves being hung from them"}
+      {f:"t1",c:"Three triangular trusses \u2014 the exposed lighting rig that also carries the ceiling above it"},
+      {f:"t2",c:"Every brace-to-chord joint is a compound saddle, cut to profile rather than gap-filled at the bench"},
+      {f:"t6",c:"Machine-cut copes landing on the chord \u2014 the tube laser reads the cope as an operation, so nothing is fitted by eye"},
+      {f:"t3",c:"On the jig, bracing tacked to the machine-cut positions"},
+      {f:"t4",c:"Installed at high level in gloss yellow, services coordinated below"},
+      {f:"t5",c:"In position during fit-out, first mesh curves going up"}
     ]},
-    {t:"Sheet 02 — Suspended Mesh Curves", reg:"Suspended mesh curves", count:"6 curves · 30 panels",
-     spec:"6 curves — 3 perforated / 3 diamond mesh &nbsp;·&nbsp; 1.1 mm mild steel &nbsp;·&nbsp; Ø15 mm holes @ 25 mm pitch, straight rows, ~28% open &nbsp;·&nbsp; 5 panels × 2 m per curve &nbsp;·&nbsp; ~10 m flat length &nbsp;·&nbsp; 0.5–1.0 m wide &nbsp;·&nbsp; punched, not lasered",
+    {t:"Sheet 02 \u2014 Suspended Mesh Curves", reg:"Suspended mesh curves", count:"6 curves \u00b7 30 panels",
+     spec:"6 curves \u2014 3 perforated / 3 diamond mesh &nbsp;\u00b7&nbsp; 1.1 mm mild steel &nbsp;\u00b7&nbsp; \u00d815 mm holes @ 25 mm pitch, ~28% open &nbsp;\u00b7&nbsp; 5 panels \u00d7 2 m per curve &nbsp;\u00b7&nbsp; ~10 m flat length &nbsp;\u00b7&nbsp; punched, not lasered",
      imgs:[
-      {f:"c1",c:"Rendered assembly of all six curves — three perforated and three diamond mesh, alternating across the ceiling void"},
-      {f:"c2",c:"Rebuilding the architect's freeform profile as a tangent-continuous chain of arcs on located centres — the step that makes the shape unrollable"},
-      {f:"c3",c:"The resolved curve profile, dimensionally verified against the client's concept geometry before any surface was built"},
-      {f:"c4",c:"Full ceiling assembly — the six curves hung from the three trusses, showing panel divisions and hanger positions"},
-      {f:"c5",c:"Close assembly view — panel joints and the alternating perforated / diamond mesh sequence"},
-      {f:"c6",c:"Installed on site — curves hung, folded around their tube frames and tensioned to the modelled profile"}
+      {f:"c1",c:"All six curves \u2014 perforated and diamond mesh alternating across the ceiling void"},
+      {f:"c2",c:"The architect's freeform profile rebuilt as a tangent-continuous chain of arcs on located centres \u2014 the step that makes the shape unrollable"},
+      {f:"c3",c:"Resolved profile, checked against the concept geometry before any surface was built"},
+      {f:"c4",c:"Six curves hung from three trusses \u2014 panel divisions and hanger positions"},
+      {f:"c5",c:"Panel joints and the alternating mesh sequence"},
+      {f:"c6",c:"Installed \u2014 folded around their tube frames and tensioned to the modelled profile"}
+    ]},
+    {t:"Sheet 03 \u2014 Service Counter", reg:"Service counter", count:"3,137 mm \u00b7 33 items",
+     spec:"3,137 \u00d7 630 \u00d7 940 mm &nbsp;\u00b7&nbsp; 1.8 mm galvanized outer shell, roll-bent as one continuous wrap &nbsp;\u00b7&nbsp; 80\u00d740, 40\u00d740, 30\u00d730, 20\u00d720 tube skeleton &nbsp;\u00b7&nbsp; 33-item BOM &nbsp;\u00b7&nbsp; 15.6 m\u00b2 sheet + 30.2 m tube &nbsp;\u00b7&nbsp; DXF \u2192 fiber laser + press brake",
+     imgs:[
+      {f:"k1",c:"The counter as designed \u2014 one continuous shell wrapping nose to tail, no visible seam"},
+      {f:"k2",c:"Rendered front elevation, glass display band set into the yellow face"},
+      {f:"k3",c:"Exploded \u2014 tube skeleton, inner yellow liner, glazing, and the wrapping outer shell"},
+      {f:"k4",c:"End-on explosion showing how the layers stack around the frame"},
+      {f:"k5",c:"Flat patterns nested on 6,000 \u00d7 1,000 sheets \u2014 straight from the model to the laser"},
+      {f:"k6",c:"Sections K-K and M-M: how the shell, liner and frame land on each other"},
+      {f:"k7",c:"Shop floor \u2014 the shell rolled and closing around the frame"},
+      {f:"k8",c:"The nose radius, formed in one piece. This was the part that had to come out right"},
+      {f:"k9",c:"Primed and ready for topcoat"}
+    ]},
+    {t:"Sheet 04 \u2014 Display &amp; Shelving", reg:"Display &amp; shelving", count:"25 mm tube \u00b7 5 sheets",
+     spec:"25 mm tube structure &nbsp;\u00b7&nbsp; perforated back panels &nbsp;\u00b7&nbsp; 332.5 \u00d7 355 module grid &nbsp;\u00b7&nbsp; 45.5 mm depth without rear sheet &nbsp;\u00b7&nbsp; garment rails, glass shelves, vertical ball dispenser &nbsp;\u00b7&nbsp; 5-sheet drawing set",
+     imgs:[
+      {f:"d1",c:"Display wall \u2014 stepped tube frame, mesh backs, and a full-height ball dispenser column"},
+      {f:"d2",c:"Rails, glass shelves and hook rows set out on the same module"},
+      {f:"d4",c:"Shop drawing \u2014 the module grid that keeps every shelf and rail on one setting-out line"},
+      {f:"d3",c:"Ceiling-hung display frame, flange-mounted overhead"}
+    ]},
+    {t:"Sheet 05 \u2014 Cladding &amp; Signage", reg:"Cladding &amp; signage", count:"FOS 6.2 \u00b7 0.27 mm",
+     spec:"Corrugated cladding on framed steel backing &nbsp;\u00b7&nbsp; press-brake formed profile &nbsp;\u00b7&nbsp; laser-cut two-layer club crest on standoff pins &nbsp;\u00b7&nbsp; static check: 0.27 mm max deflection, minimum FOS 6.2",
+     imgs:[
+      {f:"w1",c:"Corrugated wall as modelled, display opening framed into the run"},
+      {f:"w2",c:"From behind \u2014 the backing frame and stringers the panels land on"},
+      {f:"w4",c:"Installed, with the ducting run and lighting trusses above"},
+      {f:"s1",c:"Club crest \u2014 two laser-cut layers standing off each other"},
+      {f:"s2",c:"From behind: crest ring, backing frame, standoff pins"},
+      {f:"s3",c:"Displacement check \u2014 0.27 mm at the extremities, hanging on its pins"},
+      {f:"s4",c:"Factor of safety 6.2 minimum. It is a sign, but it is a sign hanging over people"}
     ]}
   ],
-  pending:["Cashier counter","Display and shelving units"],
   videos:[
-    {file:"videos/ms-023-v2.mp4", poster:"videos/ms-023-v2-poster.jpg", portrait:true,
-     caption:"Store walkthrough during fit-out — shopfront, entrance and the installed ceiling curves running back through the space"},
+    {file:"videos/ms-023-v3.mp4", poster:"videos/ms-023-v3-poster.jpg", portrait:true,
+     caption:"The finished store \u2014 ceiling curves, counter, cladding and crest in place"},
     {file:"videos/ms-023-v1.mp4", poster:"videos/ms-023-v1-poster.jpg", portrait:false,
-     caption:"Tube-laser CAM simulation — the coped features generated by Cut With Surface arriving as machine-recognised cutting operations along the Ø60.5 chord"}
+     caption:"Tube-laser CAM simulation \u2014 the copes generated by Cut With Surface arriving as recognised machine operations along the chord"}
   ],
   docs:[
-    {file:"docs/ms-023-trusses.pdf", label:"Truss general arrangement — SteelX drawing (PDF)"}
+    {file:"docs/ms-023-trusses.pdf", label:"Truss general arrangement \u2014 SteelX drawing (PDF)"},
+    {file:"docs/ms-023-counter.pdf", label:"Service counter \u2014 8-sheet drawing set with sections and BOM (PDF)"}
   ],
-  v:2,
-  meta:{Role:"Mechanical design & manufacturing engineer", Client:"Al-Hussein Sport Club — brand store fit-out", Employer:"SteelX Jordan", Tools:"SolidWorks (Weldments, Surfacing, Sheet Metal) · KeyShot", Output:"IGES to tube laser · flat patterns · assembly drawings", Year:"2026"},
-  overview:"The architect delivered a concept package, not a buildable one: six freeform screens threading through an inverted ceiling, drawn as construction geometry at 1:50 with anchor points and radius circles. Beautiful, and completely undefined as steel. This project was the translation — taking that visual intent and producing the geometry, the manufacturing files and the assembly logic that let a fabrication shop actually build it, without losing the shapes the client had signed off on.",
-  approach:"Work ran element by element. The lighting trusses were modelled as SolidWorks weldments so the cut list drove tube output directly; the difficulty was the joints, where a Ø32.4 brace meets a Ø60.5 chord at a compound angle. That intersection is a saddle whose profile changes continuously along the joint, so a standard trim will not describe it — the copes were generated with Cut With Surface, using a surface as the cutting tool, which produced true fish-mouth profiles that survived export to the tube laser as recognised cutting operations. Stub posts with bolted hole rows were added so installers could take out 150 mm of ceiling level error on site. The curves were rebuilt from the ground up: each architect profile was re-drawn as a tangent-continuous chain of arcs on located centres, which turned a freeform shape into something that could drive a surface, unroll to a flat pattern and be dimensionally checked against the client's file. The manufacturing decision that mattered most was choosing to punch the perforated sheet rather than laser it — at 1.1 mm and Ø15 mm holes on a 25 mm pitch, a laser puts a thermal cycle into the panel at every hole and the sheet distorts long before the pattern is finished. Punching is a cold process: the panels came off flat, stayed flat through rolling, and the 1.1 mm gauge was itself chosen so the mesh could fold directly around its tube frame with no separate perimeter section.",
+  v:3,
+  meta:{Role:"Mechanical design &amp; manufacturing engineer", Client:"Al-Hussein Sport Club \u2014 brand store fit-out", Employer:"SteelX Jordan", Tools:"SolidWorks (Weldments, Surfacing, Sheet Metal) \u00b7 KeyShot", Output:"DXF &amp; IGES to laser \u00b7 flat patterns \u00b7 bend data \u00b7 shop drawings", Year:"2026"},
+  overview:"The architect delivered a concept package, not a buildable one: freeform screens threading through an inverted ceiling, drawn at 1:50 with anchor points and radius circles. Beautiful, and completely undefined as steel. This project was the translation \u2014 producing the geometry, the manufacturing files and the assembly logic that let a fabrication shop build it without losing the shapes the client signed off on. The models were never just for looking at: every part left as a production file \u2014 DXFs for the fiber laser and tube cutter, bend data for the press brake and rolls, shop drawings for welding and assembly.",
+  approach:"Work ran element by element. The lighting trusses were modelled as weldments so the cut list drove tube output directly; the difficulty was the joints, where a \u00d832.4 brace meets a \u00d860.5 chord at a compound angle. That intersection is a saddle whose profile changes continuously along the joint, so a standard trim will not describe it \u2014 the copes were generated with Cut With Surface, which produced true fish-mouth profiles that survived export to the tube laser as recognised cutting operations. The curves were rebuilt from the ground up: each architect profile re-drawn as a tangent-continuous chain of arcs on located centres, turning a freeform shape into something that could drive a surface, unroll to a flat pattern and be checked against the client's file. The manufacturing call that mattered most was punching the perforated sheet rather than lasering it \u2014 at 1.1 mm with \u00d815 mm holes on a 25 mm pitch, a laser puts a thermal cycle into the panel at every hole and the sheet distorts long before the pattern is finished. The counter was the other hard one: a 3.1 m shell that had to read as a single continuous wrap, so the 1.8 mm galvanized skin was rolled and formed around a tube skeleton rather than built as a box with applied radii.",
   results:[
-    "Six freeform ceiling screens rebuilt as <b>tangent-continuous arc geometry</b> — unrollable, dimensioned, and verified against the client's concept file",
-    "Compound tube copes solved with <b>Cut With Surface</b>, exported as IGES and read directly as machine operations by the tube laser",
+    "Six freeform ceiling screens rebuilt as <b>tangent-continuous arc geometry</b> \u2014 unrollable, dimensioned, verified against the concept file",
+    "Compound tube copes solved with <b>Cut With Surface</b>, exported as IGES and read directly as machine operations",
     "<b>Punching selected over laser cutting</b> to eliminate heat distortion in 1.1 mm perforated sheet at ~28% open area",
-    "<b>3 trusses and 30 mesh panels</b> — roughly 60 linear metres of screen — released to production and installed"
+    "Counter shell rolled as <b>one continuous 3,137 mm wrap</b> \u2014 33-item BOM, 15.6 m\u00b2 sheet and 30.2 m tube released from a single model",
+    "<b>3 trusses, 30 mesh panels, counter, display wall, cladding and signage</b> \u2014 released to production and installed"
   ]
 }
 ];
@@ -851,6 +885,9 @@ grid.innerHTML=PROJECTS.map((p,i)=>`
 /* ============================== TECHNICAL LIBRARY ============================== */
 // Standalone documents: {type:"Drawing Package"|"Technical Report"|..., title, desc, file:"files/xxx.pdf"}
 const DOCS = [
+  {type:"Drawing Package", title:"Al-Hussein Sport Club Service Counter — Drawing Set, REV 2",
+   desc:"Eight-sheet fabrication set for the 3,137 mm curved service counter: general arrangement, exploded assembly, glazing and wood-cover callouts, 1.8 mm galvanized outer shell sections, tube skeleton with section cuts, and a 33-item BOM totalling 15.6 m² of sheet and 30.2 m of tube.",
+   file:"files/ms-023-counter.pdf"},
   {type:"CFD Study", title:"Archimedes Spiral Wind Turbine — Two-Stage CFD Performance Study",
    desc:"Full research-grade report: TSR optimization and velocity sweep in SolidWorks Flow Simulation (MRF), CP/CT/CD curves, power map and a 41.8% site capacity factor from monthly wind data.",
    file:"files/ms-019-report.pdf"},
