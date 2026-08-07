@@ -800,8 +800,8 @@ const PROJECTS = [
       {f:"c2",c:"The architect's freeform profile rebuilt as a tangent-continuous chain of arcs on located centres \u2014 the step that makes the shape unrollable"},
       {f:"c3",c:"Resolved profile, checked against the concept geometry before any surface was built"},
       {f:"c4",c:"Six curves hung from three trusses \u2014 panel divisions and hanger positions"},
-      {f:"c5",c:"Panel joints and the alternating mesh sequence"},
-      {f:"c6",c:"Installed \u2014 folded around their tube frames and tensioned to the modelled profile"}
+      {f:"c8",c:"Setting out in plan \u2014 panel divisions and hanger plates located off the truss centrelines before anything was cut"},
+      {f:"c7",c:"Curves and trusses as one assembly \u2014 the mesh becomes the ceiling and the steel above it disappears"}
     ]},
     {t:"Sheet 03 \u2014 Service Counter", reg:"Service counter", count:"3,137 mm \u00b7 33 items",
      spec:"3,137 \u00d7 630 \u00d7 940 mm &nbsp;\u00b7&nbsp; 1.8 mm galvanized outer shell, roll-bent as one continuous wrap &nbsp;\u00b7&nbsp; 80\u00d740, 40\u00d740, 30\u00d730, 20\u00d720 tube skeleton &nbsp;\u00b7&nbsp; 33-item BOM &nbsp;\u00b7&nbsp; 15.6 m\u00b2 sheet + 30.2 m tube &nbsp;\u00b7&nbsp; DXF \u2192 fiber laser + press brake",
@@ -813,16 +813,18 @@ const PROJECTS = [
       {f:"k5",c:"Flat patterns nested on 6,000 \u00d7 1,000 sheets \u2014 straight from the model to the laser"},
       {f:"k6",c:"Sections K-K and M-M: how the shell, liner and frame land on each other"},
       {f:"k7",c:"Shop floor \u2014 the shell rolled and closing around the frame"},
-      {f:"k8",c:"The nose radius, formed in one piece. This was the part that had to come out right"},
-      {f:"k9",c:"Primed and ready for topcoat"}
+      {f:"k8",c:"The nose radius, formed in one piece. This was the part that had to come out right"}
     ]},
-    {t:"Sheet 04 \u2014 Display &amp; Shelving", reg:"Display &amp; shelving", count:"25 mm tube \u00b7 5 sheets",
-     spec:"25 mm tube structure &nbsp;\u00b7&nbsp; perforated back panels &nbsp;\u00b7&nbsp; 332.5 \u00d7 355 module grid &nbsp;\u00b7&nbsp; 45.5 mm depth without rear sheet &nbsp;\u00b7&nbsp; garment rails, glass shelves, vertical ball dispenser &nbsp;\u00b7&nbsp; 5-sheet drawing set",
+    {t:"Sheet 04 \u2014 Display &amp; Shelving", reg:"Display &amp; shelving", count:"25 mm tube \u00b7 7 sheets",
+     spec:"25 mm tube structure &nbsp;\u00b7&nbsp; perforated back panels &nbsp;\u00b7&nbsp; 332.5 \u00d7 355 module grid &nbsp;\u00b7&nbsp; 45.5 mm depth without rear sheet &nbsp;\u00b7&nbsp; \u00d88 mm rod ball cages, 11 rings each &nbsp;\u00b7&nbsp; suspended shelves on \u00d826.9 pipe at 525 mm centres &nbsp;\u00b7&nbsp; 3,400 mm \u00d827 \u00d7 3.2 clothes rack &nbsp;\u00b7&nbsp; 7-sheet drawing set",
      imgs:[
       {f:"d1",c:"Display wall \u2014 stepped tube frame, mesh backs, and a full-height ball dispenser column"},
       {f:"d2",c:"Rails, glass shelves and hook rows set out on the same module"},
       {f:"d4",c:"Shop drawing \u2014 the module grid that keeps every shelf and rail on one setting-out line"},
-      {f:"d3",c:"Ceiling-hung display frame, flange-mounted overhead"}
+      {f:"d3",c:"Ceiling-hung display frame, flange-mounted overhead"},
+      {f:"d5",c:"Installed \u2014 dispenser column, hook rails and glass shelves all working off the same grid"},
+      {f:"d6",c:"Suspended shelf run \u2014 \u00be inch pipe droppers on 3 mm flange plates, shelves at 525 mm centres"},
+      {f:"d7",c:"Clothes rack \u2014 3.4 m of \u00d827 pipe bent as one run, no joint where the eye lands"}
     ]},
     {t:"Sheet 05 \u2014 Cladding &amp; Signage", reg:"Cladding &amp; signage", count:"FOS 6.2 \u00b7 0.27 mm",
      spec:"Corrugated cladding on framed steel backing &nbsp;\u00b7&nbsp; press-brake formed profile &nbsp;\u00b7&nbsp; laser-cut two-layer club crest on standoff pins &nbsp;\u00b7&nbsp; static check: 0.27 mm max deflection, minimum FOS 6.2",
@@ -834,6 +836,14 @@ const PROJECTS = [
       {f:"s2",c:"From behind: crest ring, backing frame, standoff pins"},
       {f:"s3",c:"Displacement check \u2014 0.27 mm at the extremities, hanging on its pins"},
       {f:"s4",c:"Factor of safety 6.2 minimum. It is a sign, but it is a sign hanging over people"}
+    ]},
+    {t:"Sheet 06 \u2014 Interactive Football Game", reg:"Interactive football game", count:"2,015 mm \u00b7 10 items",
+     spec:"2,015 \u00d7 890 \u00d7 740 mm overall &nbsp;\u00b7&nbsp; 1,395 mm playfield bay &nbsp;\u00b7&nbsp; 1,335 \u00d7 830 glass top &nbsp;\u00b7&nbsp; 30 \u00d7 30 \u00d7 2 square tube skeleton &nbsp;\u00b7&nbsp; 20 \u00d7 20 \u00d7 3 angle rebates for glass and mesh &nbsp;\u00b7&nbsp; welded mesh infill &nbsp;\u00b7&nbsp; 430 mm benches built into the frame &nbsp;\u00b7&nbsp; 10-item BOM",
+     imgs:[
+      {f:"g1",c:"Interactive football game \u2014 glass top, welded mesh cage, benches carried on the same frame rather than bolted on"},
+      {f:"g4",c:"Shop drawing \u2014 30 \u00d7 30 tube skeleton with 20 \u00d7 20 angle picking up every glass and mesh edge"},
+      {f:"g2",c:"In place between the shelf run and the counter, at bench height so people sit rather than stand"},
+      {f:"g3",c:"The whole fit-out together \u2014 it reads as furniture, it is detailed like the rest of the steel"}
     ]}
   ],
   videos:[
@@ -844,9 +854,11 @@ const PROJECTS = [
   ],
   docs:[
     {file:"docs/ms-023-trusses.pdf", label:"Truss general arrangement \u2014 SteelX drawing (PDF)"},
-    {file:"docs/ms-023-counter.pdf", label:"Service counter \u2014 8-sheet drawing set with sections and BOM (PDF)"}
+    {file:"docs/ms-023-counter.pdf", label:"Service counter \u2014 8-sheet drawing set with sections and BOM (PDF)"},
+    {file:"docs/ms-023-display.pdf", label:"Display wall, suspended shelves &amp; clothes rack \u2014 7-sheet drawing set (PDF)"},
+    {file:"docs/ms-023-football.pdf", label:"Interactive football game \u2014 2-sheet drawing set with BOM (PDF)"}
   ],
-  v:3,
+  v:4,
   meta:{Role:"Mechanical design &amp; manufacturing engineer", Client:"Al-Hussein Sport Club \u2014 brand store fit-out", Employer:"SteelX Jordan", Tools:"SolidWorks (Weldments, Surfacing, Sheet Metal) \u00b7 KeyShot", Output:"DXF &amp; IGES to laser \u00b7 flat patterns \u00b7 bend data \u00b7 shop drawings", Year:"2026"},
   overview:"The architect delivered a concept package, not a buildable one: freeform screens threading through an inverted ceiling, drawn at 1:50 with anchor points and radius circles. Beautiful, and completely undefined as steel. This project was the translation \u2014 producing the geometry, the manufacturing files and the assembly logic that let a fabrication shop build it without losing the shapes the client signed off on. The models were never just for looking at: every part left as a production file \u2014 DXFs for the fiber laser and tube cutter, bend data for the press brake and rolls, shop drawings for welding and assembly.",
   approach:"Work ran element by element. The lighting trusses were modelled as weldments so the cut list drove tube output directly; the difficulty was the joints, where a \u00d832.4 brace meets a \u00d860.5 chord at a compound angle. That intersection is a saddle whose profile changes continuously along the joint, so a standard trim will not describe it \u2014 the copes were generated with Cut With Surface, which produced true fish-mouth profiles that survived export to the tube laser as recognised cutting operations. The curves were rebuilt from the ground up: each architect profile re-drawn as a tangent-continuous chain of arcs on located centres, turning a freeform shape into something that could drive a surface, unroll to a flat pattern and be checked against the client's file. The manufacturing call that mattered most was punching the perforated sheet rather than lasering it \u2014 at 1.1 mm with \u00d815 mm holes on a 25 mm pitch, a laser puts a thermal cycle into the panel at every hole and the sheet distorts long before the pattern is finished. The counter was the other hard one: a 3.1 m shell that had to read as a single continuous wrap, so the 1.8 mm galvanized skin was rolled and formed around a tube skeleton rather than built as a box with applied radii.",
@@ -855,7 +867,7 @@ const PROJECTS = [
     "Compound tube copes solved with <b>Cut With Surface</b>, exported as IGES and read directly as machine operations",
     "<b>Punching selected over laser cutting</b> to eliminate heat distortion in 1.1 mm perforated sheet at ~28% open area",
     "Counter shell rolled as <b>one continuous 3,137 mm wrap</b> \u2014 33-item BOM, 15.6 m\u00b2 sheet and 30.2 m tube released from a single model",
-    "<b>3 trusses, 30 mesh panels, counter, display wall, cladding and signage</b> \u2014 released to production and installed"
+    "<b>Six elements released to production</b> \u2014 3 trusses, 30 mesh panels, counter, display wall, cladding and signage, and an interactive football game \u2014 all installed"
   ]
 }
 ];
