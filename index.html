@@ -53,8 +53,9 @@ nav.main a:hover{color:var(--brass)}
 .hero-band{background:
   radial-gradient(900px 420px at 85% -10%,rgba(201,162,75,.13),transparent 60%),
   linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%);
-  color:#F3EFE6;border-bottom:1px solid var(--line)}
-.hero{padding:92px 0 72px;position:relative}
+  color:#F3EFE6;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+#ff{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0;pointer-events:none}
+.hero{padding:92px 0 72px;position:relative;z-index:1}
 .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--brass-2);margin-bottom:26px}
 h1{font-family:var(--font-display);font-weight:400;font-size:clamp(44px,6.6vw,82px);line-height:1.06;letter-spacing:.015em}
 h1 .accent{color:var(--brass-2)}
@@ -97,8 +98,33 @@ h1 .accent{color:var(--brass-2)}
 .card-img{aspect-ratio:16/10;position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:
   radial-gradient(400px 200px at 50% 25%,rgba(18,42,67,.05),transparent 70%),
   repeating-linear-gradient(45deg,#F1EEE7 0 10px,#F8F6F1 10px 20px)}
-.card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
-.card:hover .card-img img{transform:scale(1.035)}
+.card-img>img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.card:hover .card-img>img{transform:scale(1.035)}
+/* contact-sheet reveal — eases in after a short delay so brushing past a card
+   with the cursor doesn't fire it */
+.peek{position:absolute;inset:0;z-index:2;display:grid;grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;gap:2px;background:var(--navy);opacity:0;
+  transition:opacity .55s ease .12s}
+.peek img{width:100%;height:100%;object-fit:cover;display:block;transform:translateY(11px);
+  transition:transform .72s cubic-bezier(.16,.84,.28,1) .12s}
+.card:hover .peek{opacity:1}
+.card:hover .peek img{transform:none}
+.peek img:nth-child(2){transition-delay:.21s}
+.peek img:nth-child(3){transition-delay:.30s}
+.peek img:nth-child(4){transition-delay:.39s}
+/* plates with fewer than four images still get a reveal */
+.peek[data-n="2"]{grid-template-rows:1fr}
+.peek[data-n="3"]{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
+.peek[data-n="3"] img:first-child{grid-row:span 2}
+.inside{position:absolute;left:0;bottom:0;z-index:3;background:var(--navy);color:var(--brass-2);
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  padding:8px 14px;transform:translateY(100%);
+  transition:transform .46s cubic-bezier(.16,.84,.28,1) .28s}
+.card:hover .inside{transform:none}
+/* no hover on touch — show the depth by default or phone users see nothing */
+@media (hover:none){
+  .peek{opacity:1}.peek img{transform:none}.inside{transform:none}
+}
 .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-family:var(--font-mono);font-size:11px;color:var(--dim);text-align:center;padding:12px}
 .ph .fn{font-weight:600;color:var(--brass)}
 .card-body{padding:26px 26px 20px;flex:1}
@@ -347,10 +373,11 @@ footer{padding:30px 0 36px;display:flex;justify-content:space-between;gap:12px;f
 <main id="home">
 
   <div class="hero-band">
+    <canvas id="ff" aria-hidden="true"></canvas>
     <div class="wrap hero">
-      <div class="eyebrow">Mechanical Design &nbsp;·&nbsp; Simulation &nbsp;·&nbsp; Fabrication</div>
-      <h1>Engineering, from<br>concept <span class="accent">to reality.</span></h1>
-      <p class="hero-sub">I'm <strong>Majdy Al-Sous</strong> — a mechanical engineer who carries products through the complete cycle: <strong>CAD design</strong>, <strong>CFD &amp; FEA validation</strong>, and <strong>real manufacturing</strong>. Steel structures, sheet metal products, wind turbines, and UAV aerodynamics.</p>
+      <div class="eyebrow">Amman, Jordan &nbsp;·&nbsp; Available for work</div>
+      <h1>Majdy Al-Sous — mechanical<br>design <span class="accent">and simulation.</span></h1>
+      <p class="hero-sub">Fifteen projects across <strong>sheet metal</strong>, <strong>weldments</strong>, <strong>CFD</strong> and <strong>FEA</strong>. Every one released to production.</p>
       <div class="hero-rule"></div>
       <div class="stats">
         <div class="stat reveal"><div class="n">5</div><div class="l">SolidWorks Certifications</div></div>
@@ -438,6 +465,7 @@ const ROMAN=["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII
 const PROJECTS = [
 {
   id:"ms-007", org:"tayyem", cat:"fab", tag:"Sheet Metal",
+  brief:"A commercial baking oven, designed as stainless sheet metal from the inside out.",
   title:"Commercial Baking Oven — TAYYEM",
   summary:"Sheet metal design of a commercial baking oven: stainless enclosure, flat-pattern development, DXF preparation, and press-brake forming.",
   metric:"Stainless · manufactured",
@@ -461,6 +489,7 @@ const PROJECTS = [
 },
 {
   id:"ms-010", org:"tayyem", cat:"fab", tag:"Sheet Metal · Refrigeration",
+  brief:"A refrigerated display counter, drawn once and built in series.",
   title:"Refrigerated Display Counter — Al-Dhiaa",
   summary:"Sheet metal design and fabrication of a commercial refrigerated display counter for the Al-Dhiaa brand — stainless deck, tempered glass display, and powder-coated steel body, built in series at TAYYEM.",
   metric:"Built in series",
@@ -477,6 +506,7 @@ const PROJECTS = [
 },
 {
   id:"ms-011", org:"steelx", cat:"fab", tag:"Steel Structures · CNC",
+  brief:"Plate steel boxes that locate themselves — tab-and-slot, no jig.",
   title:"Steel Structure Boxes — SteelX Jordan",
   summary:"Plate-based steel structure boxes engineered with self-locating tab-and-slot joints, optimized CNC nesting, and series fabrication on the SteelX production floor.",
   metric:"Series production",
@@ -493,6 +523,7 @@ const PROJECTS = [
 },
 {
   id:"ms-012", org:"tayyem", cat:"fab", tag:"Stainless · Food Equipment",
+  brief:"A full restaurant line: prep, refrigeration and service on one setting-out.",
   title:"Full Restaurant Serving Line — TAYYEM",
   summary:"A complete multi-station commercial restaurant line — refrigerated prep counters, hot stations, GN pan wells and glass guard gantries — designed as modular SolidWorks assemblies and fabricated in stainless at TAYYEM.",
   metric:"Multi-station line",
@@ -509,6 +540,7 @@ const PROJECTS = [
 },
 {
   id:"ms-013", org:"artmedia", cat:"fea fab", tag:"FEA · Public Structures",
+  brief:"Illuminated steel for a public festival in Amman. FEA-verified, then installed.",
   title:"Festival Sun Arch & Ring Structures — Art Media Group",
   summary:"Large illuminated steel structures for a public festival in Amman — a sun arch and a ring-arch tunnel — designed in SolidWorks, verified by FEA, developed into laser-cut flat patterns, and installed live.",
   metric:"FEA-verified · installed",
@@ -525,6 +557,7 @@ const PROJECTS = [
 },
 {
   id:"ms-014", org:"freelance", cat:"fab", tag:"Machine Design · Sheet Metal",
+  brief:"A volumetric screw conveyor — complete machine design in sheet metal.",
   title:"Volumetric Screw Conveyor — Freelance Design",
   summary:"Complete machine design of a volumetric screw conveyor in SolidWorks sheet metal — auger, tube, agitated feed hopper, bearing units and gearmotor drive — delivered as a freelance commission.",
   metric:"Complete machine design",
@@ -541,6 +574,7 @@ const PROJECTS = [
 },
 {
   id:"ms-015", org:"freelance", cat:"fab", tag:"Surface Modeling · Furniture",
+  brief:"A designer desk reverse-engineered from photographs into clean surfaces.",
   title:"Designer Desk — Advanced Surface Modeling",
   summary:"Freelance reverse-engineering commission: reconstructing a designer desk's complex organic geometry in SolidWorks surfaces from reference imagery, delivered as a watertight, manufacturable solid model.",
   metric:"Advanced surfacing",
@@ -557,6 +591,7 @@ const PROJECTS = [
 },
 {
   id:"ms-016", org:"steelx", cat:"fab", tag:"Sheet Metal · Product Design",
+  brief:"Self-service payment kiosks — 70 units, nine revisions to get there.",
   title:"Self-Service & POS Kiosk Fleet — 70 Units",
   summary:"Design-to-production of self-service payment kiosks for a public-sector client at SteelX — 2 mm powder-coated steel bodies over a welded tube frame, with integrated POS terminal, receipt printer, scanner and camera. 70 units built, including 20 accessible units.",
   metric:"70 units · 9 revisions",
@@ -586,6 +621,7 @@ const PROJECTS = [
 },
 {
   id:"ms-017", org:"freelance", cat:"fea", tag:"FEA · Structural Simulation",
+  brief:"An RC shock tower reverse-engineered, then made about 30% lighter.",
   title:"RC Shock Tower — Multi-Study FEA & Topology Optimization",
   summary:"Freelance simulation study of an RC vehicle shock tower reverse-engineered from the physical part: static, modal, fatigue and topology optimization in SolidWorks Simulation, with a three-configuration design trend study and a resonance risk caught before it reached the track.",
   metric:"4 studies · ≈30% mass cut",
@@ -613,6 +649,7 @@ const PROJECTS = [
 },
 {
   id:"ms-018", org:"freelance", cat:"cfd", tag:"CFD · Conjugate Heat Transfer",
+  brief:"A U-tube heat exchanger modelled from scratch, then run as conjugate heat transfer.",
   title:"Shell-and-Tube Heat Exchanger — Design & Thermal CFD Study",
   summary:"Freelance design-to-simulation project: a U-tube shell-and-tube heat exchanger modeled from scratch in SolidWorks, then analyzed with conjugate heat-transfer CFD in Flow Simulation to extract the performance parameters the client needed — outlet temperatures, LMTD and heat-transfer behaviour — with convergence-verified equation goals.",
   metric:"LMTD ≈ 44 °C · <1% flux balance",
@@ -641,6 +678,7 @@ const PROJECTS = [
 },
 {
   id:"ms-019", org:"freelance", cat:"cfd", tag:"CFD · Wind Energy · Parametric Study",
+  brief:"An Archimedes spiral turbine, characterised across tip-speed ratio and wind speed.",
   title:"Archimedes Spiral Wind Turbine — Two-Stage CFD Performance Study",
   summary:"Freelance research-grade CFD study of an Archimedes spiral wind turbine in SolidWorks Flow Simulation: a two-stage parametric methodology (TSR sweep, then velocity sweep at the optimum) using the MRF rotating-region approach, delivering CP/CT/CD curves, the power map and a site-specific capacity factor.",
   metric:"CP 0.240 @ TSR 2.0 · CF 41.8%",
@@ -667,6 +705,7 @@ const PROJECTS = [
 },
 {
   id:"ms-020", org:"artmedia", cat:"fab", tag:"Surfacing · Sheet Metal · Fabricated",
+  brief:"A 2.16 m sculptural valet station — surfaces, to flat patterns, to installed.",
   title:"Sculptural Valet Stand — Al Ameed Coffee",
   summary:"A 2.16 m sculptural valet station designed for Al Ameed Coffee through Art Media Group: a sweeping surface-modeled canopy translated into manufacturable sheet metal with fold/unfold verification, roll-formed shells and internal rolled tubes — taken from concept surfaces to laser-cut flat patterns to the installed piece.",
   metric:"2.16 m sculptural form · surfaces → flat patterns → installed",
@@ -692,6 +731,7 @@ const PROJECTS = [
 },
 {
   id:"ms-021", org:"steelx", cat:"fab", tag:"Sheet Metal · Architectural · Fabricated",
+  brief:"686 kg of staggered lattice, every joint tab-and-slot interlocked.",
   title:"Double-Skin Lattice Entrance Screen — Qortobah Housing",
   summary:"A 686 kg architectural entrance screen for a Qortobah housing development, designed at SteelX: a staggered triangular lattice built entirely from sheet metal — 10 mm frame, 2 mm trays with 5 mm reveal trim and partitions — as a double-skin construction with integrated internal lighting, every joint tab-and-slot interlocked. Includes a real production war story: laser heat distortion diagnosed and solved.",
   metric:"686 kg · ~3 × 4 m · double-skin · tab-and-slot",
@@ -720,6 +760,7 @@ const PROJECTS = [
 },
 {
   id:"ms-022", org:"research", cat:"cfd", tag:"CFD · Wind Energy · Patent Pending", special:"vawt",
+  brief:"Four rotor concepts screened in CFD. One went into the car.",
   title:"Wind-Integrated EV Charging System — Comparative VAWT CFD Study",
   summary:"Graduation research project, awarded 92/100 and ranked 1st in cohort, with a patent application filed: a vertical-axis wind turbine system integrated into an electric vehicle to recharge the battery from airflow while driving. Four rotor concepts were screened by comparative CFD, the winning rotor was integrated with proprietary inlet flow-conditioning and low-friction magnetic support (patent pending), and full-vehicle aerodynamic simulation verified the installation.",
   metric:"Battery coverage 33.7% → 98.5% @ 180 km/h · 1st in cohort",
@@ -780,6 +821,8 @@ const PROJECTS = [
 },
 {
   id:"ms-023", org:"steelx", cat:"fab", tag:"Design for Manufacture · Architectural Steel",
+  brief:"An architect's freeform interior, turned into machine-ready steel.",
+  metric:"6 elements · 30 mesh panels · concept → installed",
   title:"Al-Hussein Sport Club Brand Store",
   summary:"Concept to manufacture — turning an architect's freeform interior into machine-ready steel.",
   groups:[
@@ -800,7 +843,7 @@ const PROJECTS = [
       {f:"c2",c:"The architect's freeform profile rebuilt as a tangent-continuous chain of arcs on located centres \u2014 the step that makes the shape unrollable"},
       {f:"c3",c:"Resolved profile, checked against the concept geometry before any surface was built"},
       {f:"c4",c:"Six curves hung from three trusses \u2014 panel divisions and hanger positions"},
-      {f:"c8",c:"Setting out in plan \u2014 panel divisions and hanger plates located off the truss centrelines before anything was cut"},
+      {f:"c8",c:"In plan \u2014 panel joints and the alternating perforated/diamond sequence, hanger plates sitting on the truss centrelines"},
       {f:"c7",c:"Curves and trusses as one assembly \u2014 the mesh becomes the ceiling and the steel above it disappears"}
     ]},
     {t:"Sheet 03 \u2014 Service Counter", reg:"Service counter", count:"3,137 mm \u00b7 33 items",
@@ -874,24 +917,57 @@ const PROJECTS = [
 
 /* ============================== RENDER GRID ============================== */
 const grid=document.getElementById('grid');
-grid.innerHTML=PROJECTS.map((p,i)=>`
+
+/* how many images sit behind a card, and which four to show on hover.
+   works off the data already in PROJECTS — no new image keys needed. */
+function imgCount(p){
+  return p.groups ? p.groups.reduce((a,g)=>a+g.imgs.length,0) : (p.gallery||0);
+}
+function peekFiles(p){
+  const v = p.v ? `?v=${p.v}` : '';
+  let names = [];
+  if(p.groups){
+    // one from each sheet first, so the peek shows the range of the plate
+    for(const g of p.groups){ if(g.imgs.length) names.push(g.imgs[0].f); }
+    if(names.length < 4){
+      for(const g of p.groups) for(const im of g.imgs){
+        if(names.length >= 4) break;
+        if(!names.includes(im.f)) names.push(im.f);
+      }
+    }
+  } else {
+    const n = Math.min(4, p.gallery||0);
+    for(let k=1;k<=n;k++) names.push(String(k).padStart(2,'0'));
+  }
+  return names.slice(0,4).map(f=>`images/${p.id}-${f}.jpg${v}`);
+}
+
+grid.innerHTML=PROJECTS.map((p,i)=>{
+  const files = peekFiles(p);
+  const n = imgCount(p);
+  const peek = files.length>=2
+    ? `<div class="peek" data-n="${files.length}">${files.map(f=>`<img src="${f}" alt="" loading="lazy">`).join('')}</div>
+       <span class="inside">${n} image${n===1?'':'s'} inside</span>`
+    : '';
+  return `
   <a class="card reveal" data-c="${p.cat}" data-o="${p.org||''}" href="#/project/${p.id}">
     <span class="plate">Plate ${ROMAN[i]}</span>
     <div class="card-img">
       <img src="images/${p.id}-cover.jpg${p.v?`?v=${p.v}`:``}" alt="${p.title}" loading="lazy"
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="ph" style="display:none"><span>ADD COVER IMAGE →</span><span class="fn">images/${p.id}-cover.jpg</span></div>
+      ${peek}
     </div>
     <div class="card-body">
       <span class="tag">${p.tag}</span>
       <h3>${p.title}</h3>
-      <p>${p.summary}</p>
+      <p>${p.brief||p.summary}</p>
     </div>
     <div class="card-foot">
       <span class="metric">${p.metric}</span>
       <span class="open">View project →</span>
     </div>
-  </a>`).join('');
+  </a>`;}).join('');
 
 
 /* ============================== TECHNICAL LIBRARY ============================== */
@@ -1196,6 +1272,98 @@ window.addEventListener('hashchange', function(){
     window.goatcounter.count({path: location.pathname + location.hash});
   }
 });
+
+/* ============================== HERO FLOW FIELD ==============================
+   Streamlines advected through a velocity field. The cursor behaves as a body
+   sitting in the flow: streamlines wrap around it and accelerate past it.
+   Pauses when scrolled out of view. Does not run under reduced-motion. */
+(function(){
+  var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cv = document.getElementById('ff');
+  if(!cv || RM) return;
+  var ctx = cv.getContext('2d',{alpha:true});
+  var W=0,H=0,parts=[],run=false,raf=null,N=420;
+  var mx=0,my=0,mOn=false;
+  var SP=.62;
+
+  function count(){
+    var coarse = window.matchMedia('(pointer:coarse)').matches;
+    var n = Math.round((W*H)/900);
+    return Math.max(120, Math.min(coarse?280:900, n));
+  }
+  function size(){
+    var r=cv.getBoundingClientRect(), d=Math.min(window.devicePixelRatio||1,2);
+    W=r.width; H=r.height;
+    if(!W||!H) return;
+    cv.width=W*d; cv.height=H*d; ctx.setTransform(d,0,0,d,0,0);
+  }
+  function seed(){
+    N=count(); parts=[];
+    for(var i=0;i<N;i++) parts.push({x:Math.random()*W,y:Math.random()*H,a:Math.random()*.5+.12});
+  }
+  function field(x,y,t){
+    return Math.sin(x*.0042+t*.00019)*1.5
+         + Math.cos(y*.0055-t*.00013)*1.2
+         + Math.sin((x+y)*.0021+t*.00009)*.9;
+  }
+  function frame(t){
+    if(!run) return;
+    ctx.fillStyle='rgba(12,31,51,.045)'; ctx.fillRect(0,0,W,H);
+    ctx.lineWidth=.95;
+    var R=200, R2=R*R;
+    for(var i=0;i<parts.length;i++){
+      var p=parts[i], ang=field(p.x,p.y,t);
+      var vx=Math.cos(ang), vy=Math.sin(ang), sp=SP, boost=0;
+      if(mOn){
+        var dx=p.x-mx, dy=p.y-my, d2=dx*dx+dy*dy;
+        if(d2<R2){
+          var d=Math.sqrt(d2)||1, f=1-d/R;
+          var tan=Math.atan2(dy,dx)+Math.PI/2;
+          vx+=Math.cos(tan)*f*2.1; vy+=Math.sin(tan)*f*2.1;
+          vx+=(dx/d)*f*.55;        vy+=(dy/d)*f*.55;
+          var m=Math.sqrt(vx*vx+vy*vy)||1; vx/=m; vy/=m;
+          sp=SP*(1+f*3.2); boost=f;
+        }
+      }
+      var nx=p.x+vx*sp, ny=p.y+vy*sp;
+      ctx.strokeStyle='rgba(201,162,75,'+(p.a*(.62+boost*1.1)).toFixed(3)+')';
+      ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(nx,ny); ctx.stroke();
+      p.x=nx; p.y=ny;
+      if(p.x<-8||p.x>W+8||p.y<-8||p.y>H+8){ p.x=Math.random()*W; p.y=Math.random()*H; }
+    }
+    raf=requestAnimationFrame(frame);
+  }
+  function start(){ if(run||!W) return; run=true; raf=requestAnimationFrame(frame); }
+  function stop(){ run=false; if(raf) cancelAnimationFrame(raf); raf=null; }
+  function reset(){ size(); seed(); if(W){ ctx.fillStyle='#0C1F33'; ctx.fillRect(0,0,W,H); } }
+
+  // pointer is tracked on the band, not the canvas: the hero text sits above
+  // the canvas and would otherwise swallow the events
+  var band = cv.parentElement || cv;
+  if(!window.matchMedia('(pointer:coarse)').matches){
+    band.addEventListener('mousemove', function(e){
+      var r=cv.getBoundingClientRect();
+      mx=e.clientX-r.left; my=e.clientY-r.top; mOn=true;
+    }, {passive:true});
+    band.addEventListener('mouseleave', function(){ mOn=false; }, {passive:true});
+  }
+
+  if(window.ResizeObserver){ new ResizeObserver(reset).observe(cv); }
+  else { window.addEventListener('resize', reset); }
+
+  if(window.IntersectionObserver){
+    new IntersectionObserver(function(es){
+      es[0].isIntersecting ? start() : stop();
+    },{threshold:.02}).observe(cv);
+  } else { start(); }
+
+  document.addEventListener('visibilitychange', function(){
+    document.hidden ? stop() : start();
+  });
+
+  reset(); start();
+})();
+
 </script>
 </body>
 </html>
