@@ -256,6 +256,7 @@ body.detail-mode #detail{display:block}
 .g-item{border:1px solid var(--line);background:var(--paper);margin:0}
 .g-img{overflow:hidden;aspect-ratio:4/3;position:relative;background:
   repeating-linear-gradient(45deg,#F1EEE7 0 10px,#F8F6F1 10px 20px)}
+.g-img.g-p{aspect-ratio:3/4}
 .g-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
 .g-item:hover .g-img img{transform:scale(1.05)}
 .g-item figcaption{border-top:1px solid var(--line);padding:10px 14px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.06em;color:var(--soft);display:flex;align-items:baseline;gap:9px}
@@ -505,21 +506,41 @@ const PROJECTS = [
   gallery:3
 },
 {
-  id:"ms-011", org:"steelx", cat:"fab", tag:"Steel Structures · CNC",
-  brief:"Plate steel boxes that locate themselves — tab-and-slot, no jig.",
-  title:"Steel Structure Boxes — SteelX Jordan",
-  summary:"Plate-based steel structure boxes engineered with self-locating tab-and-slot joints, optimized CNC nesting, and series fabrication on the SteelX production floor.",
-  metric:"Series production",
-  meta:{Role:"Design & production engineer", Employer:"SteelX Jordan", Tools:"SolidWorks · CNC nesting", Process:"Laser cutting · welding"},
-  overview:"A structural steel box product built for repeatable series production — where the real engineering challenge isn't the shape, it's designing every plate so the whole batch cuts efficiently, self-locates during fit-up, and welds fast without jigs.",
-  approach:"The box was modeled in SolidWorks as a plate assembly with interlocking tab-and-slot joints, so parts self-locate during fit-up and welding stays fast and accurate across the series. All plates were nested in an optimized CNC cutting layout to maximize sheet utilization, then cut, welded, and finished on the SteelX production floor.",
+  id:"ms-011", org:"steelx", cat:"fab", tag:"Steel Structures \u00b7 Series Production",
+  brief:"Forty concrete-filled ballast boxes that locate themselves \u2014 tab-and-slot, no jig.",
+  title:"Truss Ballast Boxes \u2014 SteelX Jordan",
+  summary:"Forty plate-steel ballast boxes for large event truss systems: 20 mm plate, self-locating tab-and-slot joints on every face, CNC-nested cutting, and series fabrication at SteelX Jordan.",
+  metric:"40 units \u00b7 500 kg each",
+  v:"2",
+  meta:{Role:"Design & production engineer", Employer:"SteelX Jordan", Series:"40 units", Material:"20 mm plate steel", Tools:"SolidWorks \u00b7 CNC nesting"},
+  overview:"Forty steel boxes, filled with concrete on site and used as ballast to hold down the large aluminium truss fa\u00e7ades built for events and concerts. Each box is fabricated entirely from 20 mm plate and weighs around 500 kg empty, before any concrete goes in. At that size and that quantity, the design problem is not the shape of the box \u2014 it is making forty of them cut efficiently, fit up identically, and survive being craned, stacked and coupled on site.",
+  approach:"The box was modelled in SolidWorks as a plate assembly where every joint carries its own location. Each wall plate tabs into its neighbours and drops into matching slots in the top and bottom plates, so a box self-locates during fit-up and the whole series welds without a jig or a setting-out frame. Joint clearances were set deliberately loose rather than tight: the finished boxes are dipped whole for galvanizing, and the bath has to reach the internal faces and drain back out again, so the joints were opened up just enough to let the zinc through. The tie points were designed as sleeves passing through the plate, so hooks can be dropped through to couple boxes side by side against the trusses and stack them vertically \u2014 several units then act as a single ballast mass instead of four separate ones.",
   results:[
-    "<b>Self-locating tab-and-slot</b> joint design — fast, jig-free fit-up and welding",
-    "Optimized <b>CNC nesting layout</b> for maximum plate utilization",
-    "Fabricated, welded and finished <b>in series</b> at SteelX Jordan"
+    "<b>40 units delivered</b> \u2014 20 mm plate throughout, roughly <b>500 kg per box</b> before concrete fill",
+    "<b>Self-locating tab-and-slot</b> on all four walls and into the top and bottom plates \u2014 jig-free fit-up across the whole series",
+    "Joint clearances <b>opened for hot-dip galvanizing</b>, so the bath reaches internal faces and drains",
+    "<b>Sleeved tie points</b> allow units to be coupled side by side and stacked, so several boxes behave as one ballast block"
   ],
-  gcaps:["Series production on the SteelX floor", "Welded & primed box interior", "CNC nesting layout — plate utilization", "SolidWorks assembly — trimetric view", "Tab-and-slot corner joint detail"],
-  gallery:5
+  groups:[
+    {t:"Design & Joint Detailing", reg:"Design", count:"04", imgs:[
+      {f:"d1", c:"The box as modelled \u2014 20 mm plate throughout, with tie-down and lifting plates carried on every face"},
+      {f:"d2", c:"Assembly in SolidWorks \u2014 the sleeved tie points standing proud of the top plate, which the coupling hooks pass through when units are stacked"},
+      {f:"d3", c:"Corner detail \u2014 a wall tab dropping into its slot in the base plate. The joint sets its own position before a single tack weld goes in", hl:true},
+      {f:"d4", c:"In plan \u2014 the full tab-and-slot pattern around the perimeter. Every joint locates itself, so the box needs no jig and no setting-out frame"}
+    ]},
+    {t:"CNC Nesting", reg:"Nesting", count:"01", imgs:[
+      {f:"n1", c:"The cut nest \u2014 every plate in the box laid out on the sheet and ordered for minimum offcut, then repeated across the batch"}
+    ]},
+    {t:"Fabrication", reg:"Fabrication", count:"02", imgs:[
+      {f:"f1", p:true, c:"Inside a primed box \u2014 the internal corner gussets and the slots cut to receive the wall tabs"},
+      {f:"f2", p:true, hl:true, c:"Series production on the SteelX floor \u2014 boxes fitted up and welded in batch rather than one at a time"}
+    ]},
+    {t:"Coupling & Deployment", reg:"On site", count:"03", imgs:[
+      {f:"s1", p:true, c:"Finished units coupled on site \u2014 boxes bolted together through their corner plates so the group behaves as one ballast mass"},
+      {f:"s2", p:true, c:"The stacking interface in close-up \u2014 the upper box seats down onto the top plate of the one below, located by the same tab logic used in fabrication"},
+      {f:"s3", p:true, c:"A tie stud standing through its sleeve in the top plate, ready for the next unit to drop over it"}
+    ]}
+  ]
 },
 {
   id:"ms-012", org:"tayyem", cat:"fab", tag:"Stainless · Food Equipment",
@@ -1081,8 +1102,8 @@ function renderDetail(id){
   const metaRows=Object.entries(p.meta).map(([k,v])=>`<div class="sd-row"><span class="k">${k}</span><span class="v">${v}</span></div>`).join('');
   const caps=p.gcaps||[];
   const count=caps.length||p.gallery||0;
-  const gitem=(fn,cap,hl)=>`<figure class="g-item${hl?' g-hl':''}">
-      <div class="g-img">${hl?'<span class="g-badge">✦ SELECTED</span>':''}
+  const gitem=(fn,cap,hl,port)=>`<figure class="g-item${hl?' g-hl':''}">
+      <div class="g-img${port?' g-p':''}">${hl?'<span class="g-badge">✦ SELECTED</span>':''}
         <img src="${fn}" alt="${cap}" loading="lazy"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="ph" style="display:none"><span>ADD IMAGE →</span><span class="fn">${fn}</span></div>
@@ -1093,7 +1114,7 @@ function renderDetail(id){
     ? p.groups.map((g,gi)=>`<div class="g-sec" id="sec-${p.id}-${gi}"><h3 class="g-sec-t">${g.t}</h3>${
         g.spec?`<div class="g-spec">${g.spec}</div>`:''
       }<div class="d-gallery">${
-        g.imgs.map(im=>gitem(`images/${p.id}-${im.f}.jpg${p.v?`?v=${p.v}`:''}`,im.c,im.hl)).join('')
+        g.imgs.map(im=>gitem(`images/${p.id}-${im.f}.jpg${p.v?`?v=${p.v}`:''}`,im.c,im.hl,im.p)).join('')
       }</div></div>`).join('')
     : Array.from({length:count},(_,n)=>{
     const fn=`images/${p.id}-${String(n+1).padStart(2,'0')}.jpg${p.v?`?v=${p.v}`:''}`;
