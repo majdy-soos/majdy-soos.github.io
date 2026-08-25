@@ -353,6 +353,37 @@ footer{padding:30px 0 36px;display:flex;justify-content:space-between;gap:12px;f
 #lightbox .lb-prev{left:8px}
 #lightbox .lb-next{right:8px}
 @media(max-width:640px){#lightbox .lb-prev,#lightbox .lb-next{font-size:38px;padding:0 8px}}
+
+/* ============ certification badge rig (hero) ============ */
+.hero{padding-top:40px}
+.rig{--amp:7px;--dur:5.4s;position:relative;height:190px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:14px}
+.rig .rail{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);margin-top:-16px;pointer-events:none}
+.rig .rail svg{display:block;overflow:visible}
+.rig .axis{transform-origin:center;transform:scaleX(0);opacity:0;transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .45s}
+.rig .tick{opacity:0;transition:opacity .35s .12s}
+.rig.locked .axis{transform:scaleX(1);opacity:.75}
+.rig.locked .tick{opacity:.75}
+.rig .track{display:flex;align-items:center}
+.rig .slot{width:150px;display:flex;justify-content:center;will-change:transform}
+.rig .flt{position:relative;display:flex;flex-direction:column;align-items:center}
+.rig.locked .flt{animation:rig-bob var(--dur) ease-in-out infinite}
+.rig .slot:nth-child(1) .flt{animation-delay:-.2s}
+.rig .slot:nth-child(2) .flt{animation-delay:-1.6s}
+.rig .slot:nth-child(3) .flt{animation-delay:-3.1s}
+.rig .slot:nth-child(4) .flt{animation-delay:-4.3s}
+@keyframes rig-bob{0%,100%{transform:translateY(calc(var(--amp)*.55))}50%{transform:translateY(calc(var(--amp)*-1))}}
+.rig .badge{display:block;width:94px;height:94px;text-decoration:none;filter:saturate(.82) drop-shadow(0 4px 13px rgba(0,0,0,.45));opacity:.94;transition:filter .3s,opacity .3s,transform .3s}
+.rig .badge img{width:100%;height:100%;display:block}
+.rig.locked .badge:hover,.rig.locked .badge:focus-visible{filter:saturate(1.05) drop-shadow(0 0 14px rgba(201,162,75,.55));opacity:1;transform:translateY(-5px) scale(1.05)}
+.rig .badge:focus-visible{outline:2px solid var(--brass-2);outline-offset:4px;border-radius:8px}
+.rig .cap{position:absolute;top:100%;left:50%;transform:translate(-50%,4px);margin-top:13px;text-align:center;white-space:nowrap;font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;line-height:1.6;color:#93A2B3;opacity:0;transition:opacity .45s,transform .45s,color .25s}
+.rig.locked .cap{opacity:1;transform:translate(-50%,0)}
+.rig .cap i{display:block;font-style:normal;letter-spacing:.16em;text-transform:uppercase;font-size:9.5px;color:#6C7D91}
+.rig .cap b{font-weight:600;color:var(--brass-2)}
+.rig.locked .slot:hover .cap,.rig.locked .slot:focus-within .cap{color:var(--brass-2)}
+@media (max-width:860px){.rig{height:166px}.rig .slot{width:112px}.rig .badge{width:76px;height:76px}}
+@media (max-width:560px){.hero{padding-top:28px}.rig{height:144px;margin-bottom:8px}.rig .slot{width:80px}.rig .badge{width:60px;height:60px}.rig .cap{font-size:8.5px;margin-top:9px}.rig .cap i{font-size:8px;letter-spacing:.1em}}
+@media (prefers-reduced-motion:reduce){.rig.locked .flt{animation:none}.rig .axis,.rig .cap{transition:none}}
 </style>
 </head>
 <body>
@@ -376,6 +407,40 @@ footer{padding:30px 0 36px;display:flex;justify-content:space-between;gap:12px;f
   <div class="hero-band">
     <canvas id="ff" aria-hidden="true"></canvas>
     <div class="wrap hero">
+      <div class="rig" id="rig">
+        <div class="rail">
+          <svg id="rail-svg" width="640" height="20" aria-hidden="true">
+            <line class="axis" x1="0" y1="10" x2="640" y2="10" stroke="#C9A24B" stroke-width="1" stroke-dasharray="10 5 2 5"/>
+            <g id="rail-ticks" stroke="#C9A24B" stroke-width="1"></g>
+          </svg>
+        </div>
+        <div class="track" id="rig-track">
+      <div class="slot"><div class="flt">
+        <a class="badge" href="https://www.credly.com/badges/5ce7127d-2160-42d8-8204-e15892b38973/public_url" target="_blank" rel="noopener" aria-label="CSWP Flow Simulation — verify on Credly">
+          <img src="images/badges/cswp-flow.png" width="94" height="94" decoding="async" alt="Certified SolidWorks Professional, Flow Simulation">
+        </a>
+        <span class="cap"><i>flow simulation</i>CSWP &middot; 06/2026</span>
+      </div></div>
+      <div class="slot"><div class="flt">
+        <a class="badge" href="https://www.credly.com/badges/1c5def4f-2bc6-4ada-940a-de60c5b00b16/public_url" target="_blank" rel="noopener" aria-label="CSWP Weldments — verify on Credly">
+          <img src="images/badges/cswp-weld.png" width="94" height="94" decoding="async" alt="Certified SolidWorks Professional, Weldments">
+        </a>
+        <span class="cap"><i>weldments</i>CSWP &middot; 05/2026</span>
+      </div></div>
+      <div class="slot"><div class="flt">
+        <a class="badge" href="https://www.credly.com/badges/bea74322-149c-4e30-99de-61b022ae1131/public_url" target="_blank" rel="noopener" aria-label="CSWPA Sheet Metal — verify on Credly">
+          <img src="images/badges/cswp-sheet.png" width="94" height="94" decoding="async" alt="Certified SolidWorks Professional, Sheet Metal">
+        </a>
+        <span class="cap"><i>sheet metal</i>03/2026 &middot; <b>145/145</b></span>
+      </div></div>
+      <div class="slot"><div class="flt">
+        <a class="badge" href="https://www.credly.com/badges/eaf23d72-1a46-4625-82d0-304ef6783c60/public_url" target="_blank" rel="noopener" aria-label="CSWA Simulation — verify on Credly">
+          <img src="images/badges/cswp-sim.png" width="94" height="94" decoding="async" alt="Certified SolidWorks Associate, Simulation">
+        </a>
+        <span class="cap"><i>simulation</i>CSWA &middot; 03/2026</span>
+      </div></div>
+        </div>
+      </div>
       <div class="eyebrow">Amman, Jordan &nbsp;·&nbsp; Available for work</div>
       <h1>Majdy Al-Sous — mechanical<br>design <span class="accent">and simulation.</span></h1>
       <p class="hero-sub">Seventeen projects across <strong>sheet metal</strong>, <strong>weldments</strong>, <strong>CFD</strong> and <strong>FEA</strong>. Every one released to production.</p>
@@ -1452,6 +1517,47 @@ window.addEventListener('hashchange', function(){
   });
 
   reset(); start();
+})();
+
+
+/* ============ certification badge rig ============ */
+(function(){
+  var rig=document.getElementById('rig'); if(!rig) return;
+  var track=document.getElementById('rig-track');
+  var slots=[].slice.call(rig.querySelectorAll('.slot'));
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var TRAVEL=1000, STAGGER=200;
+
+  function fitRail(){
+    var t=track.getBoundingClientRect(), svg=document.getElementById('rail-svg');
+    var w=Math.round(t.width)+40, mid=w/2, pitch=t.width/slots.length;
+    svg.setAttribute('width',w);
+    svg.querySelector('.axis').setAttribute('x2',w);
+    document.getElementById('rail-ticks').innerHTML=slots.map(function(_,i){
+      var x=Math.round(mid+(i-(slots.length-1)/2)*pitch);
+      return '<line class="tick" x1="'+x+'" y1="3" x2="'+x+'" y2="17"/>';
+    }).join('');
+  }
+
+  function enter(el,i){
+    var o=window.innerWidth/2+300;
+    return el.animate([
+      {transform:'translateX('+o+'px) rotate(16deg) scale(.82)',opacity:0},
+      {transform:'translateX(0px) rotate(0deg) scale(1)',opacity:1,offset:.74},
+      {transform:'translateX(-11px) rotate(-2deg) scale(1.04)',opacity:1,offset:.88},
+      {transform:'translateX(0px) rotate(0deg) scale(1)',opacity:1}
+    ],{duration:TRAVEL,delay:i*STAGGER,easing:'cubic-bezier(.16,.84,.3,1)',fill:'both'}).finished;
+  }
+
+  function start(){
+    fitRail();
+    if(reduce||!rig.animate){rig.classList.add('locked');return;}
+    Promise.all(slots.map(enter)).then(function(){rig.classList.add('locked');});
+  }
+
+  var rt;
+  addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(fitRail,150);});
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',start);}else{start();}
 })();
 
 </script>
