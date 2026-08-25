@@ -378,7 +378,7 @@ footer{padding:30px 0 36px;display:flex;justify-content:space-between;gap:12px;f
     <div class="wrap hero">
       <div class="eyebrow">Amman, Jordan &nbsp;·&nbsp; Available for work</div>
       <h1>Majdy Al-Sous — mechanical<br>design <span class="accent">and simulation.</span></h1>
-      <p class="hero-sub">Sixteen projects across <strong>sheet metal</strong>, <strong>weldments</strong>, <strong>CFD</strong> and <strong>FEA</strong>. Every one released to production.</p>
+      <p class="hero-sub">Seventeen projects across <strong>sheet metal</strong>, <strong>weldments</strong>, <strong>CFD</strong> and <strong>FEA</strong>. Every one released to production.</p>
       <div class="hero-rule"></div>
       <div class="stats">
         <div class="stat reveal"><div class="n">5</div><div class="l">SolidWorks Certifications</div></div>
@@ -963,6 +963,44 @@ const PROJECTS = [
     ]},
     {t:"Flat Pattern", reg:"Unfold", count:"01", imgs:[
       {f:"n1", c:"The generated flat pattern, exported for cutting \u2014 the outline the sheet is cut to, with the tab profiles that will interlock once the faces are folded up"}
+    ]}
+  ]
+},
+{
+  id:"ms-025", org:"steelx", cat:"fab", tag:"Stainless \u00b7 Tube Laser",
+  brief:"A lit stainless facade unit that tabs together \u2014 sheet into tube, on every side.",
+  title:"Decorative Facade Units \u2014 Fly Emirates",
+  summary:"A 420 \u00d7 420 mm stainless facade unit for Fly Emirates: 5 \u00d7 5 tube frame slotted on a fiber tube laser, a 5 mm patterned sheet that tabs into the frame on all four sides, and concealed lighting carried inside a U channel designed into the section.",
+  metric:"420 \u00d7 420 mm unit \u00b7 all stainless",
+  v:"1",
+  docs:[
+    {label:"Sample Unit \u2014 Assembly Drawing, REV 2 (PDF)",file:"files/ms-025-drawing-rev2.pdf"}
+  ],
+  meta:{Role:"Design engineer", Employer:"SteelX Jordan", Client:"Fly Emirates", Unit:"420 \u00d7 420 mm", Material:"Stainless \u2014 5 \u00d7 5 tube, 5 mm sheet", Tools:"SolidWorks \u00b7 fiber tube laser"},
+  overview:"A decorative facade built as a repeating unit rather than as one large panel. Each unit is 420 \u00d7 420 mm and entirely stainless: a 5 \u00d7 5 tube frame, a 5 mm decorative sheet carrying the triangulated pattern, a 2 mm cover, an 8 mm rod pinning the sheet, and a 1 mm U channel that houses the lighting. Because the facade is assembled from identical units, the pattern runs continuously across the elevation while every piece stays small enough to cut, finish and handle.",
+  approach:"Two decisions carry this design. The first is how the sheet meets the frame: rather than welding the panel into the tubes, tabs were cut along all four edges of the decorative sheet and matching slots were milled into the tubes, so the sheet drops into the frame and locates itself on every side. That speeds assembly and puts the panel in positive engagement with the frame instead of relying on weld alone, which matters on a member that is mostly open pattern. The second is the lighting: the U channel is not an afterthought bolted on later but part of the section, sized so the light sits inside it and washes the pattern from within the frame, with the tube slotting arranged around it. All slotting and milling in the tubes was cut on the fiber tube laser, which is what makes tab-and-slot viable at this precision across a repeating unit \u2014 the openings land where the model says they land. A full sample unit was fabricated and finished for the client before the run.",
+  results:[
+    "Facade resolved as a <b>repeating 420 \u00d7 420 mm unit</b>, so the pattern runs continuously while each piece stays easy to cut, finish and handle",
+    "<b>Tab-and-slot on all four sides</b> \u2014 the 5 mm sheet locates into the tube frame instead of relying on weld alone",
+    "<b>Lighting designed into the section</b>, carried in a 1 mm U channel inside the frame rather than added afterwards",
+    "All tube slotting cut on the <b>fiber tube laser</b>, holding the tab positions across the repeat",
+    "<b>Sample unit fabricated and finished</b> for client approval ahead of production"
+  ],
+  groups:[
+    {t:"Unit Breakdown", reg:"Exploded", count:"03", imgs:[
+      {f:"d1", c:"The unit exploded \u2014 patterned sheet, tube frame, U channel, cover and pinning rod, every component stainless", hl:true},
+      {f:"d2", c:"The same breakdown from the other side, showing how the frame closes around the sheet on all four edges"},
+      {f:"d3", c:"A full-length run exploded \u2014 how the units stack along an elevation, with the capping profiles above and below"}
+    ]},
+    {t:"Rendered Assembly", reg:"Render", count:"03", imgs:[
+      {f:"d4", c:"An assembled elevation \u2014 the patterned bands at head and sill with the open field between them"},
+      {f:"d5", c:"The pattern in raking light \u2014 the triangulated field reading against the frame it is tabbed into"},
+      {f:"d6", c:"Corner detail \u2014 the U channel sitting inside the frame section, with the lighting slot facing back across the pattern"}
+    ]},
+    {t:"Sample Unit", reg:"Sample", count:"03", imgs:[
+      {f:"s1", p:true, c:"The fabricated sample unit, finished \u2014 the frame depth and the pattern as built rather than rendered"},
+      {f:"s2", p:true, c:"The sample at the office ahead of the client review, next to a second frame section"},
+      {f:"s3", p:true, c:"Close along the frame edge \u2014 the milled slots in the tube and the sheet tabs seated into them"}
     ]}
   ]
 }
