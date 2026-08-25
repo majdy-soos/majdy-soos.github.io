@@ -535,10 +535,9 @@ const PROJECTS = [
       {f:"f1", p:true, c:"Inside a primed box \u2014 the internal corner gussets and the slots cut to receive the wall tabs"},
       {f:"f2", p:true, hl:true, c:"Series production on the SteelX floor \u2014 boxes fitted up and welded in batch rather than one at a time"}
     ]},
-    {t:"Coupling & Deployment", reg:"On site", count:"03", imgs:[
-      {f:"s1", p:true, c:"Finished units coupled on site \u2014 boxes bolted together through their corner plates so the group behaves as one ballast mass"},
-      {f:"s2", p:true, c:"The stacking interface in close-up \u2014 the upper box seats down onto the top plate of the one below, located by the same tab logic used in fabrication"},
-      {f:"s3", p:true, c:"A tie stud standing through its sleeve in the top plate, ready for the next unit to drop over it"}
+    {t:"Coupling & Deployment", reg:"On site", count:"02", imgs:[
+      {f:"s1", p:true, c:"Finished units coupled and stacked on site \u2014 boxes tied together through their corner plates so the group behaves as one ballast mass"},
+      {f:"s2", p:true, c:"The stacking interface in close-up \u2014 a tie stud standing through its sleeve in the top plate, ready for the next unit to drop over it"}
     ]}
   ]
 },
@@ -1103,7 +1102,7 @@ function renderDetail(id){
   const caps=p.gcaps||[];
   const count=caps.length||p.gallery||0;
   const gitem=(fn,cap,hl,port)=>`<figure class="g-item${hl?' g-hl':''}">
-      <div class="g-img${port?' g-p':''}">${hl?'<span class="g-badge">✦ SELECTED</span>':''}
+      <div class="g-img${port?' g-p':''}">
         <img src="${fn}" alt="${cap}" loading="lazy"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="ph" style="display:none"><span>ADD IMAGE →</span><span class="fn">${fn}</span></div>
