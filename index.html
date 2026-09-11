@@ -1015,7 +1015,7 @@ const PROJECTS = [
   title:"Stainless Pyramid Facade Elements \u2014 200-Piece Series",
   summary:"Two hundred folded stainless pyramids for a decorative facade. 1 mm sheet, modelled in SolidWorks Sheet Metal so the geometry produces a manufacturable flat pattern rather than a shape that only exists in 3D.",
   metric:"200 pieces \u00b7 1 mm stainless",
-  v:"1",
+  v:"2",
   meta:{Role:"Sheet metal designer", Employer:"SteelX Jordan", Series:"200 pieces", Material:"1 mm stainless steel", Tools:"SolidWorks Sheet Metal"},
   overview:"Two hundred stainless pyramids, folded from 1 mm sheet and mounted across a decorative facade. Each one is a four-sided pyramid whose faces rise from a square footprint and meet at a single apex, with interlocking tabs along the mating edges so the four faces close on each other rather than relying on the welder to hold the angle.",
   approach:"The hard part of this piece is not the pyramid \u2014 it is the unfold. A pyramid is a set of faces that meet at compound angles, and modelling it as a solid gives you a shape that cannot be flattened: SolidWorks will not produce a flat pattern from geometry that was never sheet metal to begin with. So it was built as sheet metal from the start, with the faces created and then converted so that every bend is a real bend with a real radius and a real bend allowance, and the flat pattern falls out of the model instead of being drawn by hand. Interlocking tabs were cut into the mating edges so the four faces locate each other as they fold up, which is what makes the piece repeatable across a 200-off run rather than something that has to be jigged and eyeballed each time. A physical sample was folded and checked against the model before the series was released.",
@@ -1030,11 +1030,12 @@ const PROJECTS = [
      caption:"The folded sample in hand, held against the SolidWorks model it came from \u2014 the flat pattern, cut and bent, closing on itself exactly as modelled"}
   ],
   groups:[
-    {t:"The Pyramid", reg:"Geometry", count:"04", imgs:[
+    {t:"The Pyramid", reg:"Geometry", count:"05", imgs:[
       {f:"d1", c:"Looking straight down \u2014 four faces meeting at the apex, with the interlocking tabs visible at the outer corners of each face", hl:true},
       {f:"d2", c:"The folded pyramid in isometric \u2014 the tabs on each mating edge close against the neighbouring face"},
       {f:"d3", c:"From below \u2014 the open underside and the way the four faces meet along their shared edges"},
-      {f:"d4", c:"Elevation \u2014 the face angle and rise that the flat pattern has to reproduce once the piece is folded"}
+      {f:"d4", c:"Elevation \u2014 the face angle and rise that the flat pattern has to reproduce once the piece is folded"},
+      {f:"d5", c:"A KeyShot render taken straight off the sheet metal model \u2014 the same geometry the flat pattern unfolds from, with the interlocking tabs stepping out along the lower edges"}
     ]},
     {t:"Flat Pattern", reg:"Unfold", count:"01", imgs:[
       {f:"n1", c:"The generated flat pattern, exported for cutting \u2014 the outline the sheet is cut to, with the tab profiles that will interlock once the faces are folded up"}
