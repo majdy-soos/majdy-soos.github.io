@@ -481,6 +481,7 @@ footer{padding:30px 0 36px;display:flex;justify-content:space-between;gap:12px;f
       <button data-f="cfd">CFD</button>
       <button data-f="fea">FEA</button>
       <button data-f="fab">Design &amp; Fabrication</button>
+      <button data-f="mech">Mechanism Study</button>
     </div>
     <div class="filters reveal" aria-label="Filter by organization" style="margin-top:-26px">
       <button class="active" data-o="all">All Organizations</button>
@@ -1124,7 +1125,45 @@ const PROJECTS = [
     ]}
   ]
 }
-
+,
+{
+  id:"ms-027", org:"research", cat:"mech", tag:"Mechanism Study \u00b7 Kinematics \u00b7 SolidWorks",
+  brief:"One cylinder lifts and flips. Nothing drives the flip \u2014 so how does it happen?",
+  title:"Rotating Pick-and-Place / Flip-Over Unit \u2014 Mechanism Study",
+  summary:"A reverse-engineering study, not an original design. The mechanism was observed running on a packaging line and rebuilt from scratch in SolidWorks with no drawings, no manufacturer data and no reference model \u2014 purely from the observed motion. The result is a transfer unit whose gripper lifts and flips 90\u00b0 from a single pneumatic cylinder, with no servo, no encoder and no controller. The sequencing is carried entirely by the geometry.",
+  metric:"One pneumatic input \u00b7 90\u00b0 gripper flip \u00b7 zero control electronics",
+  v:"1",
+  meta:{Role:"Reverse engineering \u0026amp; CAD reconstruction", Type:"Independent mechanism study", Tools:"SolidWorks 2022 \u00b7 Assembly Mates \u00b7 Motion Study \u00b7 KeyShot", Scope:"Kinematic reconstruction from observed motion", Year:"2026"},
+  overview:"This plate is not an original design, and it is listed here as a study for that reason. The mechanism was seen running on a food-grade packaging line, and the question it raised was worth chasing: the gripper flipped through 90\u00b0 in perfect time with the lift, and there was clearly only one actuator on the machine. Nothing was driving the flip. The unit was rebuilt in SolidWorks from observation alone to find out how the timing was being produced \u2014 no drawings, no manufacturer data, no reference model. What it demonstrates is the ability to read someone else\u0027s kinematics off a running machine and reconstruct them accurately, which is a different skill from designing something new.",
+  approach:"The whole system has one input: a pneumatic cylinder pushing a rack. Everything downstream is geometry. The rack turns a pinion keyed to the bottom shaft and the side arms swing up. On the left arm the large lower pulley is fixed to that shaft, so it cannot rotate with the arm \u2014 as the arm swings, the timing belt has no choice but to drive the upper pulley, converting the arm\u0027s own swing into rotation at the top plate for free. That rotation reaches a bevel pair at the top, where one gear is grounded to the opposite side arm. Because that gear is held, the meshing gear is forced to turn, redirecting the axis through 90\u00b0. A second timing belt then carries that rotation inboard to the suction head seated in its bearing. The flip is never actuated \u2014 it is a consequence of the lift.",
+  results:[
+    "Complete kinematic chain reconstructed from observed motion alone \u2014 <b>no drawings, no reference model</b>",
+    "Core principle identified: a <b>grounded pulley converts arm swing into free rotation</b>, removing the need for a second actuator",
+    "Bevel pair redirects the axis 90\u00b0 and a second belt centres the motion on the suction head \u2014 <b>lift and flip inherently synchronised</b>",
+    "Assembly built with real catalogue hardware \u2014 pillow blocks, bearings and mounts from the supplier library rather than placeholder geometry",
+    "Motion study verified the linkage through full travel; <b>end-of-stroke deceleration remains unresolved</b> and is recorded here as an open question rather than hidden"
+  ],
+  videos:[
+    {file:"videos/ms-027-v1.mp4", poster:"images/ms-027-v1-poster.jpg", portrait:false,
+     caption:"The reconstruction in SolidWorks \u2014 the motion study run through the cycle and inspected from several angles"},
+    {file:"videos/ms-027-v2.mp4", poster:"images/ms-027-v2-poster.jpg", portrait:false,
+     caption:"Reference footage of the original unit running on a packaging line \u2014 third-party material, shown only as the source the reconstruction was read from"}
+  ],
+  groups:[
+    {t:"The Unit", reg:"Assembly", count:"02",
+     spec:"Single pneumatic cylinder \u0026nbsp;\u00b7\u0026nbsp; rack and pinion \u0026nbsp;\u00b7\u0026nbsp; twin side arms on a common bottom shaft \u0026nbsp;\u00b7\u0026nbsp; two timing-belt stages \u0026nbsp;\u00b7\u0026nbsp; bevel pair \u0026nbsp;\u00b7\u0026nbsp; vacuum suction head",
+     imgs:[
+      {f:"d1", hl:true, c:"The complete unit \u2014 twin side arms rising from the common bottom shaft, a timing belt up each arm, the bevel pair and cross-bracket at the top, and the single cylinder driving the rack at the base"},
+      {f:"d2", c:"Closer on the drive end \u2014 the cylinder rod, the rack it pushes, and the pinion keyed to the bottom shaft the arms swing from"}
+     ]},
+    {t:"The Flip", reg:"Motion study", count:"03",
+     imgs:[
+      {f:"k1", c:"Early in the stroke \u2014 arms still low, the suction head level with its cups facing down at pick height"},
+      {f:"k2", c:"Mid-lift \u2014 the arms have swung further and the head has already begun to rotate, with nothing acting on it but the arm motion"},
+      {f:"k3", c:"Top of stroke \u2014 the head carried through its full 90\u00b0, cups now facing sideways, and no second actuator anywhere in the chain"}
+     ]}
+  ]
+}
 ];
 
 /* ============================== RENDER GRID ============================== */
