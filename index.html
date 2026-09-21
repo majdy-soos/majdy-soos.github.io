@@ -716,7 +716,7 @@ const PROJECTS = [
   ]
 },
 {
-  id:"ms-017", org:"freelance", cat:"fea", tag:"FEA · Structural Simulation",
+  id:"ms-017", org:"freelance research", cat:"fea", tag:"FEA · Structural Simulation",
   brief:"An RC shock tower reverse-engineered, then made about 30% lighter.",
   title:"RC Shock Tower — Multi-Study FEA & Topology Optimization",
   summary:"Freelance simulation study of an RC vehicle shock tower reverse-engineered from the physical part: static, modal, fatigue and topology optimization in SolidWorks Simulation, with a three-configuration design trend study and a resonance risk caught before it reached the track.",
@@ -744,7 +744,7 @@ const PROJECTS = [
   ]
 },
 {
-  id:"ms-018", org:"freelance", cat:"cfd", tag:"CFD · Conjugate Heat Transfer",
+  id:"ms-018", org:"freelance research", cat:"cfd", tag:"CFD · Conjugate Heat Transfer",
   brief:"A U-tube heat exchanger modelled from scratch, then run as conjugate heat transfer.",
   title:"Shell-and-Tube Heat Exchanger — Design & Thermal CFD Study",
   summary:"Freelance design-to-simulation project: a U-tube shell-and-tube heat exchanger modeled from scratch in SolidWorks, then analyzed with conjugate heat-transfer CFD in Flow Simulation to extract the performance parameters the client needed — outlet temperatures, LMTD and heat-transfer behaviour — with convergence-verified equation goals.",
@@ -773,7 +773,7 @@ const PROJECTS = [
   ]
 },
 {
-  id:"ms-019", org:"freelance", cat:"cfd", tag:"CFD · Wind Energy · Parametric Study",
+  id:"ms-019", org:"freelance research", cat:"cfd", tag:"CFD · Wind Energy · Parametric Study",
   brief:"An Archimedes spiral turbine, characterised across tip-speed ratio and wind speed.",
   title:"Archimedes Spiral Wind Turbine — Two-Stage CFD Performance Study",
   summary:"Freelance research-grade CFD study of an Archimedes spiral wind turbine in SolidWorks Flow Simulation: a two-stage parametric methodology (TSR sweep, then velocity sweep at the optimum) using the MRF rotating-region approach, delivering CP/CT/CD curves, the power map and a site-specific capacity factor.",
@@ -1127,7 +1127,7 @@ const PROJECTS = [
 }
 ,
 {
-  id:"ms-027", org:"research", cat:"mech", tag:"Mechanism Study \u00b7 Kinematics \u00b7 SolidWorks",
+  id:"ms-027", org:"", cat:"mech", tag:"Mechanism Study \u00b7 Kinematics \u00b7 SolidWorks",
   brief:"One cylinder lifts and flips. Nothing drives the flip \u2014 so how does it happen?",
   title:"Rotating Pick-and-Place / Flip-Over Unit \u2014 Mechanism Study",
   summary:"A reverse-engineering study, not an original design. The mechanism was observed running on a packaging line and rebuilt from scratch in SolidWorks with no drawings, no manufacturer data and no reference model \u2014 purely from the observed motion. The result is a transfer unit whose gripper lifts and flips 90\u00b0 from a single pneumatic cylinder, with no servo, no encoder and no controller. The sequencing is carried entirely by the geometry.",
@@ -1223,10 +1223,35 @@ grid.innerHTML=PROJECTS.map((p,i)=>{
 
 /* ============================== TECHNICAL LIBRARY ============================== */
 // Standalone documents: {type:"Drawing Package"|"Technical Report"|..., title, desc, file:"files/xxx.pdf"}
-const DOCS = [
+// Curated library cards (custom type/title/description). Standalone docs with no plate live here too.
+const DOCS_CURATED = [
+  {type:"Drawing Package", title:"Commercial Baking Oven 120×140 — Manufacturing Drawing",
+   desc:"Manufacturing drawing of the TAYYEM commercial baking oven, designed as stainless sheet metal from the inside out.",
+   file:"files/ms-007-drawing.pdf"},
+  {type:"Drawing Package", title:"Al Ameed Coffee Valet Stand — Assembly Drawing",
+   desc:"Assembly drawing of the 2.16 m sculptural valet station: surfaced form resolved into buildable sheet metal, from flat patterns to installation.",
+   file:"files/ms-020-drawing.pdf"},
+  {type:"Drawing Package", title:"Qortobah Double-Skin Lattice Entrance Screen — 8 Sheets, REV 3",
+   desc:"Full drawing package for the 686 kg staggered-lattice entrance screen, with every joint tab-and-slot interlocked.",
+   file:"files/ms-021-drawing.pdf"},
+  {type:"Drawing Package", title:"Al-Hussein Sport Club — Truss General Arrangement",
+   desc:"SteelX general-arrangement drawing of the brand-store trusses.",
+   file:"docs/ms-023-trusses.pdf"},
+  {type:"Drawing Package", title:"Al-Hussein Sport Club — Display Wall, Shelves & Clothes Rack",
+   desc:"Seven-sheet drawing set covering the display wall, suspended shelves and clothes rack of the brand store.",
+   file:"docs/ms-023-display.pdf"},
+  {type:"Drawing Package", title:"Al-Hussein Sport Club — Interactive Football Game",
+   desc:"Two-sheet drawing set with bill of materials for the interactive football game installation.",
+   file:"docs/ms-023-football.pdf"},
+  {type:"Drawing Package", title:"Fly Emirates Facade Unit — Sample Assembly Drawing, REV 2",
+   desc:"Assembly drawing of the 420 × 420 mm lit stainless facade unit, sheet tabbed into tube on every side.",
+   file:"files/ms-025-drawing-rev2.pdf"},
+  {type:"Drawing Package", title:"Al Beiruti Entrance Door — Shop Drawing, REV 5",
+   desc:"Shop drawing of the 3,765 × 2,403 mm entrance door, detailed in the same steel language as the facade planters.",
+   file:"files/ms-026-door-drawing-rev5.pdf"},
   {type:"Drawing Package", title:"Al-Hussein Sport Club Service Counter — Drawing Set, REV 2",
    desc:"Eight-sheet fabrication set for the 3,137 mm curved service counter: general arrangement, exploded assembly, glazing and wood-cover callouts, 1.8 mm galvanized outer shell sections, tube skeleton with section cuts, and a 33-item BOM totalling 15.6 m² of sheet and 30.2 m of tube.",
-   file:"files/ms-023-counter.pdf"},
+   file:"docs/ms-023-counter.pdf"},
   {type:"CFD Study", title:"Archimedes Spiral Wind Turbine — Two-Stage CFD Performance Study",
    desc:"Full research-grade report: TSR optimization and velocity sweep in SolidWorks Flow Simulation (MRF), CP/CT/CD curves, power map and a 41.8% site capacity factor from monthly wind data.",
    file:"files/ms-019-report.pdf"},
@@ -1246,6 +1271,27 @@ const DOCS = [
    desc:"Complete FEA report: static analysis, three-configuration design trend study, modal analysis versus motor harmonics, 500k-cycle fatigue assessment, and topology optimization reaching ≈30% mass reduction at FOS ≥ 2.",
    file:"files/ms-017-report.pdf"}
 ];
+// Every PDF attached to a plate appears in the library automatically.
+// A curated entry (same file) wins; anything not curated gets a card built from its plate.
+const DOCS = (()=>{
+  const byFile = new Map(DOCS_CURATED.map(d=>[d.file,d]));
+  const seen = new Set(), out = [];
+  const clean = t => String(t).replace(/\s*\(PDF\)\s*$/i,'');
+  PROJECTS.forEach(p=>(p.docs||[]).forEach(d=>{
+    if(seen.has(d.file)) return; seen.add(d.file);
+    const c = byFile.get(d.file);
+    if(c){ out.push(c); return; }
+    const isReport = /report|study|analysis/i.test(d.label);
+    out.push({
+      type: isReport ? (String(p.cat).includes('cfd') ? 'CFD Study' : 'Technical Report') : 'Drawing Package',
+      title: clean(p.title).split(/ \u2014 | — /)[0] + ' — ' + clean(d.label),
+      desc: p.brief || p.summary || '',
+      file: d.file
+    });
+  }));
+  DOCS_CURATED.forEach(d=>{ if(!seen.has(d.file)){ seen.add(d.file); out.push(d); } });
+  return out;
+})();
 const libGrid=document.getElementById('lib-grid');
 if(DOCS.length){
   document.getElementById('library').style.display='';
@@ -1265,7 +1311,7 @@ const oBtns=document.querySelectorAll('.filters button[data-o]');
 function applyFilters(){
   document.querySelectorAll('#grid .card').forEach(c=>{
     const okF=(activeF==='all'||c.dataset.c.split(' ').includes(activeF));
-    const okO=(activeO==='all'||c.dataset.o===activeO);
+    const okO=(activeO==='all'||c.dataset.o.split(' ').includes(activeO));
     c.style.display=(okF&&okO)?'flex':'none';
   });
 }
