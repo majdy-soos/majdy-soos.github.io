@@ -1171,7 +1171,7 @@ const PROJECTS = [
   title:"Foldable Portable Savonius Turbine — Concept Design &amp; Transient CFD",
   summary:"An original concept for a wind turbine that travels as a closed Ø45 cm drum and is set up on site: the blade halves rise on a spring-loaded telescopic mast and open radially through a rack-and-pinion driven from the top cover. It was designed and simulated as the turbine stage of a wind-to-thermal renewable-energy graduation project, at the request of the supervising faculty member. The mechanism is modelled and motion-checked and the rotor is studied with transient CFD. Detailed design was not finished before the project was presented, and the open items are listed on this plate rather than hidden.",
   metric:"Ø45 cm stowed · ~78 cm rotor deployed · transient rotating-region CFD",
-  v:"1",
+  v:"3",
   meta:{Role:"Turbine concept, mechanism design &amp; CFD", Type:"Graduation-project support — renewable energy, Al-Hussein Bin Talal University", Supervisor:"Dr. Mohamed Al-Laimon", Tools:"SolidWorks 2022 · Motion Study · Flow Simulation (transient, rotating region) · PhotoView 360", Stage:"Concept — detailed design open", Year:"2025"},
   overview:"The graduation project converted wind energy directly into heat, and it needed a turbine that a small team could carry to a site and set up by hand. A conventional Savonius rotor is simple and self-starting, but it is bulky and awkward to transport. The brief for this part of the work was a new turbine rather than a catalogue one: keep the Savonius principle, which suits low wind speeds and a direct mechanical load, and make the whole machine fold away into something you can lift by a handle.",
   approach:"The rotor is split into two blade halves, each built from three stacked tiers. Stowed, the halves sit inside a Ø45 cm drum with the top cover closed over them. To deploy, a telescopic mast with an internal spring lifts the rotor clear of the drum. Then the top cover is turned by its handle: a central pinion under the cover drives two opposed racks, and each rack carries one blade half outward along its own path, with pins running in arc slots in the cover to guide the motion. Because one pinion drives both racks, the halves always open by the same amount and the rotor stays balanced. The assembly was motion-checked in SolidWorks through the full stow-to-deploy sequence. The rotor was then simulated in SolidWorks Flow Simulation as a transient problem with a rotating region around the blades, local mesh refinement concentrated on the blade surfaces and the gap between them, and the project set up as a wind-speed series from 2 to 12 m/s.",
@@ -1181,14 +1181,14 @@ const PROJECTS = [
     "Spring-loaded <b>telescopic mast</b> lifts the rotor clear of the drum; the full stow-to-deploy sequence was checked in a motion study",
     "Transient CFD with a <b>rotating region</b> and multi-level local refinement around the blades and the central gap",
     "The velocity fields show the expected Savonius behaviour: flow speeding up around the advancing blade, a low-velocity pocket behind the returning blade, and a wake that shifts from side to side as the rotor turns",
-    "<b>No power figure is quoted.</b> Torque swings strongly through each revolution and the averaged power had not settled to a value worth publishing, so performance curves are listed as open work"
+    "The power goal plot shows the <b>cyclic torque peaks</b> typical of a Savonius rotor. The averaged power had not settled to a value worth publishing, so <b>no performance figure is quoted</b> and the curves are listed as open work"
   ],
   pending:["Detailed design — locking, bearings, sealing","Performance curves — CP vs TSR"],
   videos:[
     {file:"videos/ms-029-v1.mp4", poster:"images/ms-029-v1-poster.jpg", portrait:false,
      caption:"The deployment sequence in SolidWorks — the drum opens, the mast lifts the rotor and the blade halves open out, followed by wireframe views of the internal layout"},
     {file:"videos/ms-029-v2.mp4", poster:"images/ms-029-v2-poster.jpg", portrait:false,
-     caption:"Transient CFD — velocity magnitude on the mid-plane as the rotor turns through several revolutions"}
+     caption:"Transient CFD — velocity magnitude on the mid-plane as the rotor turns, with the power goal plot above it tracking the torque peaks through each revolution"}
   ],
   groups:[
     {t:"The Concept", reg:"Concept", count:"02",
