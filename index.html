@@ -538,7 +538,7 @@ footer{padding:30px 0 36px;display:flex;justify-content:space-between;gap:12px;f
 
 <script>
 /* ============================== DATA ============================== */
-const ROMAN=["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX"];
+const ROMAN=["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX","XXI","XXII","XXIII","XXIV","XXV","XXVI","XXVII","XXVIII","XXIX","XXX"];
 const PROJECTS = [
 {
   id:"ms-007", org:"tayyem", cat:"fab", tag:"Sheet Metal",
@@ -716,7 +716,7 @@ const PROJECTS = [
   ]
 },
 {
-  id:"ms-017", org:"freelance research", cat:"fea", tag:"FEA · Structural Simulation",
+  id:"ms-017", org:"freelance", cat:"fea", tag:"FEA · Structural Simulation",
   brief:"An RC shock tower reverse-engineered, then made about 30% lighter.",
   title:"RC Shock Tower — Multi-Study FEA & Topology Optimization",
   summary:"Freelance simulation study of an RC vehicle shock tower reverse-engineered from the physical part: static, modal, fatigue and topology optimization in SolidWorks Simulation, with a three-configuration design trend study and a resonance risk caught before it reached the track.",
@@ -744,7 +744,7 @@ const PROJECTS = [
   ]
 },
 {
-  id:"ms-018", org:"freelance research", cat:"cfd", tag:"CFD · Conjugate Heat Transfer",
+  id:"ms-018", org:"freelance", cat:"cfd", tag:"CFD · Conjugate Heat Transfer",
   brief:"A U-tube heat exchanger modelled from scratch, then run as conjugate heat transfer.",
   title:"Shell-and-Tube Heat Exchanger — Design & Thermal CFD Study",
   summary:"Freelance design-to-simulation project: a U-tube shell-and-tube heat exchanger modeled from scratch in SolidWorks, then analyzed with conjugate heat-transfer CFD in Flow Simulation to extract the performance parameters the client needed — outlet temperatures, LMTD and heat-transfer behaviour — with convergence-verified equation goals.",
@@ -773,7 +773,7 @@ const PROJECTS = [
   ]
 },
 {
-  id:"ms-019", org:"freelance research", cat:"cfd", tag:"CFD · Wind Energy · Parametric Study",
+  id:"ms-019", org:"freelance", cat:"cfd", tag:"CFD · Wind Energy · Parametric Study",
   brief:"An Archimedes spiral turbine, characterised across tip-speed ratio and wind speed.",
   title:"Archimedes Spiral Wind Turbine — Two-Stage CFD Performance Study",
   summary:"Freelance research-grade CFD study of an Archimedes spiral wind turbine in SolidWorks Flow Simulation: a two-stage parametric methodology (TSR sweep, then velocity sweep at the optimum) using the MRF rotating-region approach, delivering CP/CT/CD curves, the power map and a site-specific capacity factor.",
@@ -1127,7 +1127,7 @@ const PROJECTS = [
 }
 ,
 {
-  id:"ms-027", org:"", cat:"mech", tag:"Mechanism Study \u00b7 Kinematics \u00b7 SolidWorks",
+  id:"ms-027", org:"research", cat:"mech", tag:"Mechanism Study \u00b7 Kinematics \u00b7 SolidWorks",
   brief:"One cylinder lifts and flips. Nothing drives the flip \u2014 so how does it happen?",
   title:"Rotating Pick-and-Place / Flip-Over Unit \u2014 Mechanism Study",
   summary:"A reverse-engineering study, not an original design. The mechanism was observed running on a packaging line and rebuilt from scratch in SolidWorks with no drawings, no manufacturer data and no reference model \u2014 purely from the observed motion. The result is a transfer unit whose gripper lifts and flips 90\u00b0 from a single pneumatic cylinder, with no servo, no encoder and no controller. The sequencing is carried entirely by the geometry.",
@@ -1161,6 +1161,52 @@ const PROJECTS = [
       {f:"k1", c:"Early in the stroke \u2014 arms still low, the suction head level with its cups facing down at pick height"},
       {f:"k2", c:"Mid-lift \u2014 the arms have swung further and the head has already begun to rotate, with nothing acting on it but the arm motion"},
       {f:"k3", c:"Top of stroke \u2014 the head carried through its full 90\u00b0, cups now facing sideways, and no second actuator anywhere in the chain"}
+     ]}
+  ]
+}
+,
+{
+  id:"ms-029", org:"research", cat:"cfd", tag:"CFD · Wind Energy · Concept Design",
+  brief:"A Savonius rotor that packs into a 45 cm drum — and opens itself out on a rack-and-pinion.",
+  title:"Foldable Portable Savonius Turbine — Concept Design &amp; Transient CFD",
+  summary:"An original concept for a wind turbine that travels as a closed Ø45 cm drum and is set up on site: the blade halves rise on a spring-loaded telescopic mast and open radially through a rack-and-pinion driven from the top cover. It was designed and simulated as the turbine stage of a wind-to-thermal renewable-energy graduation project, at the request of the supervising faculty member. The mechanism is modelled and motion-checked and the rotor is studied with transient CFD. Detailed design was not finished before the project was presented, and the open items are listed on this plate rather than hidden.",
+  metric:"Ø45 cm stowed · ~78 cm rotor deployed · transient rotating-region CFD",
+  v:"1",
+  meta:{Role:"Turbine concept, mechanism design &amp; CFD", Type:"Graduation-project support — renewable energy, Al-Hussein Bin Talal University", Supervisor:"Dr. Mohamed Al-Laimon", Tools:"SolidWorks 2022 · Motion Study · Flow Simulation (transient, rotating region) · PhotoView 360", Stage:"Concept — detailed design open", Year:"2025"},
+  overview:"The graduation project converted wind energy directly into heat, and it needed a turbine that a small team could carry to a site and set up by hand. A conventional Savonius rotor is simple and self-starting, but it is bulky and awkward to transport. The brief for this part of the work was a new turbine rather than a catalogue one: keep the Savonius principle, which suits low wind speeds and a direct mechanical load, and make the whole machine fold away into something you can lift by a handle.",
+  approach:"The rotor is split into two blade halves, each built from three stacked tiers. Stowed, the halves sit inside a Ø45 cm drum with the top cover closed over them. To deploy, a telescopic mast with an internal spring lifts the rotor clear of the drum. Then the top cover is turned by its handle: a central pinion under the cover drives two opposed racks, and each rack carries one blade half outward along its own path, with pins running in arc slots in the cover to guide the motion. Because one pinion drives both racks, the halves always open by the same amount and the rotor stays balanced. The assembly was motion-checked in SolidWorks through the full stow-to-deploy sequence. The rotor was then simulated in SolidWorks Flow Simulation as a transient problem with a rotating region around the blades, local mesh refinement concentrated on the blade surfaces and the gap between them, and the project set up as a wind-speed series from 2 to 12 m/s.",
+  results:[
+    "Stows into a <b>Ø45 × 22 cm drum</b> and opens to a rotor about <b>78 cm across</b> (dimensions from the concept drawing)",
+    "<b>One input opens the rotor:</b> turning the top cover drives a single pinion, so both blade halves move out together and stay symmetric",
+    "Spring-loaded <b>telescopic mast</b> lifts the rotor clear of the drum; the full stow-to-deploy sequence was checked in a motion study",
+    "Transient CFD with a <b>rotating region</b> and multi-level local refinement around the blades and the central gap",
+    "The velocity fields show the expected Savonius behaviour: flow speeding up around the advancing blade, a low-velocity pocket behind the returning blade, and a wake that shifts from side to side as the rotor turns",
+    "<b>No power figure is quoted.</b> Torque swings strongly through each revolution and the averaged power had not settled to a value worth publishing, so performance curves are listed as open work"
+  ],
+  pending:["Detailed design — locking, bearings, sealing","Performance curves — CP vs TSR"],
+  videos:[
+    {file:"videos/ms-029-v1.mp4", poster:"images/ms-029-v1-poster.jpg", portrait:false,
+     caption:"The deployment sequence in SolidWorks — the drum opens, the mast lifts the rotor and the blade halves open out, followed by wireframe views of the internal layout"},
+    {file:"videos/ms-029-v2.mp4", poster:"images/ms-029-v2-poster.jpg", portrait:false,
+     caption:"Transient CFD — velocity magnitude on the mid-plane as the rotor turns through several revolutions"}
+  ],
+  groups:[
+    {t:"The Concept", reg:"Concept", count:"02",
+     spec:"Stowed Ø45 × 22 cm drum &nbsp;·&nbsp; two blade halves in three tiers &nbsp;·&nbsp; spring-loaded telescopic mast &nbsp;·&nbsp; rack-and-pinion radial opening driven from the top cover",
+     imgs:[
+      {f:"d1", hl:true, c:"Deployed — the two blade halves carried out on their racks from under the top cover, with the mast rising out of the storage drum below"},
+      {f:"d2", c:"Section through the unit — the spring inside the telescopic mast, its foot seated in the base, and the pinion and racks under the top cover"}
+     ]},
+    {t:"The Opening Mechanism", reg:"Mechanism", count:"02",
+     imgs:[
+      {f:"m1", c:"The top cover — turned by its handle, with guide pins running in the two arc slots as the blade halves move out"},
+      {f:"m2", c:"Under the cover — one central pinion driving two opposed racks, so both halves always open by the same amount"}
+     ]},
+    {t:"Transient CFD", reg:"CFD", count:"03",
+     imgs:[
+      {f:"c1", c:"Mesh on the mid-plane — the rotating region around the rotor and the local refinement concentrated on the blades and the central gap"},
+      {f:"c2", c:"Streamwise velocity on the top plane — the flow speeding up around the advancing blade and the wake forming behind the rotor"},
+      {f:"c3", c:"Velocity on the side plane — the low-velocity region behind the rotor along its height, with the mast and base below"}
      ]}
   ]
 }
@@ -1223,35 +1269,10 @@ grid.innerHTML=PROJECTS.map((p,i)=>{
 
 /* ============================== TECHNICAL LIBRARY ============================== */
 // Standalone documents: {type:"Drawing Package"|"Technical Report"|..., title, desc, file:"files/xxx.pdf"}
-// Curated library cards (custom type/title/description). Standalone docs with no plate live here too.
-const DOCS_CURATED = [
-  {type:"Drawing Package", title:"Commercial Baking Oven 120×140 — Manufacturing Drawing",
-   desc:"Manufacturing drawing of the TAYYEM commercial baking oven, designed as stainless sheet metal from the inside out.",
-   file:"files/ms-007-drawing.pdf"},
-  {type:"Drawing Package", title:"Al Ameed Coffee Valet Stand — Assembly Drawing",
-   desc:"Assembly drawing of the 2.16 m sculptural valet station: surfaced form resolved into buildable sheet metal, from flat patterns to installation.",
-   file:"files/ms-020-drawing.pdf"},
-  {type:"Drawing Package", title:"Qortobah Double-Skin Lattice Entrance Screen — 8 Sheets, REV 3",
-   desc:"Full drawing package for the 686 kg staggered-lattice entrance screen, with every joint tab-and-slot interlocked.",
-   file:"files/ms-021-drawing.pdf"},
-  {type:"Drawing Package", title:"Al-Hussein Sport Club — Truss General Arrangement",
-   desc:"SteelX general-arrangement drawing of the brand-store trusses.",
-   file:"docs/ms-023-trusses.pdf"},
-  {type:"Drawing Package", title:"Al-Hussein Sport Club — Display Wall, Shelves & Clothes Rack",
-   desc:"Seven-sheet drawing set covering the display wall, suspended shelves and clothes rack of the brand store.",
-   file:"docs/ms-023-display.pdf"},
-  {type:"Drawing Package", title:"Al-Hussein Sport Club — Interactive Football Game",
-   desc:"Two-sheet drawing set with bill of materials for the interactive football game installation.",
-   file:"docs/ms-023-football.pdf"},
-  {type:"Drawing Package", title:"Fly Emirates Facade Unit — Sample Assembly Drawing, REV 2",
-   desc:"Assembly drawing of the 420 × 420 mm lit stainless facade unit, sheet tabbed into tube on every side.",
-   file:"files/ms-025-drawing-rev2.pdf"},
-  {type:"Drawing Package", title:"Al Beiruti Entrance Door — Shop Drawing, REV 5",
-   desc:"Shop drawing of the 3,765 × 2,403 mm entrance door, detailed in the same steel language as the facade planters.",
-   file:"files/ms-026-door-drawing-rev5.pdf"},
+const DOCS = [
   {type:"Drawing Package", title:"Al-Hussein Sport Club Service Counter — Drawing Set, REV 2",
    desc:"Eight-sheet fabrication set for the 3,137 mm curved service counter: general arrangement, exploded assembly, glazing and wood-cover callouts, 1.8 mm galvanized outer shell sections, tube skeleton with section cuts, and a 33-item BOM totalling 15.6 m² of sheet and 30.2 m of tube.",
-   file:"docs/ms-023-counter.pdf"},
+   file:"files/ms-023-counter.pdf"},
   {type:"CFD Study", title:"Archimedes Spiral Wind Turbine — Two-Stage CFD Performance Study",
    desc:"Full research-grade report: TSR optimization and velocity sweep in SolidWorks Flow Simulation (MRF), CP/CT/CD curves, power map and a 41.8% site capacity factor from monthly wind data.",
    file:"files/ms-019-report.pdf"},
@@ -1271,27 +1292,6 @@ const DOCS_CURATED = [
    desc:"Complete FEA report: static analysis, three-configuration design trend study, modal analysis versus motor harmonics, 500k-cycle fatigue assessment, and topology optimization reaching ≈30% mass reduction at FOS ≥ 2.",
    file:"files/ms-017-report.pdf"}
 ];
-// Every PDF attached to a plate appears in the library automatically.
-// A curated entry (same file) wins; anything not curated gets a card built from its plate.
-const DOCS = (()=>{
-  const byFile = new Map(DOCS_CURATED.map(d=>[d.file,d]));
-  const seen = new Set(), out = [];
-  const clean = t => String(t).replace(/\s*\(PDF\)\s*$/i,'');
-  PROJECTS.forEach(p=>(p.docs||[]).forEach(d=>{
-    if(seen.has(d.file)) return; seen.add(d.file);
-    const c = byFile.get(d.file);
-    if(c){ out.push(c); return; }
-    const isReport = /report|study|analysis/i.test(d.label);
-    out.push({
-      type: isReport ? (String(p.cat).includes('cfd') ? 'CFD Study' : 'Technical Report') : 'Drawing Package',
-      title: clean(p.title).split(/ \u2014 | — /)[0] + ' — ' + clean(d.label),
-      desc: p.brief || p.summary || '',
-      file: d.file
-    });
-  }));
-  DOCS_CURATED.forEach(d=>{ if(!seen.has(d.file)){ seen.add(d.file); out.push(d); } });
-  return out;
-})();
 const libGrid=document.getElementById('lib-grid');
 if(DOCS.length){
   document.getElementById('library').style.display='';
@@ -1311,7 +1311,7 @@ const oBtns=document.querySelectorAll('.filters button[data-o]');
 function applyFilters(){
   document.querySelectorAll('#grid .card').forEach(c=>{
     const okF=(activeF==='all'||c.dataset.c.split(' ').includes(activeF));
-    const okO=(activeO==='all'||c.dataset.o.split(' ').includes(activeO));
+    const okO=(activeO==='all'||c.dataset.o===activeO);
     c.style.display=(okF&&okO)?'flex':'none';
   });
 }
