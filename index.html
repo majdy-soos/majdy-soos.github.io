@@ -1292,6 +1292,19 @@ const DOCS = [
    desc:"Complete FEA report: static analysis, three-configuration design trend study, modal analysis versus motor harmonics, 500k-cycle fatigue assessment, and topology optimization reaching ≈30% mass reduction at FOS ≥ 2.",
    file:"files/ms-017-report.pdf"}
 ];
+// Auto-include every PDF attached to a project, so new plates never get left out of the Library.
+(function(){
+  const base=f=>f.split('/').pop();
+  const have=new Set(DOCS.map(d=>base(d.file)));
+  const strip=h=>{const t=document.createElement('div');t.innerHTML=h;return t.textContent;};
+  PROJECTS.forEach(p=>(p.docs||[]).forEach(d=>{
+    if(have.has(base(d.file))) return;
+    have.add(base(d.file));
+    const label=strip(d.label).replace(/\s*\(PDF\)\s*$/,'');
+    const type=/report/i.test(label)?'Technical Report':(/cfd/.test(p.cat)?'CFD Study':'Drawing Package');
+    DOCS.push({type, title:strip(p.title), desc:label+'. '+strip(p.summary||p.brief||''), file:d.file});
+  }));
+})();
 const libGrid=document.getElementById('lib-grid');
 if(DOCS.length){
   document.getElementById('library').style.display='';
