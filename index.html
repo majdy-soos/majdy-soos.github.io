@@ -1210,6 +1210,55 @@ const PROJECTS = [
      ]}
   ]
 }
+,
+{
+  id:"ms-030", org:"tayyem", cat:"fab", tag:"Sheet Metal · DFM · Gas Appliance",
+  brief:"One burner module, one set of flat patterns — a whole family of broilers, and the first batch built for export to the US.",
+  title:"Vertical Gas Broiler Line — 5- &amp; 10-Burner Shawarma / Gyro Machines",
+  summary:"TAYYEM's vertical gas broiler range, redesigned for series production and taken through its first export order to the United States. The machine is a stainless sheet-metal product end to end: a cabinet carrying a column of radiant gas burners, a motor-driven spit on an adjustable base, and a perforated service door at the back. The design work was design-for-manufacturing in the plain sense — every part was drawn around the shop's own laser, press brake and welding bays, nested by thickness, and released as flat patterns the floor could run at volume without rework.",
+  metric:"5- &amp; 10-burner models · one shared burner module · export batch to the USA",
+  v:"1",
+  meta:{Role:"Design lead — DFM, flat patterns, shop drawings", Employer:"TAYYEM Engineering Industries", Market:"Export — United States (natural gas)", Material:"Stainless 304, 0.7 – 5 mm · 1.5 mm galvanized", Tools:"SolidWorks Sheet Metal · AutoCAD nesting · BarTender", Year:"2026"},
+  overview:"A shawarma broiler is a simple machine to describe and an unforgiving one to build in numbers. The cabinet, the burner frames, the spit base, the drip tray and the service door are all sheet metal, in seven thicknesses, and every one of them has to fold true and line up with the next part without a fitter trimming it. This plate covers the redesign of the line as a product family and the first production run against an export order: natural-gas units in 5- and 10-burner sizes, labelled and serialised for the US market, built and inspected on the TAYYEM floor in Amman.",
+  approach:"The burner head was treated as the one module everything else is built around. A five-burner column is a sub-assembly in its own right — burner frames, gas rail, valves and the back panel behind them — so a 10-burner machine is two columns on a wider base rather than a new design, and the same holds down to the smaller models in the family. That decision set the shape of the drawings: one cutting release per model, nested by thickness, with the door, burner frames, cabinet panels and drip tray laid out so the shop can see at a glance what runs on which sheet. Thickness was chosen part by part, from 0.7 mm skins up to 5 mm for the pieces that carry load, with galvanized sheet kept to internal parts and stainless 304 wherever the product is seen or touched. The service side was designed as a perforated rear door on hinges, so a burner or valve can be reached on site without pulling the machine off its line. The spit is driven from a gearmotor under the base with a variable-speed controller, and the motor specification already built into the fleet was kept for this order rather than changed late, since more than a hundred were in stock. Alongside the metalwork, the plate also covered the rating labels and the serial-number system for the export units, and the product sheets that go out with them.",
+  results:[
+    "Full range designed as <b>one shared burner module</b> — the 10-burner is two 5-burner columns on a common base, not a separate design",
+    "Seven stainless thicknesses plus galvanized internals, <b>nested per model and per thickness</b> for the fiber laser, with the cut list issued the same way",
+    "Perforated <b>rear service door</b> gives access to every burner and valve in place",
+    "Flat patterns released straight to the laser and press brake — the run in the photos was built from them without redesign",
+    "First export batch — <b>5- and 10-burner natural-gas units for the US market</b> — built, labelled and serialised in Amman",
+    "Rating labels and serial format designed and printed in-house for the export units"
+  ],
+  groups:[
+    {t:"The Machine", reg:"Design", count:"04",
+     spec:"Stainless 304 cabinet &nbsp;·&nbsp; column of radiant gas burners, individually valved &nbsp;·&nbsp; motor-driven spit on an adjustable base &nbsp;·&nbsp; drip tray and pull-out drawer &nbsp;·&nbsp; perforated rear service door",
+     imgs:[
+      {f:"d2", hl:true, c:"The 5-burner machine with a cone loaded — the column of burners behind it, the control panel on the side, the drawer under the base"},
+      {f:"d1", c:"The same machine open — five radiant burners in their frames, the side shields folded out, the spit seated on its base plate"},
+      {f:"d4", c:"The control panel — five push-and-turn gas valves on a screen-printed plate, numbered to the burners they feed"},
+      {f:"d3", c:"From the back — the perforated service door on its hinges, with the valve stems showing along the side"}
+     ]},
+    {t:"How It Comes Apart", reg:"Exploded", count:"02",
+     imgs:[
+      {f:"x1", c:"Exploded — the five burner boxes behind the back panel, the door, the twin-layer base with the drip tray, and the gearmotor and drive underneath"},
+      {f:"x2", p:true, c:"Fully spread — every sheet-metal part in the machine as a separate piece, which is also the cutting release in a different order"}
+     ]},
+    {t:"Cutting Release", reg:"Nesting", count:"02",
+     spec:"One nest per model &nbsp;·&nbsp; thickness-sorted cut list &nbsp;·&nbsp; stainless 304 in 0.7 / 1 / 1.25 / 1.5 / 2 / 3 / 5 mm &nbsp;·&nbsp; 1.5 mm galvanized internals",
+     imgs:[
+      {f:"n1", c:"The family nested model by model — perforated door, burner frames, back panel and drip tray for each size, from a single column to a twin-column 10-burner"},
+      {f:"n2", c:"The cut list sorted by thickness — eight columns from 5 mm stainless down to 0.7 mm, plus the galvanized parts, so the shop loads one sheet at a time"}
+     ]},
+    {t:"Production", reg:"Shop floor", count:"05",
+     imgs:[
+      {f:"s1", hl:true, c:"The first run lined up in the hall — 5- and 10-burner units side by side, burner columns fitted, waiting for final assembly"},
+      {f:"s2", c:"The same row from the far end of the bay"},
+      {f:"s3", p:true, c:"A single unit before the door goes on — the burner column and side shields, the spit base plate below"},
+      {f:"s4", c:"Close on the burner column — the radiant burners seated in their frames, the perforated door swung open beside them"},
+      {f:"s5", c:"The base — spit mount on the tray, drawer front and controller cut-out in the fascia"}
+     ]}
+  ]
+}
 ];
 
 /* ============================== RENDER GRID ============================== */
