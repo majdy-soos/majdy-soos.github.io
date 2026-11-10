@@ -67,8 +67,8 @@ nav.main a.on{color:#fff;background:linear-gradient(135deg,var(--red2),var(--red
 @keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 .hero-badges{display:flex;align-items:center;gap:10px;margin-top:16px;pointer-events:auto}
 .hero-badges a{display:block;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
-.hero-badges a:hover{transform:translateY(-4px) scale(1.12)}
-.hero-badges img{width:46px;height:46px;display:block;filter:drop-shadow(0 8px 12px rgba(0,0,0,.5))}
+.hero-badges a:hover{transform:translateY(-4px)}
+.hero-badges img{width:52px;height:52px;display:block;object-fit:contain}
 .hero-badges span{font-family:var(--fm);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-left:6px;line-height:1.6}
 .hero-badges span b{color:var(--red2);font-weight:400}
 .floor{position:absolute;left:0;right:0;bottom:0;height:36%;pointer-events:none;z-index:2;background:linear-gradient(to top,rgba(181,52,58,.10),rgba(200,164,90,.05) 45%,transparent 75%)}
@@ -135,16 +135,16 @@ nav.main a.on{color:#fff;background:linear-gradient(135deg,var(--red2),var(--red
 .cred{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
 .badges{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
 .badge{padding:26px 20px 22px;text-align:center;text-decoration:none;display:block}
-.badge img{width:110px;height:110px;display:block;margin:0 auto 14px;filter:drop-shadow(0 18px 24px rgba(0,0,0,.5));transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.badge:hover img{transform:translateY(-6px) rotate(-3deg) scale(1.04)}
+.badge img{width:120px;height:120px;display:block;margin:0 auto 14px;object-fit:contain}
+
 .badge .bt{font-family:var(--fd);font-size:15px;color:var(--ivory)}
 .badge .bs{font-family:var(--fm);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass2);margin-top:6px}
 .badge .bs b{color:var(--red2);font-weight:400}
 .badge .verify{font-family:var(--fm);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-top:10px;opacity:0;transition:opacity .3s}
 .badge:hover .verify{opacity:1}
-.badge:nth-child(1){animation:float 6s ease-in-out infinite}.badge:nth-child(2){animation:float 7s ease-in-out infinite 1s}.badge:nth-child(3){animation:float 6.5s ease-in-out infinite .5s}.badge:nth-child(4){animation:float 7.5s ease-in-out infinite 1.5s}
+
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.badge.glass:hover{animation-play-state:paused}
+.badge.glass{backdrop-filter:none;background:linear-gradient(135deg,rgba(30,46,70,.9),rgba(18,30,50,.9) 55%,rgba(60,28,40,.88))}
 .certs{display:flex;flex-direction:column;gap:10px}
 .cert{display:grid;grid-template-columns:1fr auto;gap:14px;padding:16px 20px;align-items:center}
 .cert .cid{font-family:var(--fm);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:5px}
@@ -176,9 +176,15 @@ footer span:first-child{max-width:760px}
 .zoom{position:fixed;z-index:59;background:#0b1826 center/cover;border:1px solid var(--brass3);border-radius:var(--r);transition:all .55s cubic-bezier(.4,0,.2,1);pointer-events:none;box-shadow:0 40px 120px rgba(0,0,0,.6)}
 
 /* ---------- spread (project view) ---------- */
-.spread{position:fixed;inset:0;z-index:60;width:100vw;background:#0b1826;color:var(--ivory);display:none;overflow:hidden;opacity:0;transition:opacity .45s}
+.spread{position:fixed;inset:0;z-index:60;background:#0b1826;color:var(--ivory);display:none;overflow:hidden;opacity:0;transition:opacity .45s}
 .spread.on{display:grid;grid-template-rows:auto 1fr}.spread.vis{opacity:1}
-.sp-hero{position:relative;height:54vh;min-height:360px;overflow:hidden;background:#0D1E31}
+.sp-hero{position:relative;height:38vh;min-height:250px;overflow:hidden;background:#0D1E31;transition:height .5s cubic-bezier(.4,0,.2,1),min-height .5s}
+.sp-hero h1,.sp-hero .t,.sp-hero .metric,.sp-hero .tag{transition:all .4s}
+.spread.compact .sp-hero{height:132px;min-height:132px}
+.spread.compact .sp-hero .t{bottom:16px;left:300px;right:300px;text-align:center}
+.spread.compact .sp-hero h1{font-size:22px;max-width:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.spread.compact .sp-hero .metric{display:none}
+.spread.compact .sp-hero .tag{margin-bottom:6px}
 .sp-hero>img{width:100%;height:100%;object-fit:cover;display:block;opacity:.9;cursor:zoom-in}
 .sp-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(11,24,38,1) 0%,rgba(11,24,38,.35) 40%,transparent 70%);pointer-events:none}
 .sp-hero .t{position:absolute;left:48px;bottom:34px;right:48px;z-index:2}
@@ -310,7 +316,8 @@ footer span:first-child{max-width:760px}
 /* ================= PHONE / TABLET ================= */
 #scene{touch-action:pan-y}
 #stage{height:100svh;overflow:hidden}
-html,body{overflow-x:clip;max-width:100%}
+html,body{overflow-x:hidden;max-width:100%;width:100%}
+#home{overflow-x:hidden;width:100%;position:relative}
 @media(max-width:1100px){
  /* project view becomes one scrolling column so no text is lost */
  .spread.on{display:block;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
@@ -1273,7 +1280,8 @@ function rebuild(){layout();const old=cards;cards=[];
   c.onclick=()=>{if(dragMoved)return;openFromCard(i,c)};
   ring.appendChild(c);cards.push(c)});angle=target=0;buildNumerals();render()}
 function hitTest(){/* per-frame hover: the drum moves under a still cursor, so :hover alone is not enough */
- if(COARSE||mouse.x<0||scrollY>innerHeight*0.6){hovering=false;cards.forEach(c=>{c._t=1;c.classList.remove('hover')});return}
+ if(COARSE){hovering=false;cards.forEach((c,i)=>{c._t=i===frontIdx?1.1:1});return}
+ if(mouse.x<0||scrollY>innerHeight*0.6){hovering=false;cards.forEach(c=>{c._t=1;c.classList.remove('hover')});return}
  const el=document.elementFromPoint(mouse.x,mouse.y);const hit=el&&el.closest?el.closest('.plate'):null;
  hovering=!!hit;cards.forEach(c=>{const on=c===hit;c._t=on?1.07:1;if(on&&!c.classList.contains('hover'))c.classList.add('hover');if(!on)c.classList.remove('hover')})}
 function render(){let best=-1,bd=1e9;
@@ -1288,8 +1296,15 @@ function tick(ts){drawFlow(ts);if(scrollY<innerHeight){if(ts-lastInput>2800&&!ho
 scene.addEventListener('wheel',e=>{const r=stage.getBoundingClientRect();const inBand=e.clientY>r.top+r.height*0.18&&e.clientY<r.top+r.height*0.72;
  if(scrollY<40&&inBand){e.preventDefault();lastInput=performance.now();const d=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;target-=d*0.07}},{passive:false});
 let drag=null,dragMoved=false;
-scene.addEventListener('pointerdown',e=>{if(e.button!==0)return;drag={x:e.clientX,a:target};dragMoved=false});
+scene.addEventListener('pointerdown',e=>{if(e.button!==0||e.pointerType==='touch')return;drag={x:e.clientX,a:target};dragMoved=false});
 addEventListener('pointermove',e=>{tiltX=(e.clientX/innerWidth-0.5)*-6;tiltY=(e.clientY/innerHeight-0.5)*4;if(!drag)return;lastInput=performance.now();if(Math.abs(e.clientX-drag.x)>5)dragMoved=true;target=drag.a-(e.clientX-drag.x)*(COARSE?0.12:0.22)});
+let tch=null;
+scene.addEventListener('touchstart',e=>{if(e.touches.length!==1)return;const t=e.touches[0];tch={x:t.clientX,y:t.clientY,a:target,dir:null};dragMoved=false},{passive:true});
+scene.addEventListener('touchmove',e=>{if(!tch)return;const t=e.touches[0],dx=t.clientX-tch.x,dy=t.clientY-tch.y;
+ if(!tch.dir){if(Math.abs(dx)<8&&Math.abs(dy)<8)return;tch.dir=Math.abs(dx)>Math.abs(dy)?'h':'v'}
+ if(tch.dir==='h'){e.preventDefault();dragMoved=true;lastInput=performance.now();target=tch.a+dx*(step/(innerWidth*0.62))}},{passive:false});
+const endTouch=()=>{if(tch&&tch.dir==='h')target=Math.round(target/step)*step;tch=null;setTimeout(()=>dragMoved=false,50)};
+scene.addEventListener('touchend',endTouch);scene.addEventListener('touchcancel',endTouch);
 const endDrag=()=>{if(drag&&dragMoved)target=Math.round(target/step)*step;drag=null;setTimeout(()=>dragMoved=false,0)};addEventListener('pointerup',endDrag);addEventListener('pointercancel',endDrag);
 addEventListener('keydown',e=>{if(lb.classList.contains('open'))return;
  if(sp.classList.contains('on')){if(e.key==='Escape')closeSpread();if(e.key==='ArrowRight')openPlate((cur+1)%active.length);if(e.key==='ArrowLeft')openPlate((cur-1+active.length)%active.length);return}
@@ -1301,7 +1316,7 @@ document.querySelectorAll('#filters-org button').forEach(b=>b.onclick=()=>{setOr
 function setOrg(o){activeO=o;document.querySelectorAll('#filters-org button').forEach(x=>x.classList.toggle('active',x.dataset.o===o));applyFilters()}
 
 /* ============================== PROJECT VIEW ============================== */
-const sp=document.getElementById('spread');let cur=-1,curP=null;const heroH=()=>innerWidth<=760?'44svh':'54vh';
+const sp=document.getElementById('spread');let cur=-1,curP=null;const heroH=()=>innerWidth<=760?'44svh':'38vh';
 function openFromCard(i,card){const p=active[i];const r=card.getBoundingClientRect(),z=document.createElement('div');z.className='zoom';
  Object.assign(z.style,{left:r.left+'px',top:r.top+'px',width:r.width+'px',height:r.height+'px',backgroundImage:`url(${cover(p)})`,opacity:0});document.body.appendChild(z);
  fill(p);sp.classList.add('on');document.body.classList.add('locked');
@@ -1332,10 +1347,11 @@ function fill(p){cur=active.indexOf(p);curP=p;
   <h4>Overview</h4><p>${p.overview}</p><h4>Approach</h4><p>${p.approach}</p><h4>Key results</h4><ul>${p.results.map(r=>`<li>${r}</li>`).join('')}</ul>`;
  const ch=document.getElementById('spCh');ch.scrollTop=0;sp.scrollTop=0;document.getElementById('spSide').scrollTop=0;
  document.querySelectorAll('.rail a[data-k]').forEach(a=>a.onclick=()=>{document.getElementById('ch'+a.dataset.k).scrollIntoView({behavior:'smooth',block:'start'})});
- ch.onscroll=()=>{const secs=[...ch.querySelectorAll('.ch')];let on=0;secs.forEach((s,k)=>{if(s.offsetTop-ch.scrollTop<160)on=k});document.querySelectorAll('.rail a[data-k]').forEach((a,k)=>a.classList.toggle('on',k===on))};
+ const side=document.getElementById('spSide');sp.classList.remove('compact');const cmp=()=>{if(innerWidth<=1100)return;if(ch.scrollTop>40||side.scrollTop>40)sp.classList.add('compact');else if(ch.scrollTop===0&&side.scrollTop===0)sp.classList.remove('compact')};side.onscroll=cmp;
+ ch.onscroll=()=>{cmp();const secs=[...ch.querySelectorAll('.ch')];let on=0;secs.forEach((s,k)=>{if(s.offsetTop-ch.scrollTop<160)on=k});document.querySelectorAll('.rail a[data-k]').forEach((a,k)=>a.classList.toggle('on',k===on))};
  document.title=`${strip(p.title)} — Majdy Al-Sous`;if(p.special==='vawt')initVawtAnim()}
 function closeSpread(){lastInput=performance.now();const card=cards[cur];
- const done=()=>{sp.classList.remove('on');document.body.classList.remove('locked');document.title='Majdy Al-Sous — Mechanical Design & Simulation Engineer'};
+ const done=()=>{sp.classList.remove('on','compact');document.body.classList.remove('locked');document.title='Majdy Al-Sous — Mechanical Design & Simulation Engineer'};
  if(!card||scrollY>40){sp.classList.remove('vis');setTimeout(done,450);history.replaceState(null,'','#/');return}
  goTo(cur);angle=target;render();
  const z=document.createElement('div');z.className='zoom';Object.assign(z.style,{left:0,top:0,width:'100vw',height:heroH(),backgroundImage:`url(${cover(curP)})`,transition:'none'});document.body.appendChild(z);
