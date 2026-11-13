@@ -428,7 +428,14 @@ footer span:first-child{max-width:none}
 footer .legal{max-width:720px}
 @media(min-width:1021px) and (max-width:1320px){nav.main a{padding:9px 11px;letter-spacing:.1em}.topbar{gap:16px}}
 nav.main{flex:0 1 auto;min-width:0}
-#stage.tight .title-block p,#stage.tight .hero-badges span{display:none!important}#stage.tight .title-block h1{font-size:26px!important}
+#stage.m1 .title-block p,#stage.m2 .title-block p,#stage.m3 .title-block p{display:none!important}
+#stage.m2 .title-block .kick,#stage.m3 .title-block .kick,#stage.m2 .hero-badges span,#stage.m3 .hero-badges{display:none!important}
+#stage.m2 .title-block,#stage.m3 .title-block{max-width:none}
+#stage.m2 .title-block h1,#stage.m3 .title-block h1{font-size:clamp(22px,2vw,28px)!important;white-space:nowrap}
+#stage.m2 .title-block h1 br,#stage.m3 .title-block h1 br{display:none}
+#stage.m2 .title-block h1 em::before,#stage.m3 .title-block h1 em::before{content:"\00a0"}
+#stage.m2 .title-block .eyebrow,#stage.m3 .title-block .eyebrow{margin-top:8px}
+#stage.m2 .hero-badges{margin-top:10px}#stage.m2 .hero-badges img{width:38px;height:38px}
 @media(max-width:1100px){.fl{grid-template-columns:1fr}.fl-steps{grid-template-columns:repeat(2,1fr)}.fl-step:nth-child(3){border-left:0}.fl-step:nth-child(n+3){border-top:1px solid rgba(230,203,138,.16)}}
 @media(max-width:760px){.brand{gap:10px}.brand .mark svg{height:28px}.topbar.solid .brand .mark svg{height:24px}.fl-grid{grid-template-columns:1fr;gap:10px}.fl-card{padding:26px 22px}.fl-card svg{height:64px}.fl-card .c-links{align-self:stretch}.fl-steps{grid-template-columns:1fr;padding:4px 6px}.fl-step{border-left:0!important;border-top:1px solid rgba(230,203,138,.16)}.fl-step:first-child{border-top:0}}
 .filters button{white-space:nowrap}
@@ -1401,7 +1408,7 @@ addEventListener('keydown',e=>{if(lb.classList.contains('open'))return;
  if(scrollY>innerHeight*0.6||['INPUT','TEXTAREA'].includes(document.activeElement.tagName))return;
  lastInput=performance.now();if(e.key==='ArrowLeft')target+=step;if(e.key==='ArrowRight')target-=step;if(e.key==='Enter'&&frontIdx>=0)openFromCard(frontIdx,cards[frontIdx])});
 /* measured guard: whatever the window, zoom or font settings, no plate may reach the headline */
-function fit(){if(innerWidth<=760||!cards.length)return true;const tb=document.querySelector('.title-block'),k=tb.querySelector('.kick').getBoundingClientRect(),h=tb.querySelector('h1').getBoundingClientRect();
+function fit(){if(innerWidth<=760||!cards.length)return true;const tb=document.querySelector('.title-block'),h=tb.querySelector('h1').getBoundingClientRect(),kr=tb.querySelector('.kick').getBoundingClientRect(),k=kr.height?kr:h;
  const L=Math.min(k.left,h.left)-10,Rr=Math.max(k.right,h.right)+10,limit=k.top-18,a0=angle,sc=cards.map(c=>c._s);let ok=false;
  for(let it=0;it<24;it++){let mb=0,mt=1e9;
   for(let j=0;j<6;j++){angle=a0+step*j/6;cards.forEach(c=>c._s=c._t=1);render();
@@ -1412,7 +1419,14 @@ function fit(){if(innerWidth<=760||!cards.length)return true;const tb=document.q
   else{const n=Math.max(active.length,1),cw=Math.max(150,parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cw'))-Math.max(6,ov*1.5));
    document.documentElement.style.setProperty('--cw',cw+'px');R=Math.max(560,(cw*1.15*n)/(2*Math.PI));if(cw<=150)break}}
  angle=a0;cards.forEach((c,i)=>c._s=sc[i]);render();return ok}
-let relayT=0,relayAt=0;function relayout(){stage.classList.remove('tight');layout();render();if(!fit()){stage.classList.add('tight');layout();render();fit()}relayAt=performance.now()}
+let relayT=0,relayAt=0;const curCw=()=>parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cw'))||0;
+function setMode(m){stage.classList.remove('m1','m2','m3');if(m)stage.classList.add(m)}
+/* plates keep their size; the title block gives way in steps (drop paragraph -> one-line headline -> headline only), and as a last resort the stage grows taller */
+function relayout(){stage.style.minHeight='';if(innerWidth<=760){setMode('');layout();render();relayAt=performance.now();return}
+ const want=Math.min(400,Math.max(240,innerWidth*0.25)),need=want*0.9;let done=false;
+ for(const m of ['','m1','m2','m3']){setMode(m);layout();render();if(fit()&&curCw()>=need){done=true;break}}
+ for(let i=0;i<4&&!done;i++){stage.style.minHeight=Math.ceil(stage.offsetHeight+Math.max(14,(need-curCw())*0.9+10))+'px';layout();render();done=fit()&&curCw()>=need-1}
+ relayAt=performance.now()}
 addEventListener('resize',relayout);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(relayout);addEventListener('load',relayout);
 if(window.ResizeObserver){const ro=new ResizeObserver(()=>{if(performance.now()-relayAt<250)return;clearTimeout(relayT);relayT=setTimeout(relayout,60)});ro.observe(document.querySelector('.title-block'));ro.observe(document.querySelector('.filters-wrap'))}
 document.querySelectorAll('#filters button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#filters button').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeF=b.dataset.f;applyFilters()});
