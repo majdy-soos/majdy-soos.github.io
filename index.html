@@ -426,8 +426,16 @@ footer .fmark{display:flex;align-items:center;gap:10px;color:var(--soft);white-s
 footer .fmark svg{height:22px;width:auto;fill:var(--brass2)}
 footer span:first-child{max-width:none}
 footer .legal{max-width:720px}
+@media(min-width:1021px) and (max-width:1320px){nav.main a{padding:9px 11px;letter-spacing:.1em}.topbar{gap:16px}}
+nav.main{flex:0 1 auto;min-width:0}
+#stage.tight .title-block p,#stage.tight .hero-badges span{display:none!important}#stage.tight .title-block h1{font-size:26px!important}
 @media(max-width:1100px){.fl{grid-template-columns:1fr}.fl-steps{grid-template-columns:repeat(2,1fr)}.fl-step:nth-child(3){border-left:0}.fl-step:nth-child(n+3){border-top:1px solid rgba(230,203,138,.16)}}
 @media(max-width:760px){.brand{gap:10px}.brand .mark svg{height:28px}.topbar.solid .brand .mark svg{height:24px}.fl-grid{grid-template-columns:1fr;gap:10px}.fl-card{padding:26px 22px}.fl-card svg{height:64px}.fl-card .c-links{align-self:stretch}.fl-steps{grid-template-columns:1fr;padding:4px 6px}.fl-step{border-left:0!important;border-top:1px solid rgba(230,203,138,.16)}.fl-step:first-child{border-top:0}}
+.filters button{white-space:nowrap}
+.topbar{flex-wrap:nowrap}.brand{white-space:nowrap}
+@media(min-width:761px) and (max-width:1020px){nav.main a{padding:9px 9px;letter-spacing:.08em}.brand small{display:none}.topbar{padding-left:24px;padding-right:24px}}
+@media(min-width:761px) and (max-height:820px){.title-block p{display:none}.title-block{bottom:88px}}
+@media(min-width:761px) and (max-height:640px){.hero-badges span{display:none}.hero-badges img{width:40px;height:40px}.title-block h1{font-size:26px}}
 </style>
 </head>
 <body>
@@ -1341,7 +1349,12 @@ function drawFlow(ts){if(RM||document.hidden)return;ft=ts;cx.fillStyle='rgba(10,
 /* ============================== DRUM ============================== */
 const ring=document.getElementById('ring'),scene=document.getElementById('scene'),stage=document.getElementById('stage');
 let active=PROJECTS.slice(),angle=0,target=0,R=0,step=0,cards=[],lastInput=0,tiltX=0,tiltY=0,activeF='all',activeO='all',frontIdx=0;
-function layout(){const n=Math.max(active.length,1);step=360/n;const cw=innerWidth<=760?Math.min(300,innerWidth*0.72):Math.min(400,Math.max(240,innerWidth*0.25));document.documentElement.style.setProperty('--cw',cw+'px');R=Math.max(560,(cw*1.15*n)/(2*Math.PI))}
+function layout(){const n=Math.max(active.length,1);step=360/n;let cw=innerWidth<=760?Math.min(300,innerWidth*0.72):Math.min(400,Math.max(240,innerWidth*0.25));if(innerWidth>760){/* keep the front plate inside the band between the top bar and the title block */
+  const tb=document.querySelector('.title-block'),fw=document.querySelector('.filters-wrap'),H=stage.offsetHeight,top=96;
+  tb.style.bottom='';if(tb.getBoundingClientRect().right+24>fw.getBoundingClientRect().left)tb.style.bottom=(H-fw.offsetTop+20)+'px';/* title would run into the filters: lift it above them */
+  const bot=tb.offsetTop-28;
+  cw=Math.max(170,Math.min(cw,(bot-top)/0.84));ring.style.transform='translateY('+Math.round((top+bot)/2-H/2)+'px)'}else{ring.style.transform='';document.querySelector('.title-block').style.bottom=''}
+ document.documentElement.style.setProperty('--cw',cw+'px');R=Math.max(560,(cw*1.15*n)/(2*Math.PI))}
 function plateHTML(p){return `<div class="frame"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
  <div class="mat"><img src="${cover(p)}" alt="" draggable="false" loading="lazy"><div class="sheen"></div>
  <div class="band"><div class="num"><span>Plate ${p.n}</span><i>${strip(p.tag).split('·')[0].trim()}</i></div><h3>${p.title}</h3><div class="brief">${p.brief||''}</div></div></div></div>
@@ -1355,7 +1368,7 @@ function rebuild(){layout();const old=cards;cards=[];
  document.getElementById('empty').style.display=active.length?'none':'block';
  active.forEach((p,i)=>{const c=document.createElement('div');c.className='plate entering';c.style.animationDelay=(i*40)+'ms';c.innerHTML=plateHTML(p);c._s=1;c._t=1;
   c.onclick=()=>{if(dragMoved)return;openFromCard(i,c)};
-  ring.appendChild(c);cards.push(c)});angle=target=0;buildNumerals();render()}
+  ring.appendChild(c);cards.push(c)});angle=target=0;buildNumerals();render();if(typeof fit==='function')fit()}
 function hitTest(){/* per-frame hover: the drum moves under a still cursor, so :hover alone is not enough */
  if(COARSE){hovering=false;cards.forEach((c,i)=>{c._t=i===frontIdx?1.1:1});return}
  if(mouse.x<0||scrollY>innerHeight*0.6){hovering=false;cards.forEach(c=>{c._t=1;c.classList.remove('hover')});return}
@@ -1387,7 +1400,21 @@ addEventListener('keydown',e=>{if(lb.classList.contains('open'))return;
  if(sp.classList.contains('on')){if(e.key==='Escape')closeSpread();if(e.key==='ArrowRight')openPlate((cur+1)%active.length);if(e.key==='ArrowLeft')openPlate((cur-1+active.length)%active.length);return}
  if(scrollY>innerHeight*0.6||['INPUT','TEXTAREA'].includes(document.activeElement.tagName))return;
  lastInput=performance.now();if(e.key==='ArrowLeft')target+=step;if(e.key==='ArrowRight')target-=step;if(e.key==='Enter'&&frontIdx>=0)openFromCard(frontIdx,cards[frontIdx])});
-addEventListener('resize',()=>{layout();render()});
+/* measured guard: whatever the window, zoom or font settings, no plate may reach the headline */
+function fit(){if(innerWidth<=760||!cards.length)return true;const tb=document.querySelector('.title-block'),k=tb.querySelector('.kick').getBoundingClientRect(),h=tb.querySelector('h1').getBoundingClientRect();
+ const L=Math.min(k.left,h.left)-10,Rr=Math.max(k.right,h.right)+10,limit=k.top-18,a0=angle,sc=cards.map(c=>c._s);let ok=false;
+ for(let it=0;it<24;it++){let mb=0,mt=1e9;
+  for(let j=0;j<6;j++){angle=a0+step*j/6;cards.forEach(c=>c._s=c._t=1);render();
+   cards.forEach(c=>{if(+c.style.opacity<0.5)return;const r=c.getBoundingClientRect();if(r.width<30)return;mt=Math.min(mt,r.top);if(r.right>L&&r.left<Rr)mb=Math.max(mb,r.bottom+r.height*0.04)})}
+  const ov=Math.ceil(mb-limit);if(ov<=0){ok=true;break}
+  const m=/translateY\((-?[\d.]+)px\)/.exec(ring.style.transform),y=m?+m[1]:0,room=mt-92;
+  if(room>=1)ring.style.transform='translateY('+(Math.round(y)-Math.max(1,Math.floor(Math.min(ov,room))))+'px)';
+  else{const n=Math.max(active.length,1),cw=Math.max(150,parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cw'))-Math.max(6,ov*1.5));
+   document.documentElement.style.setProperty('--cw',cw+'px');R=Math.max(560,(cw*1.15*n)/(2*Math.PI));if(cw<=150)break}}
+ angle=a0;cards.forEach((c,i)=>c._s=sc[i]);render();return ok}
+let relayT=0,relayAt=0;function relayout(){stage.classList.remove('tight');layout();render();if(!fit()){stage.classList.add('tight');layout();render();fit()}relayAt=performance.now()}
+addEventListener('resize',relayout);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(relayout);addEventListener('load',relayout);
+if(window.ResizeObserver){const ro=new ResizeObserver(()=>{if(performance.now()-relayAt<250)return;clearTimeout(relayT);relayT=setTimeout(relayout,60)});ro.observe(document.querySelector('.title-block'));ro.observe(document.querySelector('.filters-wrap'))}
 document.querySelectorAll('#filters button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#filters button').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeF=b.dataset.f;applyFilters()});
 document.querySelectorAll('#filters-org button').forEach(b=>b.onclick=()=>{setOrg(b.dataset.o)});
 function setOrg(o){activeO=o;document.querySelectorAll('#filters-org button').forEach(x=>x.classList.toggle('active',x.dataset.o===o));applyFilters()}
